@@ -1,0 +1,19 @@
+$brand: #1DA1F2;
+$light-white: #F5F8FA;
+
+.text-brand {
+  color: $brand;
+}
+
+.btn-brand {
+  background-color: $brand;
+  color: $light-white;
+  &:hover {
+    color: $light-white;
+    background-color: darken($color: $brand, $amount: 5%);
+  }
+}
+
+a {
+  text-decoration: none !important;
+}
