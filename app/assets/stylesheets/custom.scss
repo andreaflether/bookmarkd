@@ -17,3 +17,11 @@ $light-white: #F5F8FA;
 a {
   text-decoration: none !important;
 }
+
+.toast {
+  text-shadow: none;
+  color: #212529;
+  &:last-child {
+    margin-top: 0 !important;
+  }
+}
