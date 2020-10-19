@@ -41,3 +41,9 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<% if user_signed_in? && current_user.provider == 'twitter' %>
+  Connected
+<% else %>
+  <%= link_to "Connect", user_twitter_omniauth_authorize_path %>
+<% end %>

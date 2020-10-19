@@ -1,6 +1,4 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # See https://github.com/omniauth/omniauth/wiki/FAQ#rails-session-is-clobbered-after-callback-on-developer-strategy
-
   def twitter
     @user = User.from_omniauth(request.env['omniauth.auth'])
 

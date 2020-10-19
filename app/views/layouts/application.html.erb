@@ -23,14 +23,21 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Home</a></li>
-                  <li><a href="/users/sign_up">Sign up</a></li>
-                  <li><a href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                  
                   <%# <i class="fas fa-sign-in-alt"></i>  %>
                   <% if user_signed_in? %>
-                    <li><a href="#"><i class="fab fa-twitter text-brand"></i> @testaccount</a></li>
-                    <%= link_to user_session_path, method: :destroy do %>
+                    <li>
+                      <%= link_to edit_user_registration_path do %>
+                        <i class="fab fa-twitter text-brand"></i> @<%= current_user.username %></a>
+                      <% end %>
+                    </li>
+                    <li><%= link_to destroy_user_session_path, method: :delete do %>
                       <i class="fas fa-sign-out-alt"></i> Sign out
                     <% end %>
+                    </li>
+                  <% else %>
+                    <li><a href="/users/sign_up">Sign up</a></li>
+                    <li><a href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> Login</a></li>
                   <% end %>
                 </ul>
               </nav>
