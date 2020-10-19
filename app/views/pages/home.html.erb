@@ -1,19 +1,4 @@
-<div class="site-wrapper">
-  <div class="site-wrapper-inner">
-    <div class="cover-container">
-      <div class="masthead clearfix">
-        <div class="inner">
-          <h3 class="masthead-brand"><i class="far fa-bookmark text-brand"></i> Bookmarkd</h3>
-          <nav>
-            <ul class="nav masthead-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Sign in</a></li>
-              <%# <i class="fas fa-sign-in-alt"></i>  %>
-              <li><a href="#"><i class="fab fa-twitter text-brand"></i> @testaccount</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+
 
       <div class="inner cover">
         <h1 class="cover-heading">Organize your saved tweets.</h1>
@@ -21,15 +6,21 @@
         but it will only contain tweets added by you.
         You can also rearrange them by the date they were added! 🤩</p>
         <p class="lead">
-          <a href="#" class="btn btn-lg btn-brand"><i class="fab fa-twitter"></i> Sign in with your Twitter</a>
+          <%# <a href="#" class="btn btn-lg btn-brand"><i class="fab fa-twitter"></i> Sign in with your Twitter</a> %>
+          <%= link_to user_twitter_omniauth_authorize_path, class: 'btn btn-lg btn-brand' do %>
+            <i class="fab fa-twitter"></i> Sign in with your Twitter 
+          <% end %>
+        </p>
+        <p>
+        <span class="text-muted">or</span>
+        <%= link_to 'Create an account', new_user_registration_path, class: 'font-weight-bold' %>
         </p>
       </div>
 
-      <div class="mastfoot">
-        <div class="inner">
-          <p>by <b>Andréa Alencar</b>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+     
+    
+<script>
+$(document).ready(function() {
+  $('.toast').toast('show');
+})
+</script>

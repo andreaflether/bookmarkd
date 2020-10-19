@@ -13,6 +13,38 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'shared/toast' %>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand"><i class="far fa-bookmark text-brand"></i> Bookmarkd</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="/users/sign_up">Sign up</a></li>
+                  <li><a href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                  <%# <i class="fas fa-sign-in-alt"></i>  %>
+                  <% if user_signed_in? %>
+                    <li><a href="#"><i class="fab fa-twitter text-brand"></i> @testaccount</a></li>
+                    <%= link_to user_session_path, method: :destroy do %>
+                      <i class="fas fa-sign-out-alt"></i> Sign out
+                    <% end %>
+                  <% end %>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <%= yield %>
+          <div class="mastfoot">
+            <div class="inner">
+              <p>© <%= Date.today.year %> <b>Andréa Alencar</b>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
