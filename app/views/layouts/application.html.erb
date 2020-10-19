@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>Bookmarkd</title>
     <meta charset="utf-8">
@@ -12,46 +12,50 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="h-100">
     <%= render 'shared/toast' %>
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand"><i class="far fa-bookmark text-brand"></i> Bookmarkd</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  
-                  <%# <i class="fas fa-sign-in-alt"></i>  %>
-                  <% if user_signed_in? %>
-                    <li>
-                      <%= link_to edit_user_registration_path do %>
-                        <i class="fab fa-twitter text-brand"></i> @<%= current_user.username %></a>
-                      <% end %>
-                    </li>
-                    <li><%= link_to destroy_user_session_path, method: :delete do %>
-                      <i class="fas fa-sign-out-alt"></i> Sign out
-                    <% end %>
-                    </li>
-                  <% else %>
-                    <li><a href="/users/sign_up">Sign up</a></li>
-                    <li><a href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+    <div class="container <%= 'd-flex flex-column h-100' if controller_name == 'pages' %>">
+      <div class="row justify-content-center">
+        <div class="col-md-9 mt-3">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-transparent sticky-top">
+            <a class="navbar-brand" href="/">
+              <h3 class="font-weight-bold"><i class="far fa-bookmark text-brand"></i> Bookmarkd</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav">
+                <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to edit_user_registration_path, class: 'nav-link' do %>
+                    <i class="fab fa-twitter text-brand"></i> @<%= current_user.username %></a>
                   <% end %>
-                </ul>
-              </nav>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_user_session_path, class: 'nav-link', method: :delete do %>
+                    <i class="fas fa-sign-out-alt"></i> Sign out
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/users/sign_up">Sign up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/users/sign_in">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                  </a>
+                </li>
+              <% end %>
+              </ul>
             </div>
-          </div>
-          <%= yield %>
-          <div class="mastfoot">
-            <div class="inner">
-              <p>© <%= Date.today.year %> <b>Andréa Alencar</b>.</p>
-            </div>
-          </div>
+          </nav>
+        
         </div>
       </div>
+      <div class="row justify-content-center <%= 'align-items-center flex-fill h-100' if controller_name == 'pages' %> px-3">  
+        <%= yield %>
+      </div>
     </div>
-
   </body>
 </html>

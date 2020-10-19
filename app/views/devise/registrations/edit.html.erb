@@ -1,49 +1,76 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="col-md-12 text-center mb-3">
+  <h3>Edit <%= resource_name.to_s.humanize %> info</h3>
+</div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="col-md-6">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control user-input' %>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control user-input' %>
+      <small>
+      <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> characters minimum.</em>
+      <% end %>
+      <b>Leave blank if you don't want to change it.</b>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control user-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :current_password %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control user-input' %>
+      <small>We need your current password to confirm your changes.</small>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Update', class: 'btn btn-brand user-input mb-3' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-md-3">
+  <% if user_signed_in? && current_user.provider == 'twitter' %>
+    <h6>Connected as 
+      <%= link_to @user.username, "http://twitter.com/#{@user.username}", class: 'link-brand' %>
+    </h6>
+  <% else %>
+    <%= link_to 'Connect with a Twitter account', user_twitter_omniauth_authorize_path %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+  <hr>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <h5>Deactivate account</h5>
+  <p class="text-white-50">
+    <b>This action is permanent and cannot be undone.</b> 
+    Doing so, your twitter account won't be affected in any way. But all
+    your folders on this site, including its bookmarked tweets in each one, <b> will be deleted permanently.</b>
+    Be aware that it won't be possible to recover them after you deactivate your account.
+  </p>
+  <p class="mb-0">
+    If you read all of the warnings above and still want to proced, click on the button below.
+  </p>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+  <%= button_to 'Deactivate', 
+    registration_path(resource_name), 
+    data: { confirm: 'Are you sure?' }, 
+    method: :delete,
+    class: 'btn btn-danger mt-3' %>
+  <hr>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
-
-<% if user_signed_in? && current_user.provider == 'twitter' %>
-  Connected
-<% else %>
-  <%= link_to "Connect", user_twitter_omniauth_authorize_path %>
-<% end %>
