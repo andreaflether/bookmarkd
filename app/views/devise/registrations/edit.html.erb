@@ -46,7 +46,11 @@
 <div class="col-md-3">
   <% if user_signed_in? && current_user.provider == 'twitter' %>
     <h6>Connected as 
-      <%= link_to @user.username, "http://twitter.com/#{@user.username}", class: 'link-brand' %>
+      <%= link_to @user.username, 
+        "http://twitter.com/#{@user.username}", 
+        class: 'link-brand',
+        target: '_blank' 
+      %>
     </h6>
   <% else %>
     <%= link_to 'Connect with a Twitter account', user_twitter_omniauth_authorize_path %>

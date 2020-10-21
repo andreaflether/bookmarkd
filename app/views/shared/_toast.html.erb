@@ -1,4 +1,4 @@
-<div style="position: absolute; top: 0; right: 0;">
+<div id="toast-container">
   <% flash.each do |type, msg| %>
   <div class="toast mr-3 mt-3" role="alert" aria-live="assertive" aria-atomic="true" data-delay=5000>
       <div class="toast-header">
@@ -6,7 +6,7 @@
           <% if type == 'alert' %>
             <i class="fas fa-exclamation-triangle"></i>&nbsp; Alert
           <% else %>
-            <i class="fas fa-check-circle"></i>&nbsp; Success!
+            <i class="fas fa-check-circle"></i>&nbsp; Success
           <% end %>
         </strong>
         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
