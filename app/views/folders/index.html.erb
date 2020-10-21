@@ -1,29 +1,29 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Folders</h1>
+<div class="col-md-12">
+  <h2 class="text-center mb-4">Folders</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+</div>
 
-  <tbody>
+<div class="col-md-3">
+  <div class="list-group">
     <% @folders.each do |folder| %>
-      <tr>
-        <td><%= folder.name %></td>
-        <td><%= folder.description %></td>
-        <td><%= link_to 'Show', folder %></td>
-        <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
-        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <a href="#" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1 text-brand"><%= folder.name %></h5>
+        <small><%= folder.tweets.count %> tweets</small>
+      </div>
+      
+      <small>Updated at <%= folder.updated_at.strftime("%mm %d, %Y") %></small>
+    </a>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+</div>
 
-<%= link_to 'New Folder', new_folder_path %>
+<div class="col-md-6">
+  <blockquote class="twitter-tweet"><p lang="und" dir="ltr"><a href="https://t.co/Qp87FELqeU">pic.twitter.com/Qp87FELqeU</a></p>&mdash; itzy pics (@archiveitzy) <a href="https://twitter.com/archiveitzy/status/1317593617389834245?ref_src=twsrc%5Etfw">October 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+<div class="col-md-2">
+  <h4>Search filters</h4>
+</div>

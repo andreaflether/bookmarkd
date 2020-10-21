@@ -10,6 +10,7 @@ class FoldersController < ApplicationController
   # GET /folders/1
   # GET /folders/1.json
   def show
+    @tweets = current_user.folders.find(@folder.id).tweets
   end
 
   # GET /folders/new

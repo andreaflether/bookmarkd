@@ -16,6 +16,8 @@ class User < ApplicationRecord
     end
   end
 
+  has_many :folders
+
   def email_required?
     false
  end

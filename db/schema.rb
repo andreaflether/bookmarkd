@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_225717) do
+ActiveRecord::Schema.define(version: 2020_10_21_022111) do
+
+  create_table "folders", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_folders_on_user_id"
+  end
+
+  create_table "folders_tweets", id: false, force: :cascade do |t|
+    t.integer "folder_id", null: false
+    t.integer "tweet_id", null: false
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.string "link"
+    t.text "html_content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"

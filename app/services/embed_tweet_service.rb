@@ -1,0 +1,19 @@
+require 'rest-client'
+require 'json'
+
+class EmbedTweetService 
+  def initialize(tweet_url) 
+    @tweet_url = tweet_url
+  end 
+  
+  def fetch 
+    begin
+      tweet = "url=#{@tweet_url}"
+      base_url = "https://publish.twitter.com/oembed?#{tweet}"
+      response = RestClient.get base_url
+      JSON.parse(response.body)
+    rescue RestClient::ExceptionWithResponse => e
+      e.response
+    end
+  end 
+end 

@@ -24,11 +24,13 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    @tweet = Tweet.new(tweet_params)
-
+    html_hash = { html_content: EmbedTweetService.new(params[:tweet][:link]).fetch['html'] }
+    @tweet = Tweet.new(tweet_params.merge(html_hash))
+    
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        Folder.find(params[:tweet][:folder_ids]).tweets << @tweet
+        format.html { redirect_to request.referer, notice: 'Tweet added to folder!' }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new }
@@ -69,6 +71,6 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:link)
+      params.require(:tweet).permit(:link, folder_ids: [])
     end
 end
