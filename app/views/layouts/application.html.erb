@@ -33,6 +33,11 @@
                   <% end %>
                 </li>
                 <li class="nav-item">
+                  <%= link_to folders_path, class: 'nav-link' do %>
+                    <i class="fas fa-folder-open"></i> Folders
+                  <% end %>
+                </li>
+                <li class="nav-item">
                   <%= link_to destroy_user_session_path, class: 'nav-link', method: :delete do %>
                     <i class="fas fa-sign-out-alt"></i> Sign out
                   <% end %>
