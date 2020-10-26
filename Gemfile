@@ -39,8 +39,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Custom gems for this project
 gem 'devise'
 gem 'omniauth-twitter'
-gem 'twitter'
 gem 'rest-client'
+gem 'simple_form'
+gem 'twitter'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
