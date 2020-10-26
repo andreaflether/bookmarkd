@@ -4,13 +4,20 @@ class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.all
+    @folders = Folder.where(user: current_user)
   end
 
   # GET /folders/1
   # GET /folders/1.json
   def show
-    @tweets = current_user.folders.find(@folder.id).tweets
+    if helpers.folder_belongs_to_user(@folder)
+      @tweets = current_user.folders
+        .find(@folder.id)
+        .tweets
+        .order(created_at: :desc)
+    else 
+      redirect_to folders_path, alert: 'This folder belongs to another user.'
+    end     
   end
 
   # GET /folders/new
@@ -26,6 +33,7 @@ class FoldersController < ApplicationController
   # POST /folders.json
   def create
     @folder = Folder.new(folder_params)
+    @folder.user = current_user
 
     respond_to do |format|
       if @folder.save

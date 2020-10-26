@@ -1,8 +1,17 @@
 
 <div class="col-md-12 text-center">
-  <h2><%= @folder.name %> </h2>
-  <p class="text-white-50">by <%= current_user.username%></p>
+  <h2 class="text-brand"><%= @folder.name %> </h2>
 </div>
+<div class="col-md-5 text-center">
+  <% if @folder.description.present? %>
+    <small class="text-white-50"><%= @folder.description %></small>
+  <% end %>
+  <p class="mt-2">by 
+    <span class="font-weight-bold"><%= current_user.username%></span>
+  </p>
+
+</div>
+<div class="w-100"></div>
 
 <%# <div class="col-md-6">
   <blockquote class="twitter-tweet"><p lang="und" dir="ltr"><a href="https://t.co/Qp87FELqeU">pic.twitter.com/Qp87FELqeU</a></p>&mdash; itzy pics (@archiveitzy) <a href="https://twitter.com/archiveitzy/status/1317593617389834245?ref_src=twsrc%5Etfw">October 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -23,10 +32,21 @@
 <div class="w-100"></div>
 
 <div class="col-md-7">
-  <% @tweets.each do |tweet|%>
-    <%= raw tweet.html_content %>
-  <% end %>
+  <h6 class="text-center">Search filters</h6>
 </div>
-<div class="col-md-2">
-  <h4>Search filters</h4>
+
+<div class="col-md-7 text-center">
+  <% if @tweets.blank? %>
+    <h6 class="text-light">This folder is empty. Add tweets to see them here!</h6>
+  <% else %>
+    <% @tweets.each do |tweet|%>
+      <div class="d-flex justify-content-between">
+        <%= raw tweet.html_content %>
+        <%= link_to tweet_path, method: :destroy, data: { confirm: 'Are you sure?' }, class: 'text-danger' do %>
+          <i class="fas fa-trash-alt mx-2"></i>
+        <% end %>
+        <i class="fas fa-ellipsis-h ml-2"></i>
+      </div>
+    <% end %>
+  <% end %>
 </div>

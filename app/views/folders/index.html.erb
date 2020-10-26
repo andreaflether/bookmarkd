@@ -7,14 +7,15 @@
 <div class="col-md-3">
   <div class="list-group">
     <% @folders.each do |folder| %>
-    <a href="#" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1 text-brand"><%= folder.name %></h5>
-        <small><%= folder.tweets.count %> tweets</small>
-      </div>
-      
-      <small>Updated at <%= folder.updated_at.strftime("%mm %d, %Y") %></small>
-    </a>
+      <%= link_to folder, class: 'list-group-item list-group-item-action' do %>
+
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1 text-brand"><%= folder.name %></h5>
+          <small><%= folder.tweets.count %> tweets</small>
+        </div>
+        
+        <small>Updated at <%= folder.updated_at.strftime("%mm %d, %Y") %></small>
+      <% end %>
     <% end %>
   </div>
 
