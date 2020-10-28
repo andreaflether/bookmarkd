@@ -11,7 +11,6 @@ class EmbedTweetService
       tweet = "url=#{@tweet_url}"
       base_url = "https://publish.twitter.com/oembed?#{tweet}"
       response = RestClient.get base_url
-      JSON.parse(response.body)
     rescue RestClient::ExceptionWithResponse => e
       e.response
     end

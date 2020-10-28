@@ -24,8 +24,7 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    html_hash = { html_content: EmbedTweetService.new(params[:tweet][:link]).fetch['html'] }
-    @tweet = Tweet.new(tweet_params.merge(html_hash))
+    @tweet = Tweet.new(tweet_params)
     
     respond_to do |format|
       if @tweet.save

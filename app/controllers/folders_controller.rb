@@ -54,8 +54,11 @@ class FoldersController < ApplicationController
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
         format.json { render :show, status: :ok, location: @folder }
       else
-        format.html { render :edit }
-        format.json { render json: @folder.errors, status: :unprocessable_entity }
+        format.js { 
+          render :update, 
+          layout: false, 
+          locals: { error: @folder.errors.full_messages } 
+        }
       end
     end
   end
@@ -78,6 +81,6 @@ class FoldersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def folder_params
-      params.require(:folder).permit(:name, :description)
+      params.require(:folder).permit(:name, :description, :tweets_attributes => [ :id, :link ])
     end
 end
