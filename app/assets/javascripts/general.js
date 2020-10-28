@@ -1,5 +1,21 @@
 $(document).ready(function() {
-  $('.toast').toast('show');
+   toastr.options = {
+    closeButton: false,
+    debug: false,
+    newestOnTop: false,
+    progressBar: false,
+    positionClass: "toast-top-center",
+    preventDuplicates: false,
+    onclick: null,
+    showDuration: "300",
+    hideDuration: "4000",
+    timeOut: "5000",
+    extendedTimeOut: "3000",
+    showEasing: "linear",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut"
+  }
 
   // Code with description of parameters.
   // See full documentation here : https://github.com/mimo84/bootstrap-maxlength/
