@@ -1,24 +1,10 @@
 $(document).ready(function() {
-  let copyToClipboard = $('.copyTweetLink');
-
-  copyToClipboard.on('click', function(e){
-    e.preventDefault();
-    let copyText = copyToClipboard.prev().attr('href');
-    let formattedUrl = window.location.origin + copyText;
-    document.addEventListener('copy', function(e) {
-      e.clipboardData.setData('text/plain', formattedUrl);
-      e.preventDefault();
-    }, true);
-    document.execCommand('copy');
-    toastr.success('Tweet URL copied to clipboard!')  
-  })
-
   toastr.options = {
     closeButton: false,
     debug: false,
     newestOnTop: false,
     progressBar: false,
-    positionClass: 'toast-top-center',
+    positionClass: 'toast-bottom-center',
     preventDuplicates: false,
     onclick: null,
     showDuration: '300',
@@ -30,6 +16,19 @@ $(document).ready(function() {
     showMethod: 'fadeIn',
     hideMethod: 'fadeOut'
   }
+
+  let copyToClipboard = $('.copyTweetLink');
+
+  copyToClipboard.on('click', function(e){
+    e.preventDefault();
+    let copyLink = copyToClipboard.next().parent().attr('data-tweetURL');
+    document.addEventListener('copy', function(e) {
+      e.clipboardData.setData('text/plain', copyLink);
+      e.preventDefault();
+    }, true);
+    document.execCommand('copy');
+    toastr.success('Tweet URL copied to clipboard!')  
+  })
 
   $('input[maxlength], textarea').maxlength({
     alwaysShow: true, 

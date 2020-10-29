@@ -2,3 +2,5 @@ toastr.success('Tweet added to <%= j @folder.name %>');
 
 $("<%= j render tweet %>").prependTo($('#tweets-container')).fadeIn('slow');
 $('#tweetUrl').val('');
+
+$('#tweetsCount').text("<%= j pluralize(@folder.tweets.count, 'tweet') %>")

@@ -81,3 +81,12 @@ button.close {
   right: 20px;
 }
 
+[id^=toast-container]>div {
+  box-shadow: none !important;
+}
+
+[id^=toast-container]>.toast-success,
+[id^=toast-container]>.toast-error {
+  background-image: none !important;
+}
+

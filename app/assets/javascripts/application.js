@@ -3,7 +3,6 @@
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap
 //= require bootstrap-maxlength/dist/bootstrap-maxlength
-//= require toastr/build/toastr.min
-//= require clipboard
 //= require general
+//= require toastr/build/toastr.min
 //= require_tree .
