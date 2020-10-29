@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= favicon_link_tag 'bookmark.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,7 +14,6 @@
   </head>
 
   <body class="h-100">
-    <%= render 'shared/toast' %>
     <div class="container <%= 'd-flex flex-column h-100' if controller_name == 'pages' %>">
       <div class="row justify-content-center">
         <div class="col-md-9 mt-3">
