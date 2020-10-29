@@ -1,29 +1,11 @@
 <div class="col-md-6">
-  <%= form_with(model: folder, local: true) do |form| %>
-    <% if folder.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(folder.errors.count, "error") %> prohibited this folder from being saved:</h2>
+  <%= simple_form_for(@folder) do |f| %>
+    <%= f.input :name %>
 
-        <ul>
-        <% folder.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= f.input :description, maxlength: '200' %>
 
-    <div class="form-group">
-      <%= form.label :name %>
-      <%= form.text_field :name, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :description %>
-      <%= form.text_area :description, class: 'form-control', maxlength: '200' %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit 'Create folder', class: 'btn btn-brand w-100' %>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-brand w-100 mt-3' %>
     </div>
   <% end %>
 
