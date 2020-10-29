@@ -5,6 +5,11 @@ $light-white: #F5F8FA;
   color: $brand;
 }
 
+.bg-brand, .badge-brand {
+  background-color: $brand;
+  color: $light-white;
+}
+
 .btn-brand {
   background-color: $brand;
   color: $light-white;
@@ -69,5 +74,10 @@ hr {
 
 button.close {
   text-shadow: none;
+}
+
+.action-buttons {
+  bottom: 20px;
+  right: 20px;
 }
 

@@ -1,7 +1,13 @@
 <div class="d-flex justify-content-between">
   <%= raw tweet.html_content %>
-  <%= link_to tweet_path(tweet), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' do %>
+  <%= button_tag(type: 'button', class: 'btn btn-transparent d-flex copyTweetLink') do %>
+    <i class="fas fa-copy ml-2 text-light "></i>
+  <% end %>
+  <%= link_to tweet_path(tweet), 
+    method: :delete, 
+    data: { confirm: 'Are you sure?' }, 
+    class: 'text-danger' do %>
     <i class="fas fa-trash-alt mx-2"></i>
   <% end %>
-  <i class="fas fa-ellipsis-h ml-2"></i>
+
 </div>

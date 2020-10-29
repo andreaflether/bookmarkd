@@ -1,6 +1,8 @@
 
 <div class="col-md-12 text-center mt-3">
-  <h2 class="text-brand mb-0"><%= @folder.name %> </h2>
+  <h2 class="text-brand">
+    <%= @folder.name %> 
+  </h2>
 </div>
 <div class="col-md-5 text-center">
   <% if @folder.description.present? %>
@@ -8,7 +10,7 @@
   <% end %>
   <p class="mt-2">by 
     <span class="font-weight-bold"><%= current_user.username%></span>
-  </p>
+  </p> 
 </div>
 <div class="w-100"></div>
 
@@ -23,7 +25,7 @@
           wrapper: false, 
           input_html: { 
             id: 'tweetUrl',
-            placeholder: 'https://twitter.com/trishapaytas/status/896147447105245184'
+            placeholder: 'Enter Tweet URL here'
           } %>
         <div class="input-group-append">   
           <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
@@ -40,10 +42,19 @@
       This folder is empty. Add tweets to see them here!
     </h5>
   <% else %>
-    <div class="col-md-12 mb-4">
-      <h6 class="text-center text-brand">Search filters</h6>
+    <div class="col-md-12 text-center mt-3 mb-0">
+      <span class="badge badge-pill badge-brand">
+        <h6 class="mb-0 p-1">
+          <%= pluralize(@folder.tweets.count, 'tweet') %>  
+        </h6>
+      </span>
     </div>
-    <div class="col-md-7 text-center mt-3" id="tweets-container">
-      <%= render @tweets %>
+    <div class="col-md-7 text-center mt-2" id="tweets-container">
+    <%= render @tweets %>
   <% end %>
+</div>
+
+<div class="action-buttons position-fixed">
+  <%= link_to 'Edit info', edit_folder_path(@folder), class: 'btn btn-sm btn-outline-primary' %>
+  <%= link_to 'Delete folder', folder_path(@folder), method: :destroy, class: 'btn btn-sm btn-outline-danger' %>
 </div>
