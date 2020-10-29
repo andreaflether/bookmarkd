@@ -83,10 +83,19 @@ button.close {
 
 [id^=toast-container]>div {
   box-shadow: none !important;
+  padding: 15px 25px !important;
+  position: fixed !important;
+  top: 10px;
+  right: 10px;
 }
 
-[id^=toast-container]>.toast-success,
-[id^=toast-container]>.toast-error {
+#toast-container.toast-top-center > div,
+.toast-top-center {
+  width: auto !important;
+}
+
+#toast-container > .toast-success,
+#toast-container > .toast-error,
+#toast-container > .toast-info {
   background-image: none !important;
 }
-

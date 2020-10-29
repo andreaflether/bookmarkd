@@ -11,13 +11,27 @@
     
     </div>
     <div class="d-flex align-items-center justify-content-center">
-      <%= button_tag(type: 'button', class: 'btn btn-transparent d-flex copyTweetLink') do %>
+      <%= button_tag(
+        type: 'button', 
+        class: 'btn btn-transparent d-flex copyTweetLink',
+        data: { 
+          'tippy-content': 'Copy tweet URL to clipboard', 
+          'tippy-arrow': 'false',
+          'tippy-theme': 'translucent',
+          'tippy-placement': 'bottom'
+        }) do %>
         <i class="fas fa-copy mt-2 ml-2 text-light "></i>
       <% end %>
       <%= link_to tweet_path(tweet), 
         method: :delete, 
         data: { confirm: 'Are you sure?' }, 
-        class: 'text-danger' do %>
+        class: 'text-danger',
+        data: { 
+          'tippy-content': 'Delete tweet from this folder', 
+          'tippy-arrow': 'false',
+          'tippy-theme': 'translucent',
+          'tippy-placement': 'bottom'
+        } do %>
         <i class="fas fa-trash-alt mt-2 mx-2"></i>
     
     </div>

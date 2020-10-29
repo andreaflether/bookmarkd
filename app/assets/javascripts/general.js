@@ -1,10 +1,12 @@
 $(document).ready(function() {
+  tippy('[data-tippy-content]');
+  
   toastr.options = {
     closeButton: false,
     debug: false,
     newestOnTop: false,
     progressBar: false,
-    positionClass: 'toast-bottom-center',
+    positionClass: 'toast-top-center',
     preventDuplicates: false,
     onclick: null,
     showDuration: '300',
@@ -27,7 +29,7 @@ $(document).ready(function() {
       e.preventDefault();
     }, true);
     document.execCommand('copy');
-    toastr.success('Tweet URL copied to clipboard!')  
+    toastr.info('Tweet URL copied to clipboard!')  
   })
 
   $('input[maxlength], textarea').maxlength({

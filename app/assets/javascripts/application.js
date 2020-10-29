@@ -5,4 +5,6 @@
 //= require bootstrap-maxlength/dist/bootstrap-maxlength
 //= require general
 //= require toastr/build/toastr.min
+//= require @popperjs/core/dist/umd/popper
+//= require tippy.js/dist/tippy.umd
 //= require_tree .
