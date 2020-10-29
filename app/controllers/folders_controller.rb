@@ -53,6 +53,7 @@ class FoldersController < ApplicationController
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
         format.json { render :show, status: :ok, location: @folder }
+        format.js { render :show, locals: { tweet: @folder.tweets.last } }
       else
         format.js { 
           render :update, 

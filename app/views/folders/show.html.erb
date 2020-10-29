@@ -1,6 +1,6 @@
 
-<div class="col-md-12 text-center">
-  <h2 class="text-brand"><%= @folder.name %> </h2>
+<div class="col-md-12 text-center mt-3">
+  <h2 class="text-brand mb-0"><%= @folder.name %> </h2>
 </div>
 <div class="col-md-5 text-center">
   <% if @folder.description.present? %>
@@ -9,44 +9,41 @@
   <p class="mt-2">by 
     <span class="font-weight-bold"><%= current_user.username%></span>
   </p>
-
 </div>
 <div class="w-100"></div>
 
-<%# <div class="col-md-6">
-  <blockquote class="twitter-tweet"><p lang="und" dir="ltr"><a href="https://t.co/Qp87FELqeU">pic.twitter.com/Qp87FELqeU</a></p>&mdash; itzy pics (@archiveitzy) <a href="https://twitter.com/archiveitzy/status/1317593617389834245?ref_src=twsrc%5Etfw">October 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div> %>
-<div class="col-md-7">
-  <%= form_with(model: Tweet, local: true) do |form| %>
-    <div class="input-group mb-3">
-      <%= form.hidden_field :folder_ids, value: @folder.id %>
-      <%= form.text_field :link, class: 'form-control', placeholder: 'Tweet link', 'aria-describedby': 'button-addon2' %>
-      <%# <input type="text" class="form-control" placeholder="Tweet link" aria-label="Recipient's username" aria-describedby="button-addon2"> %>
-      <div class="input-group-append">
-        <%= form.submit 'Add', class: 'btn btn-brand', id: 'button-addon2' %>
-      </div>
-    </div>
+<div class="col-md-7 mt-3">
+  <%= simple_form_for @folder, remote: true do |f| %>
+    <%= f.simple_fields_for :tweets, @folder.tweets.build do |t| %>
+      <% t.input :link, 
+        label: false,
+        wrapper: :input_group do %>
+        <%= t.input :link, 
+          label: false, 
+          wrapper: false, 
+          input_html: { 
+            id: 'tweetUrl',
+            placeholder: 'https://twitter.com/trishapaytas/status/896147447105245184'
+          } %>
+        <div class="input-group-append">   
+          <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
 
 <div class="w-100"></div>
 
-<div class="col-md-7">
-  <h6 class="text-center">Search filters</h6>
-</div>
-
-<div class="col-md-7 text-center">
   <% if @tweets.blank? %>
-    <h6 class="text-light">This folder is empty. Add tweets to see them here!</h6>
+    <h5 class="text-center text-brand font-weight-normal">
+      This folder is empty. Add tweets to see them here!
+    </h5>
   <% else %>
-    <% @tweets.each do |tweet|%>
-      <div class="d-flex justify-content-between">
-        <%= raw tweet.html_content %>
-        <%= link_to tweet_path, method: :destroy, data: { confirm: 'Are you sure?' }, class: 'text-danger' do %>
-          <i class="fas fa-trash-alt mx-2"></i>
-        <% end %>
-        <i class="fas fa-ellipsis-h ml-2"></i>
-      </div>
-    <% end %>
+    <div class="col-md-12 mb-4">
+      <h6 class="text-center text-brand">Search filters</h6>
+    </div>
+    <div class="col-md-7 text-center mt-3" id="tweets-container">
+      <%= render @tweets %>
   <% end %>
 </div>
