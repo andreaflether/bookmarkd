@@ -11,6 +11,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= custom_flash_messages %>
   </head>
 
   <body class="h-100">
@@ -29,7 +30,13 @@
                 <% if user_signed_in? %>
                 <li class="nav-item">
                   <%= link_to edit_user_registration_path, class: 'nav-link' do %>
-                    <i class="fab fa-twitter text-brand"></i> @<%= current_user.username %></a>
+                    <% if current_user.provider == 'twitter' %>
+                      <i class="fab fa-twitter text-brand"></i> 
+                      @<%= current_user.username %>
+                    <% else %>
+                      <i class="fas fa-user-circle"></i>
+                      <%= current_user.name %>
+                    <% end %>
                   <% end %>
                 </li>
                 <li class="nav-item">
