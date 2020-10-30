@@ -4,6 +4,7 @@
     <%= @folder.name %> 
   </h2>
 </div>
+
 <div class="col-md-5 text-center">
   <% if @folder.description.present? %>
     <small class="text-white-50"><%= @folder.description %></small>
@@ -50,9 +51,18 @@
       </span>
     </div>
     <div class="col-md-7 text-center mt-2" id="tweets-container">
-    <%= render @tweets %>
+      <%= render @tweets %>
+    </div>
+    <div class="w-100"></div>
+
+    <div id="paginate-load-more-button">
+      <%= will_paginate @tweets %>
+    </div>
+
+    <% if @tweets.next_page %>
+      <div id='load-more-tweets' class='btn btn-primary'>Load more tweets</div>
+    <% end %>
   <% end %>
-</div>
 
 <div class="action-buttons position-fixed">
   <%= link_to 'Edit info', edit_folder_path(@folder), class: 'btn btn-sm btn-outline-primary' %>

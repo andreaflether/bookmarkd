@@ -14,10 +14,15 @@ class FoldersController < ApplicationController
       @tweets = current_user.folders
         .find(@folder.id)
         .tweets
-        .order(created_at: :desc)
+        .paginate(page: params[:page], per_page: 10).order('created_at DESC')   
     else 
       redirect_to folders_path, alert: 'This folder belongs to another user.'
     end     
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /folders/new
@@ -52,11 +57,12 @@ class FoldersController < ApplicationController
     respond_to do |format|
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
-        format.json { render :show, status: :ok, location: @folder }
-        format.js { render :show, locals: { tweet: @folder.tweets.last } }
+        format.json { render :append_tweet, status: :ok, location: @folder }
+        format.js { render :append_tweet, locals: { tweet: @folder.tweets.last } }
       else
+        format.html { render :edit }
         format.js { 
-          render :update, 
+          render :error, 
           layout: false, 
           locals: { error: @folder.errors.full_messages } 
         }

@@ -1,6 +1,7 @@
-toastr.success('Tweet added to <%= j @folder.name %>');
-
-$("<%= j render tweet %>").prependTo($('#tweets-container')).fadeIn('slow');
-$('#tweetUrl').val('');
-
-$('#tweetsCount').text("<%= j pluralize(@folder.tweets.count, 'tweet') %>")
+$('#tweets-container').append('<%= j render @tweets %>');
+<% if @tweets.next_page %>
+  $('#paginate-load-more-button .pagination').replaceWith("<%= j will_paginate @tweets %>");
+  $('#paginate-load-more-button .pagination').hide();
+<% else %>
+  $('#paginate-load-more-button .pagination, #load-more-tweets').remove();
+<% end %>

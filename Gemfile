@@ -42,6 +42,7 @@ gem 'omniauth-twitter'
 gem 'rest-client'
 gem 'simple_form'
 gem 'twitter'
+gem 'will_paginate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
