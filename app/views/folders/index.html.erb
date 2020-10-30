@@ -1,30 +1,30 @@
 
 <div class="col-md-12">
   <h2 class="text-center mb-4">Folders</h2>
-
 </div>
 
-<div class="col-md-3">
-  <div class="list-group">
-    <% @folders.each do |folder| %>
-      <%= link_to folder, class: 'list-group-item list-group-item-action' do %>
+<% if @folders.blank? %>
+  <div class="col-md-7 text-center">
+    <h5>You haven’t created any Folders yet</h5>
+    <p class="text-white-50">Create one to see it here 👀</p>
 
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1 text-brand"><%= folder.name %></h5>
-          <small><%= folder.tweets.count %> tweets</small>
-        </div>
-        
-        <small>Updated at <%= folder.updated_at.strftime("%mm %d, %Y") %></small>
-      <% end %>
-    <% end %>
+    <%= link_to 'Create a Folder', new_folder_path, class: 'btn btn-brand mt-1' %>
   </div>
+<% else %>
+  <div class="col-md-3">
+    <div class="list-group">
+      <% @folders.each do |folder| %>
+        <%= link_to folder, class: 'list-group-item list-group-item-action' do %>
 
-</div>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1 text-brand"><%= folder.name %></h5>
+            <small><%= folder.tweets.count %> tweets</small>
+          </div>
+          
+          <small>Updated at <%= folder.updated_at.strftime("%mm %d, %Y") %></small>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
-<div class="col-md-6">
-  <blockquote class="twitter-tweet"><p lang="und" dir="ltr"><a href="https://t.co/Qp87FELqeU">pic.twitter.com/Qp87FELqeU</a></p>&mdash; itzy pics (@archiveitzy) <a href="https://twitter.com/archiveitzy/status/1317593617389834245?ref_src=twsrc%5Etfw">October 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
-
-<div class="col-md-2">
-  <h4>Search filters</h4>
-</div>
