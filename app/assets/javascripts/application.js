@@ -5,4 +5,6 @@
 //= require bootstrap-maxlength/dist/bootstrap-maxlength
 //= require general
 //= require toastr/build/toastr.min
+//= require data-confirm-modal
+//= require bootstrap-show-password/dist/bootstrap-show-password
 //= require_tree .

@@ -1,9 +1,7 @@
 $brand: #1DA1F2;
 $light-white: #F5F8FA;
 
-.text-brand {
-  color: $brand;
-}
+.text-brand { color: $brand; }
 
 .bg-brand, .badge-brand {
   background-color: $brand;
@@ -20,9 +18,7 @@ $light-white: #F5F8FA;
   }
 }
 
-a {
-  text-decoration: none !important;
-}
+a { text-decoration: none !important; }
 
 .toast {
   text-shadow: none;
@@ -37,14 +33,10 @@ a {
 
 .link-brand {
   color: $brand;
-  &:hover {
-    color: darken($color: $brand, $amount: 5%);
-  }
+  &:hover { color: darken($color: $brand, $amount: 5%); }
 }
 
-hr {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
+hr { border-top: 1px solid rgba(255, 255, 255, 0.1); }
 
 .form-control {
   &:focus {
@@ -53,28 +45,16 @@ hr {
   }
 }
 
-.user-input {
-  width: 85%;
-}
-
-.bg-custom {
-  background-color: rgba(invert($color: #333), 0.1)
-}
+.bg-custom { background-color: rgba(invert($color: #333), 0.1) }
 
 #error_explanation {
   text-shadow: none;
   background-color: rgba(250, 51, 51, 0.35);
-  p.error-title {
-    font-size: 1.1rem;
-  }
-  span.error-message {
-    color: #751717;
-  }
+  p.error-title { font-size: 1.1rem; }
+  span.error-message { color: #751717; }
 }
 
-button.close {
-  text-shadow: none;
-}
+button.close { text-shadow: none; }
 
 .action-buttons {
   bottom: 20px;
@@ -100,6 +80,38 @@ button.close {
   background-image: none !important;
 }
 
-abbr[title] {
-  text-decoration: none;
+abbr[title] { text-decoration: none; }
+
+.modal-content {
+  background-color: rgb(35, 36, 37);
+  color: rgba(255, 255, 255, .6);
+  .modal-header { border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+  .modal-footer { border-top: 1px solid rgba(255, 255, 255, 0.2); }
+  button { 
+    color: rgba(255, 255, 255, .4);
+    &:hover {
+      color: rgba(255, 255, 255, 0.6);
+    } 
+  }
+  .cancel {
+    border-color: #f8f9fa;
+    color: #f8f9fa;
+    &:hover { color: #212529; }
+    &:focus { color: #212529; }
+  }
+  .commit { color: #f8f9fa; }
+  h5 { color: rgba(255, 255, 255, 0.9); }
+  p { 
+    margin-bottom: 0; 
+    font-weight: bold;
+  }
+}
+
+.list-group-item {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.text-warning {
+  color: rgba(#ffc107, 0.7) !important;
 }

@@ -18,15 +18,15 @@
         data: { 
           toggle: 'tooltip'
         }) do %>
-        <i class="fas fa-copy mt-2 ml-2 text-light "></i>
+        <i class="fas fa-copy mt-2 ml-2 text-light"></i>
       <% end %>
       <%= link_to tweet_path(tweet), 
         method: :delete, 
-        data: { confirm: 'Are you sure?' }, 
         class: 'text-danger',
-        title: 'Delete this tweet from folder',
+        title: 'Delete tweet from folder',
         data: { 
-          toggle: 'tooltip'
+          toggle: 'tooltip',
+          confirm: 'Are you sure?'
         } do %>
         <i class="fas fa-trash-alt mt-2 mx-2"></i>
     

@@ -20,6 +20,11 @@ bootstrap-maxlength@^1.10.0:
     bootstrap ">=2"
     jquery ">=3.5"
 
+bootstrap-show-password@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/bootstrap-show-password/-/bootstrap-show-password-1.2.1.tgz#96112a9f20ac3bf6340c03ef9538147ab17c15af"
+  integrity sha512-AAKUC1MrXowakbP9nJBUTzUmG5XrG4/fc4abhXrBGxkutp9aK6/XlyqiuFJ04gDFhslDt/nncWNQ+pxGZYdRNQ==
+
 bootstrap@>=2, bootstrap@^4.5.3:
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.3.tgz#c6a72b355aaf323920be800246a6e4ef30997fe6"

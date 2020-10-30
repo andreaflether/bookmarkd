@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Custom gems for this project
 gem 'devise'
+gem 'data-confirm-modal'
 gem 'omniauth-twitter'
 gem 'rest-client'
 gem 'simple_form'
