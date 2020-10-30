@@ -4,6 +4,8 @@ class Folder < ApplicationRecord
 
   accepts_nested_attributes_for :tweets
 
-  validates_presence_of :name
+  validates :name, 
+    presence: { message: 'Folder name is required'}, 
+    length: { maximum: 40 }
   validates_length_of :description, maximum: 200
 end

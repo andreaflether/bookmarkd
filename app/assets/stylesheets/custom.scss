@@ -99,3 +99,7 @@ button.close {
 #toast-container > .toast-info {
   background-image: none !important;
 }
+
+abbr[title] {
+  text-decoration: none;
+}

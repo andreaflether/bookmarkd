@@ -1,6 +1,28 @@
-<h1>Editing Folder</h1>
+<div class="col-md-6 d-flex justify-content-between align-items-center text-center mb-3 mt-2">
+  <%= link_to :back, class: 'text-white-50' do %>
+    <i class="fas fa-arrow-left"></i>
+  <% end %>
 
+  <h3>Edit folder info</h3>
+
+  <%= link_to folder_path(@folder), target: '_blank' do %>
+    <i class="text-brand fas fa-external-link-alt"></i>
+  <% end %>
+</div>
+
+<div class="w-100"></div>
 <%= render 'form', folder: @folder %>
 
-<%= link_to 'Show', @folder %> |
-<%= link_to 'Back', folders_path %>
+<div class="w-100"></div>
+
+<div class="col-md-6 mt-2 text-center">
+<hr>
+<%= link_to 'Delete folder', folder_path(@folder), method: :destroy, class: 'btn btn-outline-danger' %>
+<p class="text-white-50 mt-2 mb-1"><b>Disclaimer:</b> This action is permanent and can not be undone. </p>
+<small class="text-white-50">
+  <span class="text-brand">
+    <%= pluralize(@folder.tweets.count, 'tweet') %>
+  </span>
+   will be deleted alongside this folder if you choose to proceed with the delete action.
+</small>
+</div>
