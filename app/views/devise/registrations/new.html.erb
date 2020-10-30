@@ -1,31 +1,37 @@
 <div class="col-md-5 rounded bg-custom p-5 justify-content-center">
 <h3 class="text-center">Sign up</h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render 'devise/shared/error_messages', resource: resource %>
 
-  <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-  </div>
+  <%= f.input :name, 
+    required: true,
+    input_html: { maxlength: 50 } 
+  %>
 
-  <div class="form-group">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-    <small>
-      <em class="text-white-50"><%= @minimum_password_length %> characters minimum.</em>
-    </small>
-  </div>
+  <%= f.input :email, 
+    autofocus: true, 
+    autocomplete: 'email', 
+    required: true 
+  %>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-  </div>
+  <%= f.input :password, 
+    wrapper: :input_group,
+    required: true,
+    autocomplete: 'new-password', 
+    hint: "#{@minimum_password_length} characters minimum.",
+    input_html: { data: { toggle: 'password' } } 
+  %>
+    
+  <%= f.input :password_confirmation, 
+    wrapper: :input_group,
+    required: true, 
+    autocomplete: 'new-password', 
+    input_html: { data: { toggle: 'password' } }
+  %>
 
   <div class="actions">
-    <%= f.submit 'Sign up', class: 'btn btn-brand w-100 mb-3' %>
+    <%= f.button :submit, 'Sign up', class: 'btn btn-brand w-100 mb-3' %>
   </div>
 <% end %>
 <%= render "devise/shared/links" %>

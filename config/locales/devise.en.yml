@@ -61,5 +61,5 @@ en:
       not_found: "not found"
       not_locked: "was not locked"
       not_saved:
-        one: "<b>Could not save %{resource}!</b> <br /> Please check error below."
-        other: "Could not save %{resource}! Please check the %{count} errors below."
+        one: "<b>Could not save %{resource}!</b> <br /> Please check the error below."
+        other: "<b>Could not save %{resource}! </b> <br /> Please check the %{count} errors below."

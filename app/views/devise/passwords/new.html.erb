@@ -1,16 +1,13 @@
 <div class="col-md-5 rounded bg-custom p-5 justify-content-center">
   <h3 class="text-center mb-3">Forgot your password?</h3>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render 'devise/shared/error_messages', resource: resource %>
 
-    <div class="form-group">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
-    </div>
+    <%= f.input :email, autofocus: true, autocomplete: 'email', required: true %>
 
     <div class="actions">
-      <%= f.submit "Send me reset password instructions", class: 'btn btn-brand w-100 mb-3' %>
+      <%= f.submit 'Send me reset password instructions', class: 'btn btn-brand w-100 mb-3' %>
     </div>
   <% end %>
 
