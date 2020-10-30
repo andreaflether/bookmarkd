@@ -1,10 +1,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require jquery/dist/jquery
-//= require bootstrap/dist/js/bootstrap
+//= require bootstrap/dist/js/bootstrap.bundle
 //= require bootstrap-maxlength/dist/bootstrap-maxlength
 //= require general
 //= require toastr/build/toastr.min
-//= require @popperjs/core/dist/umd/popper
-//= require tippy.js/dist/tippy.umd
 //= require_tree .

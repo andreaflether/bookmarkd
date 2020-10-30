@@ -14,11 +14,9 @@
       <%= button_tag(
         type: 'button', 
         class: 'btn btn-transparent d-flex copyTweetLink',
+        title: 'Copy tweet URL to clipboard',
         data: { 
-          'tippy-content': 'Copy tweet URL to clipboard', 
-          'tippy-arrow': 'false',
-          'tippy-theme': 'translucent',
-          'tippy-placement': 'bottom'
+          toggle: 'tooltip'
         }) do %>
         <i class="fas fa-copy mt-2 ml-2 text-light "></i>
       <% end %>
@@ -26,11 +24,9 @@
         method: :delete, 
         data: { confirm: 'Are you sure?' }, 
         class: 'text-danger',
+        title: 'Delete this tweet from folder',
         data: { 
-          'tippy-content': 'Delete tweet from this folder', 
-          'tippy-arrow': 'false',
-          'tippy-theme': 'translucent',
-          'tippy-placement': 'bottom'
+          toggle: 'tooltip'
         } do %>
         <i class="fas fa-trash-alt mt-2 mx-2"></i>
     

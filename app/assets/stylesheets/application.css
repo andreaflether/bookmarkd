@@ -3,8 +3,6 @@
  *= require cover
  *= require @fortawesome/fontawesome-free/css/all
  *= require toastr/build/toastr.min
- *= require tippy.js/dist/tippy
- *= require tippy.js/themes/translucent
  *= require_tree .
  *= require_self
  */
