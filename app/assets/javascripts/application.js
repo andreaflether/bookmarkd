@@ -3,9 +3,9 @@
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap.bundle
 //= require bootstrap-maxlength/dist/bootstrap-maxlength
+//= require bootstrap-show-password/dist/bootstrap-show-password
 //= require general
 //= require load-more-tweets
 //= require toastr/build/toastr.min
 //= require data-confirm-modal
-//= require bootstrap-show-password/dist/bootstrap-show-password
 //= require_tree .

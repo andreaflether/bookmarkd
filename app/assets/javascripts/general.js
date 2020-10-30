@@ -45,4 +45,6 @@ $(document).ready(function() {
     twoCharLinebreak: false,
     appendToParent: true
   });
+
+  $('.input-group-append').find('button').removeClass('btn-outline-secondary').addClass('btn-outline-light')
 })
