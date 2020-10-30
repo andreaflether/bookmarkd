@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_022111) do
   create_table "folders_tweets", id: false, force: :cascade do |t|
     t.integer "folder_id", null: false
     t.integer "tweet_id", null: false
+    t.index ["tweet_id", "folder_id"], name: "index_folders_tweets_on_tweet_id_and_folder_id", unique: true
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_022111) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
+    t.string "email", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_022111) do
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
     t.string "username", default: "", null: false
+    t.string "image", default: "", null: false
     t.string "provider"
     t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
