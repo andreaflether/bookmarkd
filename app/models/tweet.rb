@@ -9,7 +9,9 @@ class Tweet < ApplicationRecord
       message: 'Incorrect format for Twitter URL!',
       allow_blank: true
     }
-  
+    # ,
+    # uniqueness: { message: 'Tweet already exists in the database. ' }
+
   def return_html_content 
     html_hash = { html_content: EmbedTweetService.new(self.link).fetch }
 

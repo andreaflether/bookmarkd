@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_022111) do
     t.integer "folder_id", null: false
     t.integer "tweet_id", null: false
     t.index ["tweet_id", "folder_id"], name: "index_folders_tweets_on_tweet_id_and_folder_id", unique: true
+    t.index ["tweet_id"], name: "index_folders_tweets_on_tweet_id"
   end
 
   create_table "tweets", force: :cascade do |t|
