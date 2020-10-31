@@ -25,12 +25,6 @@ a { text-decoration: none !important; }
   color: #212529;
 }
 
-#toast-container {
-  position: absolute; 
-  top: 0; 
-  right: 0;
-}
-
 .link-brand {
   color: $brand;
   &:hover { color: darken($color: $brand, $amount: 5%); }
@@ -64,7 +58,6 @@ button.close { text-shadow: none; }
 [id^=toast-container]>div {
   box-shadow: none !important;
   padding: 15px 25px !important;
-  position: fixed !important;
   top: 10px;
   right: 10px;
 }
@@ -107,15 +100,11 @@ abbr[title] { text-decoration: none; }
   }
 }
 
-.list-group-item {
+.list-group-item.transparent {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.text-warning {
-  color: rgba(#ffc107, 0.7) !important;
-}
+.text-warning { color: rgba(#ffc107, 0.7) !important; }
 
-.invalid-feedback {
-  color: #ea3c53 !important;
-}
+.invalid-feedback { color: #ea3c53 !important; }

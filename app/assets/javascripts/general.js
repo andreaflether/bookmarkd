@@ -27,7 +27,7 @@ $(document).ready(function() {
 
   copyToClipboard.on('click', function(e){
     e.preventDefault();
-    let copyLink = copyToClipboard.next().parent().attr('data-tweetURL');
+    let copyLink = copyToClipboard.closest('div[data-tweeturl]').attr('data-tweeturl')
     document.addEventListener('copy', function(e) {
       e.clipboardData.setData('text/plain', copyLink);
       e.preventDefault();

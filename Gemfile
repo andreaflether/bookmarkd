@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Custom gems for this project
+gem 'awesome_print'
 gem 'devise'
 gem 'data-confirm-modal'
 gem 'omniauth-twitter'
