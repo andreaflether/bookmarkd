@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between" data-tweetURL="<%= tweet.link %>">
+<div class="d-flex justify-content-between tweet" data-tweetURL="<%= tweet.link %>">
   <%= raw tweet.html_content %>
   <div class="d-flex flex-column">
     <div>
@@ -22,6 +22,7 @@
       <% end %>
       <%= link_to folder_tweet_path(@folder, tweet), 
         method: :delete, 
+        remote: true,
         class: 'text-danger',
         title: 'Delete tweet from folder',
         data: { 

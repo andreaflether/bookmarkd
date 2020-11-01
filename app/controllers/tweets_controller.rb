@@ -62,13 +62,16 @@ class TweetsController < ApplicationController
     @folder.tweets.delete @tweet
     @folder.save  
 
-    redirect_to request.referer, notice: "Tweet successfully removed from <b>#{@folder.name}</b>."
+    # redirect_to request.referer, notice: "Tweet successfully removed from <b>#{@folder.name}</b>."
   
     # @tweet.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to request.referer, notice: "Tweet removed successfully." }
-    #   format.json { head :no_content }
-    # end
+    respond_to do |format|
+      format.html { redirect_to request.referer, notice: "Tweet removed successfully." }
+      format.js { 
+        render :destroy, 
+        layout: false, 
+        locals: { tweet: @tweet, folder: @folder }  }
+    end
   end
 
   private
