@@ -5,6 +5,7 @@
 //= require bootstrap-maxlength/dist/bootstrap-maxlength
 //= require bootstrap-show-password/dist/bootstrap-show-password
 //= require general
+//= require folders
 //= require load-more-tweets
 //= require toastr/build/toastr.min
 //= require data-confirm-modal
