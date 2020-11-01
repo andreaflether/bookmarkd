@@ -3,6 +3,7 @@ class Folder < ApplicationRecord
   has_and_belongs_to_many :tweets
 
   accepts_nested_attributes_for :tweets
+  before_validation :find_tweet
 
   validates :name, 
     presence: { message: 'Folder name is required!' }, 
@@ -15,13 +16,9 @@ class Folder < ApplicationRecord
     self.errors.add(:tweets, 'Tweet already exists in this folder!') if self.tweets.group_by(&:link).values.detect{|arr| arr.size > 1}
   end
 
-  # before_validation :find_tweet
-
-  # def find_tweet 
-  #   self.tweets.map do |tweet|
-  #     Tweet.where(link: tweet.link).first_or_initialize
-  #   end
-  #   rescue ActiveRecord::RecordNotUnique
-  #     self.errors.add(:tweets, 'Tweet already exists in this folder.')  
-  # end
+  def find_tweet 
+    self.tweets = self.tweets.map do |tweet|
+      Tweet.find_or_initialize_by(link: tweet.link)
+    end
+  end
 end

@@ -1,10 +1,15 @@
-<div class="card folder no-shadow">
+<div class="card folder no-shadow" 
+  data-folder-id="<%= folder.id %>" 
+  data-pinned="<%= is_pinned(folder) %>"
+>
   <div class="card-body">
     <h4 class="card-title d-flex align-items-center justify-content-between mb-1">
       <%= link_to folder.name, folder, class: 'link-brand font-weight-bold' %>
-      <%= link_to '#', 
+      <%= link_to toggle_pin_url(folder), 
+        method: :put,  
+        remote: true,
         class: folder.pinned? ? 'link-brand' : 'pin-folder-icon',
-        title: 'Pin/Unpin this folder',
+        title: "#{is_pinned(folder) ? 'Unpin' : 'Pin'} this folder",
         data: { 
           toggle: 'tooltip'
         } do %>

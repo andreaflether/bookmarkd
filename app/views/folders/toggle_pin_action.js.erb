@@ -1,0 +1,9 @@
+<% if folder.pinned? %>
+  toastr.success("<b><%= folder.name %></b> was added to your pinned folders!")
+  $('#folders').find(".folder[data-folder-id='<%= folder.id %>']").remove();
+  $("<%= j render folder %>").prependTo($('#folders')).fadeIn('slow');
+<% else %>
+  toastr.info("<b><%= folder.name %></b> was removed from your pinned folders.")
+  $('#folders').find(".folder[data-folder-id='<%= folder.id %>']").remove();
+  $(".folder[data-pinned='true']:last").after("<%= j render folder %>")
+<% end %>

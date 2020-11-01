@@ -1,21 +1,21 @@
 class FoldersController < ApplicationController
-  before_action :set_folder, only: [:show, :edit, :update, :destroy]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
   before_action :authenticate_user!
 
   # GET /folders
-  # GET /folders.json
   def index
-    @folders = Folder.where(user: current_user).order(pinned: :desc)
+    @folders = Folder.where(user: current_user)
+      .order(pinned: :desc, updated_at: :desc)
   end
 
   # GET /folders/1
-  # GET /folders/1.json
   def show
     if helpers.folder_belongs_to_user(@folder)
       @tweets = current_user.folders
         .find(@folder.id)
         .tweets
-        .paginate(page: params[:page], per_page: 10).order('created_at DESC')   
+        .paginate(page: params[:page], per_page: 10)
+        .order('created_at DESC')   
     else 
       redirect_to folders_path, alert: 'This folder was not shared with you.'
     end     
@@ -36,7 +36,6 @@ class FoldersController < ApplicationController
   end
 
   # POST /folders
-  # POST /folders.json
   def create
     @folder = Folder.new(folder_params)
     @folder.user = current_user
@@ -44,10 +43,8 @@ class FoldersController < ApplicationController
     respond_to do |format|
       if @folder.save
         format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
-        format.json { render :show, status: :created, location: @folder }
       else
         format.html { render :new }
-        format.json { render json: @folder.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -76,9 +73,25 @@ class FoldersController < ApplicationController
   def destroy
     @folder.destroy
     respond_to do |format|
-      format.html { redirect_to folders_url, notice: 'Folder was successfully destroyed.' }
+      format.html { redirect_to folders_url, notice: 'Folder was deleted successfully.' }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_folder_pin
+    @folder.toggle(:pinned)
+
+    respond_to do |format|
+      if @folder.save 
+        format.js { render :toggle_pin_action, locals: { folder: @folder } }
+      else 
+        format.js { 
+          render :errors,
+          layout: false, 
+          locals: { error: @folder.errors.full_messages } 
+        }
+      end 
+    end 
   end
 
   private
@@ -89,6 +102,6 @@ class FoldersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def folder_params
-      params.require(:folder).permit(:name, :description, :tweets_attributes => [ :id, :link ])
+      params.require(:folder).permit(:name, :description, :pinned, tweets_attributes: [ :id, :link ])
     end
 end
