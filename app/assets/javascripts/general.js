@@ -1,7 +1,6 @@
 $(document).ready(function() {
   $('[data-toggle="tooltip"]').tooltip({
     container: 'body',
-    placement: 'bottom',
     trigger: 'hover'
   })
 

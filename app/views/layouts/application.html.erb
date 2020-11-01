@@ -62,12 +62,23 @@
               </ul>
             </div>
           </nav>
-        
         </div>
       </div>
       <div class="row justify-content-center <%= 'align-items-center flex-fill h-100' if controller_name == 'pages' %> px-3">  
         <%= yield %>
       </div>
+      <% unless !user_signed_in? %>
+        <div class="action-buttons position-fixed">
+          <%= link_to new_folder_path,
+            title: 'Create a new folder',
+            data: { 
+              toggle: 'tooltip',
+              placement: 'left'
+            } do %>
+            <i class="fas fa-folder-plus fa-2x"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </body>
 </html>

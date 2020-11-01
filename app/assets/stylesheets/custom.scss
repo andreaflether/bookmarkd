@@ -108,3 +108,24 @@ abbr[title] { text-decoration: none; }
 .text-warning { color: rgba(#ffc107, 0.7) !important; }
 
 .invalid-feedback { color: #ea3c53 !important; }
+
+.no-shadow { text-shadow: none; }
+
+.dropdown-menu {
+  background-color: rgb(46, 46, 46);
+  border: none;
+  box-shadow: 3px 3px 5px 0px rgba(34,34,34,0.6);
+}
+
+.dropdown-item {
+  padding: 0.4rem 1.5rem;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.back-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 50%;
+}

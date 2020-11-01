@@ -1,5 +1,6 @@
 class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /folders
   # GET /folders.json
@@ -16,7 +17,7 @@ class FoldersController < ApplicationController
         .tweets
         .paginate(page: params[:page], per_page: 10).order('created_at DESC')   
     else 
-      redirect_to folders_path, alert: 'This folder belongs to another user.'
+      redirect_to folders_path, alert: 'This folder was not shared with you.'
     end     
 
     respond_to do |format|
