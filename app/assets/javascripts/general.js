@@ -35,7 +35,7 @@ $(document).ready(function() {
     toastr.info('Tweet URL copied to clipboard!')  
   })
 
-  $('input[maxlength], textarea').maxlength({
+  $('.has-max-length').maxlength({
     alwaysShow: true, 
     warningClass: 'small text-white-50 mt-1', 
     limitReachedClass: 'small text-danger mt-1', 

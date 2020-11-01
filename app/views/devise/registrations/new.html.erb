@@ -6,7 +6,8 @@
 
   <%= f.input :name, 
     required: true,
-    input_html: { maxlength: 50 } 
+    maxlength: 50
+    input_html: { class: 'has-max-length' } 
   %>
 
   <%= f.input :email, 
