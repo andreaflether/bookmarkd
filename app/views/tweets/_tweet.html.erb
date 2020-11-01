@@ -20,7 +20,7 @@
         }) do %>
         <i class="fas fa-copy mt-2 ml-2 text-light"></i>
       <% end %>
-      <%= link_to tweet_path(tweet), 
+      <%= link_to folder_tweet_path(@folder, tweet), 
         method: :delete, 
         class: 'text-danger',
         title: 'Delete tweet from folder',

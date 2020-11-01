@@ -55,11 +55,20 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   # DELETE /tweets/1.json
   def destroy
-    @tweet.destroy
-    respond_to do |format|
-      format.html { redirect_to request.referer, notice: "Tweet removed successfully." }
-      format.json { head :no_content }
-    end
+    @folder = Folder.find(params[:folder_id]) if params[:folder_id]
+
+    @tweet.destroy if @tweet.folders.count == 1 
+    
+    @folder.tweets.delete @tweet
+    @folder.save  
+
+    redirect_to request.referer, notice: "Tweet successfully removed from <b>#{@folder.name}</b>."
+  
+    # @tweet.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to request.referer, notice: "Tweet removed successfully." }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
