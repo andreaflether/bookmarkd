@@ -5,7 +5,7 @@ class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.where(user: current_user)
+    @folders = Folder.where(user: current_user).order(pinned: :desc)
   end
 
   # GET /folders/1

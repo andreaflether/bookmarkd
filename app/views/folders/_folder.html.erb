@@ -1,0 +1,31 @@
+<div class="card no-shadow">
+  <div class="card-body">
+    <h4 class="card-title d-flex align-items-center justify-content-between mb-1">
+      <%= link_to folder.name, folder, class: 'link-brand font-weight-bold' %>
+      <%= link_to '#', 
+        class: folder.pinned? ? 'link-brand' : 'pin-folder-icon',
+        title: 'Pin/Unpin this folder',
+        data: { 
+          toggle: 'tooltip'
+        } do %>
+        <i class="fas fa-thumbtack fa-xs pl-2"></i>
+      <% end %>
+    </h4>
+    <p class="card-subtitle font-weight-bold text-black-50 small mt-2 mb-3">
+      <i class="far fa-clock"></i>  
+      <span class="text-muted font-weight-normal">last updated</span>
+      <%= time_ago_in_words(folder.updated_at) %> ago
+    </p>
+    <p class="card-text text-secondary small"><%= folder.description %></p>
+    <%= link_to edit_folder_path(folder), 
+      class: 'btn btn-outline-primary btn-sm edit' do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
+    <%= link_to folder_path(folder), 
+      method: :delete, 
+      data: { confirm: 'Are you sure?' }, 
+      class: 'btn btn-outline-danger delete btn-sm' do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
+  </div>
+</div>

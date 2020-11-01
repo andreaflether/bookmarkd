@@ -129,3 +129,8 @@ abbr[title] { text-decoration: none; }
   bottom: 20px;
   right: 50%;
 }
+
+.pin-folder-icon {
+  color: #bbbbbb;
+  &:hover { color: darken($color: #bbb, $amount: 10%)  }
+}

@@ -10,12 +10,40 @@
   <% if @folder.description.present? %>
     <small class="text-white-50"><%= @folder.description %></small>
   <% end %>
-  <p class="mt-2">by 
-    <span class="font-weight-bold">
-      <%= current_user.provider.blank? ? current_user.name : current_user.username %>
-    </span>
-  </p> 
+  <div class="mt-2 d-flex justify-content-center align-items-center">
+    <p class="mb-0">by 
+      <span class="font-weight-bold">
+        <%= current_user.provider.blank? ? current_user.name : current_user.username %>
+      </span>
+    </p> 
+    <div class="dropdown">
+      <button class="btn btn-transparent btn-lg text-white-50" 
+        type="button" 
+        id="folder-actions" 
+        data-toggle="dropdown" 
+        aria-haspopup="true" 
+        aria-expanded="false"
+      >
+        <i class="fas fa-ellipsis-h 2x"></i>
+      </button>
+
+      <div class="dropdown-menu no-shadow" aria-labelledby="folder-actions">
+        <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-primary' do %> 
+          <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
+        <% end %>
+        <%= link_to folder_path(@folder), 
+          method: :delete, 
+          class: 'dropdown-item text-danger',
+          data: { 
+            confirm: 'Are you sure?'
+          } do %>
+          <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
+        <% end %>
+      </div>
+    </div> 
+  </div>
 </div>
+
 <div class="w-100"></div>
 
 <div class="col-md-7 mt-3">
@@ -40,22 +68,22 @@
 </div>
 
 <div class="w-100"></div>
+  
+<div class="col-md-12 text-center mt-3 mb-0">
+  <span class="badge badge-pill badge-brand">
+    <h6 class="mb-0 p-1" id="tweetsCount">
+      <%= pluralize(@folder.tweets.count, 'tweet') %>  
+    </h6>
+  </span>
+</div>
 
+<div class="col-md-7 text-center mt-2" id="tweets-container">
   <% if @tweets.blank? %>
-    <h5 class="text-center text-brand font-weight-normal">
+    <h5 class="text-center text-brand font-weight-normal mt-2">
       This folder is empty. Add tweets to see them here!
     </h5>
   <% else %>
-    <div class="col-md-12 text-center mt-3 mb-0">
-      <span class="badge badge-pill badge-brand">
-        <h6 class="mb-0 p-1" id="tweetsCount">
-          <%= pluralize(@folder.tweets.count, 'tweet') %>  
-        </h6>
-      </span>
-    </div>
-    <div class="col-md-7 text-center mt-2" id="tweets-container">
-      <%= render @tweets %>
-    </div>
+    <%= render @tweets %>
     <div class="w-100"></div>
 
     <div id="paginate-load-more-button">
@@ -66,6 +94,7 @@
       <div id='load-more-tweets' class='btn btn-primary'>Load more tweets</div>
     <% end %>
   <% end %>
+</div>
 
   <%= link_to '#', class: "btn btn-primary back-to-top-button invisible" do %>
       <i class="fas fa-arrow-up"></i>

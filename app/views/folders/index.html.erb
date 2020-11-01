@@ -1,6 +1,6 @@
 
 <div class="col-md-12">
-  <h2 class="text-center mb-4">Folders</h2>
+  <h2 class="text-center mb-3">Folders</h2>
 </div>
 
 <% if @folders.blank? %>
@@ -11,20 +11,12 @@
     <%= link_to 'Create a Folder', new_folder_path, class: 'btn btn-brand mt-1' %>
   </div>
 <% else %>
-  <div class="col-md-3">
-    <div class="list-group">
-      <% @folders.each do |folder| %>
-        <%= link_to folder, class: 'list-group-item list-group-item-action' do %>
-
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1 text-brand"><%= folder.name %></h5>
-            <small><%= folder.tweets.count %> tweets</small>
-          </div>
-          
-          <small>Updated at <%= folder.updated_at.strftime("%mm %d, %Y") %></small>
-        <% end %>
-      <% end %>
+<div class="col-9">
+    <div class="card-columns mt-4" id="folders">
+      <%= render @folders %>
     </div>
-  </div>
+  
+</div>
+  
 <% end %>
 

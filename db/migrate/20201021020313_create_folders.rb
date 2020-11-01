@@ -4,6 +4,7 @@ class CreateFolders < ActiveRecord::Migration[5.2]
       t.belongs_to :user
       t.string :name
       t.text :description
+      t.boolean :pinned, default: false
 
       t.timestamps
     end
