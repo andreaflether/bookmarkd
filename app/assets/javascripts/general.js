@@ -45,5 +45,5 @@ $(document).ready(function() {
     appendToParent: true
   });
 
-  $('.input-group-append').find('button').removeClass('btn-outline-secondary').addClass('btn-outline-light')
+  $('.input-group-append').find('button').switchClass('btn-outline-secondary', 'btn-outline-light')
 })

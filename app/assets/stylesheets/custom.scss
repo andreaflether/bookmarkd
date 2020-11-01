@@ -134,3 +134,31 @@ abbr[title] { text-decoration: none; }
   color: #bbbbbb;
   &:hover { color: darken($color: #bbb, $amount: 10%)  }
 }
+
+.no-results { display: none; }
+
+.icon-inside {
+  position: absolute;
+  top: calc(50% - 12px);
+  z-index: 999;
+}
+
+#remove-search {
+  right: 10px;
+  display: block;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  &:hover {
+    color: #ea3c53 !important;
+  }
+}
+
+#search-icon {
+  left: 10px;
+}
+
+#search-folder {
+  padding-left: 35px;
+  padding-right: 35px;
+  transition: all .2s ease-in-out;
+}
