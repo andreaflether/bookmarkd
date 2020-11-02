@@ -1,6 +1,7 @@
 class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
   before_action :authenticate_user!
+  before_action :verify_user, only: [:show, :edit, :update, :destroy]
 
   # GET /folders
   def index
@@ -10,16 +11,12 @@ class FoldersController < ApplicationController
 
   # GET /folders/1
   def show
-    if helpers.folder_belongs_to_user(@folder)
-      @tweets = current_user.folders
-        .find(@folder.id)
-        .tweets
-        .paginate(page: params[:page], per_page: 10)
-        .order('created_at DESC')   
-    else 
-      redirect_to folders_path, alert: 'This folder was not shared with you.'
-    end     
-
+    @tweets = current_user.folders
+      .find(@folder.id)
+      .tweets
+      .paginate(page: params[:page], per_page: 10)
+      .order('created_at DESC')   
+    
     respond_to do |format|
       format.html
       format.js
@@ -32,8 +29,7 @@ class FoldersController < ApplicationController
   end
 
   # GET /folders/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /folders
   def create
@@ -50,7 +46,6 @@ class FoldersController < ApplicationController
   end
 
   # PATCH/PUT /folders/1
-  # PATCH/PUT /folders/1.json
   def update
     respond_to do |format|
       if @folder.update(folder_params)
@@ -69,11 +64,10 @@ class FoldersController < ApplicationController
   end
 
   # DELETE /folders/1
-  # DELETE /folders/1.json
   def destroy
     @folder.destroy
     respond_to do |format|
-      format.html { redirect_to folders_url, notice: 'Folder was deleted successfully.' }
+      format.html { redirect_to folders_url, notice: 'Folder was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -92,6 +86,12 @@ class FoldersController < ApplicationController
         }
       end 
     end 
+  end
+
+  def verify_user
+    unless helpers.folder_belongs_to_user(@folder)
+      redirect_to folders_path, alert: 'This folder was not shared with you.'
+    end
   end
 
   private
