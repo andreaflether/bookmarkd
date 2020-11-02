@@ -112,9 +112,9 @@ abbr[title] { text-decoration: none; }
 .no-shadow { text-shadow: none; }
 
 .dropdown-menu {
-  background-color: rgb(46, 46, 46);
+  background-color: #333;
   border: none;
-  box-shadow: 3px 3px 5px 0px rgba(34,34,34,0.6);
+  box-shadow: 3px 3px 5px 0px rgba(34, 34, 34, 0.6);
 }
 
 .dropdown-item {
@@ -153,9 +153,7 @@ abbr[title] { text-decoration: none; }
   }
 }
 
-#search-icon {
-  left: 10px;
-}
+#search-icon { left: 10px; }
 
 #search-folder {
   padding-left: 35px;

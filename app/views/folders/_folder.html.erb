@@ -21,7 +21,13 @@
       <span class="text-muted font-weight-normal">last updated</span>
       <%= time_ago_in_words(folder.updated_at) %> ago
     </p>
-    <p class="card-text text-secondary small"><%= folder.description %></p>
+    <p class="card-text text-secondary small">
+      <%= folder.description %> · 
+      <span class="text-brand">
+        <%= pluralize(folder.tweets.count, 'tweet') %>
+      </span>
+    </p>
+    
     <%= link_to edit_folder_path(folder), 
       class: 'btn btn-outline-primary btn-sm edit' do %>
       <i class="fas fa-pencil-alt"></i>
