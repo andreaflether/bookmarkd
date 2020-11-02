@@ -1,102 +1,102 @@
 <% if current_user.provider.blank? %>
-<div class="col-md-12 text-center mb-3">
-  <h3>Edit <%= resource_name.to_s.humanize %> info</h3>
-</div>
-<div class="col-md-6">
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render 'devise/shared/error_messages', resource: resource %>
-    <%= f.input :name, 
-      maxlength: 50, 
-      input_html: { class: 'has-max-length' } %>
-    <%= f.input :email, 
-      autofocus: true, 
-      autocomplete: 'email',
-      required: true %>
+  <div class="col-md-12 text-center mb-3">
+    <h3>Edit <%= resource_name.to_s.humanize.downcase %> info</h3>
+  </div>
+  <div class="col-md-8 col-lg-6">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render 'devise/shared/error_messages', resource: resource %>
+      <%= f.input :name, 
+        maxlength: 50, 
+        input_html: { class: 'has-max-length' } %>
+      <%= f.input :email, 
+        autofocus: true, 
+        autocomplete: 'email',
+        required: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
-        <h5 class="mb-0">
-          <a data-toggle="collapse" href="#password-change-fields">
-            Change password
-          </a>
-        </h5>
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#password-change-fields">
+              Change password
+            </a>
+          </h5>
 
-        <div class="collapse" id="password-change-fields">
-          <p class="text-warning mt-3">
-            <i class="fas fa-exclamation-circle"></i>
-            Leave this fields blank if you don't wanna change your password.
-          </p>
-          <div class="row">
-            <div class="col-md-6">
-              <%= f.input :password, 
-                wrapper: :input_group,
-                autocomplete: 'new-password', 
-                hint: "#{@minimum_password_length} characters minimum.",
-                input_html: { data: { toggle: 'password' } }
-              %>
+          <div class="collapse" id="password-change-fields">
+            <p class="text-warning mt-3">
+              <i class="fas fa-exclamation-circle"></i>
+              Leave this fields blank if you don't wanna change your password.
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :password, 
+                  wrapper: :input_group,
+                  autocomplete: 'new-password', 
+                  hint: "#{@minimum_password_length} characters minimum.",
+                  input_html: { data: { toggle: 'password' } }
+                %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.input :password_confirmation, 
+                  wrapper: :input_group,
+                  autocomplete: 'new-password',
+                  input_html: { data: { toggle: 'password' } }
+                %>  
+              </div>   
             </div>
-
-            <div class="col-md-6">
-              <%= f.input :password_confirmation, 
-                wrapper: :input_group,
-                autocomplete: 'new-password',
-                input_html: { data: { toggle: 'password' } }
-              %>  
-            </div>   
           </div>
         </div>
-      </div>
-      <div class="col-md-12">
-        <hr>
-        <p class="text-brand">Enter your current password in order to confirm the changes.</p>
-        <%= f.input :current_password, wrapper: :input_group,
-          autocomplete: 'current-password',
-          required: true,
-          input_html: { data: { toggle: 'password' } } %>
+        <div class="col-md-12">
+          <hr>
+          <p class="text-brand">Enter your current password in order to confirm the changes.</p>
+          <%= f.input :current_password, wrapper: :input_group,
+            autocomplete: 'current-password',
+            required: true,
+            input_html: { data: { toggle: 'password' } } %>
 
-        <div class="actions">
-          <%= f.button :submit, 'Update', class: 'btn btn-brand mb-3 w-100' %>
+          <div class="actions">
+            <%= f.button :submit, 'Update', class: 'btn btn-brand mb-3 w-100' %>
+          </div>
         </div>
-      </div>
-      
-  </div>
-  <% end %>
-</div>
-<% else %>
-<div class="col-md-12 text-center mb-3">
-  <h3>Twitter account info</h3>
-</div>
-
-<div class="col-md-6">
-  <div class="media rounded bg-custom p-3">
-    <%= image_tag @user.image, class: 'rounded-circle w-25 mr-3 img-fluid align-self-center' %>
-    <div class="media-body">
-      <ul class="list-group list-group-flush bg-transparent">
-        <li class="list-group-item transparent">
-          <i class="fas fa-at text-brand mr-2"></i> 
-          <%= @user.username %>
-        </li>
-        <li class="list-group-item transparent">
-          <i class="fas fa-user-circle text-brand mr-2"></i> 
-          <%= @user.name %>
-        </li>
-        <li class="list-group-item transparent">
-          <i class="far fa-envelope text-brand mr-2"></i> 
-          <%= @user.email %>
-        </li>
-      </ul>
+        
     </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="col-md-12 text-center mb-3">
+    <h3>Twitter account info</h3>
   </div>
 
-  <small class="text-white-50">Data fetched from 
-    <%= link_to 'Twitter', 'https://twitter.com/settings/your_twitter_data/account' %>
-  </small>
-</div>
+  <div class="col-md-4 col-lg-6">
+    <div class="media rounded bg-custom p-3">
+      <%= image_tag @user.image, class: 'rounded-circle w-25 mr-3 img-fluid align-self-center' %>
+      <div class="media-body">
+        <ul class="list-group list-group-flush bg-transparent">
+          <li class="list-group-item transparent">
+            <i class="fas fa-at text-brand mr-2"></i> 
+            <%= @user.username %>
+          </li>
+          <li class="list-group-item transparent">
+            <i class="fas fa-user-circle text-brand mr-2"></i> 
+            <%= @user.name %>
+          </li>
+          <li class="list-group-item transparent">
+            <i class="far fa-envelope text-brand mr-2"></i> 
+            <%= @user.email %>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <small class="text-white-50">Data fetched from 
+      <%= link_to 'Twitter', 'https://twitter.com/settings/your_twitter_data/account' %>
+    </small>
+  </div>
 <% end %>
 <div class="col-md-3">
   <% if current_user.provider == 'twitter' %>
@@ -124,7 +124,7 @@
 
   <%= button_to 'Deactivate', 
     registration_path(resource_name), 
-    data: { confirm: 'Are you sure?' }, 
+    data: { title: 'Deactivate account', confirm: 'Are you sure?', toggle: 'tooltip' }, 
     method: :delete,
     class: 'btn btn-danger mt-3' %>
   <hr>
