@@ -80,11 +80,15 @@ GEM
     erubi (1.9.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
+    faker (2.12.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
     formatador (0.2.5)
+    friendly_id (5.4.0)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     guard (2.16.2)
@@ -285,6 +289,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   data-confirm-modal
   devise
+  faker
+  friendly_id
   guard (~> 2.15)
   guard-livereload
   jbuilder (~> 2.5)

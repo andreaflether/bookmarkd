@@ -40,6 +40,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'awesome_print'
 gem 'devise'
 gem 'data-confirm-modal'
+gem 'faker'
+gem 'friendly_id'
 gem 'omniauth-twitter'
 gem 'rest-client'
 gem 'simple_form'
