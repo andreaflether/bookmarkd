@@ -1,12 +1,15 @@
 class Folder < ApplicationRecord
+  attr_accessor :tweets_count
+
   belongs_to :user 
   has_and_belongs_to_many :tweets
+  accepts_nested_attributes_for :tweets
 
   extend FriendlyId
   friendly_id  :slug_candidates,  use: [:slugged, :finders]
 
-  accepts_nested_attributes_for :tweets
-  before_update :find_tweet
+  before_validation :verify_existing_tweets, unless: Proc.new { |f| f.tweets.any? }
+  before_save :search_tweet
 
   validates :name, 
     presence: { message: 'Folder name is required.' }, 
@@ -15,13 +18,25 @@ class Folder < ApplicationRecord
   
   validate :no_duplicate_tweets
   
+  def tweets_count
+    self.tweets.count
+  end 
+  
   def no_duplicate_tweets
-    if self.tweets.group_by { |t| get_tweet_id(t.link)}.values.detect{|arr| arr.size > 1}
+    if self.tweets.group_by { |t| get_tweet_id(t.link) }.values.detect{ |arr| arr.size > 1 }
       self.errors.add(:tweets, 'Tweet already exists in this folder!') 
     end 
   end
 
-  def find_tweet 
+  def search_tweet
+    find_or_create_tweet
+  end
+
+  def verify_existing_tweets
+    find_or_create_tweet
+  end
+  
+  def find_or_create_tweet
     self.tweets = self.tweets.map do |tweet|
       Tweet.where("link LIKE ?", "%#{get_tweet_id(tweet.link)}%").first_or_initialize 
     end
@@ -38,7 +53,7 @@ class Folder < ApplicationRecord
   def slug_candidates 
     [
       [ Faker::Number.unique.number(digits: 4), :name ], 
-      [:id, Faker::Number.unique.number(digits: 4), :name]
+      [ :id, Faker::Number.unique.number(digits: 4), :name ]
     ]
   end 
 end
