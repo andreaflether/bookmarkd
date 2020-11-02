@@ -8,7 +8,7 @@
       <%= link_to toggle_pin_url(folder), 
         method: :put,  
         remote: true,
-        class: folder.pinned? ? 'link-brand' : 'pin-folder-icon',
+        class: is_pinned(folder) ? 'link-brand' : 'pin-folder-icon',
         title: "#{is_pinned(folder) ? 'Unpin' : 'Pin'} this folder",
         data: { 
           toggle: 'tooltip'
@@ -34,7 +34,10 @@
     <% end %>
     <%= link_to folder_path(folder), 
       method: :delete, 
-      data: { confirm: 'Are you sure?' }, 
+      title: "Delete folder: #{folder.name}",
+      data: { 
+        confirm: t('delete_folder_confirmation', tweet_count: pluralize(folder.tweets.count, 'tweet'))
+      }, 
       class: 'btn btn-outline-danger delete btn-sm' do %>
       <i class="far fa-trash-alt"></i>
     <% end %>

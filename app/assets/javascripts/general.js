@@ -1,8 +1,12 @@
 $(document).ready(function() {
   $('[data-toggle="tooltip"]').tooltip({
     container: 'body',
-    trigger: 'hover'
+    trigger: 'hover',
   })
+
+  $('[data-toggle="tooltip"]').on('click', function () {
+    $(this).tooltip('dispose');
+  });
 
   toastr.options = {
     closeButton: false,

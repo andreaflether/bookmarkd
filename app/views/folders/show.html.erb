@@ -34,8 +34,9 @@
         <%= link_to folder_path(@folder), 
           method: :delete, 
           class: 'dropdown-item text-danger',
+          title: "Delete folder: #{@folder.name}",
           data: { 
-            confirm: 'Are you sure?'
+            confirm: t('delete_folder_confirmation', tweet_count: pluralize(@folder.tweets.count, 'tweet'))
           } do %>
           <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
         <% end %>
