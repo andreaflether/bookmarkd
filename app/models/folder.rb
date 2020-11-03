@@ -10,8 +10,9 @@ class Folder < ApplicationRecord
 
   validate :no_duplicate_tweets
   
-  before_validation :verify_existing_tweets, unless: Proc.new { |f| f.tweets.any? }
-  before_save :search_tweet
+  after_validation :verify_existing_tweets
+  # , unless: Proc.new { |f| f.tweets.any? }
+  # before_save :search_tweet
 
   validates :name, 
     presence: { message: 'Folder name is required.' }, 
@@ -30,19 +31,13 @@ class Folder < ApplicationRecord
   
   end
 
-  def search_tweet
-    self.tweets = self.tweets.map do |tweet|
-      Tweet.where("link LIKE ?", "%#{get_tweet_id(tweet.link)}%").first_or_initialize do |t|
-        t.link = tweet.link
-      end 
-    end
-  end
-
   def verify_existing_tweets
     begin
-      self.tweets = self.tweets.map do |tweet|
-        Tweet.where("link LIKE ?", "%#{get_tweet_id(tweet.link)}%").first_or_initialize 
-      end
+    #   self.tweets = self.tweets.map do |tweet|
+    #     Tweet.where("link LIKE ?", "%#{get_tweet_id(tweet.link)}%").first_or_initialize do |t|
+    #       t.link = tweet.link
+    #     end
+    #   end
     rescue ActiveRecord::RecordNotUnique
       self.errors.add(:tweets, 'Tweet already exists in this folder!')
     end

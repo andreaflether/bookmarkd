@@ -1,6 +1,12 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Bullet
+  Bullet.enable = true
+  Bullet.console = true
+  Bullet.rails_logger = true
+  Bullet.bullet_logger = true 
+  
   # Guard LiveReload
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 

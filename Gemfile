@@ -47,6 +47,7 @@ gem 'rest-client'
 gem 'simple_form'
 gem 'twitter'
 gem 'will_paginate'
+gem 'bullet', group: 'development'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
