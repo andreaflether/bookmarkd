@@ -8,6 +8,8 @@ class Folder < ApplicationRecord
   extend FriendlyId
   friendly_id  :slug_candidates,  use: [:slugged, :finders]
 
+  validate :no_duplicate_tweets
+  
   before_validation :verify_existing_tweets, unless: Proc.new { |f| f.tweets.any? }
   before_save :search_tweet
 
@@ -16,29 +18,33 @@ class Folder < ApplicationRecord
     length: { maximum: 25 }
   validates_length_of :description, maximum: 200
   
-  validate :no_duplicate_tweets
-  
+
   def tweets_count
     self.tweets.count
   end 
   
   def no_duplicate_tweets
-    if self.tweets.group_by { |t| get_tweet_id(t.link) }.values.detect{ |arr| arr.size > 1 }
-      self.errors.add(:tweets, 'Tweet already exists in this folder!') 
-    end 
+    if self.tweets.any? && self.tweets.group_by { |t| get_tweet_id(t.link) }.values.detect{ |arr| arr.size > 1 }
+      self.errors.add(:tweets, 'Tweet already exists in this folder!')  
+    end
+  
   end
 
   def search_tweet
-    find_or_create_tweet
+    self.tweets = self.tweets.map do |tweet|
+      Tweet.where("link LIKE ?", "%#{get_tweet_id(tweet.link)}%").first_or_initialize do |t|
+        t.link = tweet.link
+      end 
+    end
   end
 
   def verify_existing_tweets
-    find_or_create_tweet
-  end
-  
-  def find_or_create_tweet
-    self.tweets = self.tweets.map do |tweet|
-      Tweet.where("link LIKE ?", "%#{get_tweet_id(tweet.link)}%").first_or_initialize 
+    begin
+      self.tweets = self.tweets.map do |tweet|
+        Tweet.where("link LIKE ?", "%#{get_tweet_id(tweet.link)}%").first_or_initialize 
+      end
+    rescue ActiveRecord::RecordNotUnique
+      self.errors.add(:tweets, 'Tweet already exists in this folder!')
     end
   end
 
