@@ -164,3 +164,19 @@ abbr[title] { text-decoration: none; }
   padding-right: 35px;
   transition: all .2s ease-in-out;
 }
+
+.policy-content, .terms-content {
+  p, ol {
+    color: rgb(189, 183, 175);
+  }
+}
+
+footer {
+  color: rgba(255, 255, 255, .5);
+  // position: fixed;
+  // bottom: 0;
+  // right: 40%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+}
+

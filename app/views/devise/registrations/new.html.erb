@@ -32,6 +32,13 @@
       input_html: { data: { toggle: 'password' } }
     %>
 
+    <div class="text-center my-4">
+      <%= f.input :terms, as: :boolean, 
+        label: "I accept the 
+          #{link_to 'Terms of Service', terms_of_service_path, class: 'link-brand' } 
+          and #{link_to 'Privacy Policy', privacy_policy_path, class: 'link-brand' }".html_safe %>
+    </div>
+
     <div class="actions">
       <%= f.button :submit, 'Sign up', class: 'btn btn-brand w-100 mb-3' %>
     </div>

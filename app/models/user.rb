@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  attr_accessor :terms
+
+  validates_acceptance_of :terms, message: 'You need to accept the terms and conditions.'
+
   has_many :folders
   validates :name, presence: true, length: { maximum: 50, allow_blank: true } 
   

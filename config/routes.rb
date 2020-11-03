@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :tweets, only: [:destroy]
   end
 
+  get '/privacy-policy', to: 'pages#privacy_policy'
+  get '/terms-of-service', to: 'pages#terms_of_service'
+
   authenticated :user do root to: 'folders#index' end
   unauthenticated :user do root to: 'pages#home' end
   
