@@ -102,6 +102,8 @@ class FoldersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def folder_params
-      params.require(:folder).permit(:name, :description, :pinned, tweets_attributes: [ :id, :link ])
+      params.require(:folder).permit(:name, :description, :pinned, 
+        bookmarks_attributes: [ tweet_attributes: [ :id, :link ] ]
+      )
     end
 end

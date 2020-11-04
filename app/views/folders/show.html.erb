@@ -49,20 +49,22 @@
 
 <div class="col-md-7 mt-3">
   <%= simple_form_for @folder, remote: true do |f| %>
-    <%= f.simple_fields_for :tweets, @folder.tweets.build do |t| %>
-      <% t.input :link, 
-        label: false,
-        wrapper: :input_group do %>
-        <%= t.input :link, 
-          label: false, 
-          wrapper: false, 
-          input_html: { 
-            id: 'tweetUrl',
-            placeholder: 'Enter Tweet URL here'
-          } %>
+    <%= f.simple_fields_for :bookmarks, @folder.bookmarks.build do |t| %>
+      <%= t.simple_fields_for :tweet, Tweet.new do |tt| %>
+        <% tt.input :link, 
+          label: false,
+          wrapper: :input_group do %>
+          <%= tt.input :link, 
+            label: false, 
+            wrapper: false, 
+            input_html: { 
+              id: 'tweetUrl',
+              placeholder: 'Enter Tweet URL here'
+            } %>
         <div class="input-group-append">   
           <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
         </div>
+      <% end %>
       <% end %>
     <% end %>
   <% end %>

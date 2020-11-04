@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :tweets
   resources :folders
+  resources :bookmarks, only: [:new, :create, :destroy]
 
   put 'pin_folder/:id', to: 'folders#toggle_folder_pin', as: :toggle_pin 
   

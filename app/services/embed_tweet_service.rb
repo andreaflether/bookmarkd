@@ -13,6 +13,8 @@ class EmbedTweetService
       response = RestClient.get base_url
     rescue RestClient::ExceptionWithResponse => e
       e.response
+    rescue URI::InvalidURIError 
+      { invalid: true }
     end
   end 
 end 
