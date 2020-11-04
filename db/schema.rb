@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_123849) do
+ActiveRecord::Schema.define(version: 2020_11_03_220550) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "folder_id"
+    t.integer "tweet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["folder_id"], name: "index_bookmarks_on_folder_id"
+    t.index ["tweet_id"], name: "index_bookmarks_on_tweet_id"
+  end
 
   create_table "folders", force: :cascade do |t|
     t.integer "user_id"
@@ -22,13 +31,6 @@ ActiveRecord::Schema.define(version: 2020_11_02_123849) do
     t.string "slug"
     t.index ["slug"], name: "index_folders_on_slug", unique: true
     t.index ["user_id"], name: "index_folders_on_user_id"
-  end
-
-  create_table "folders_tweets", id: false, force: :cascade do |t|
-    t.integer "folder_id", null: false
-    t.integer "tweet_id", null: false
-    t.index ["tweet_id", "folder_id"], name: "index_folders_tweets_on_tweet_id_and_folder_id", unique: true
-    t.index ["tweet_id"], name: "index_folders_tweets_on_tweet_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
