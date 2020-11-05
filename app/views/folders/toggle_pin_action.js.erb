@@ -4,6 +4,13 @@
   $("<%= j render folder %>").prependTo($('#folders')).fadeIn('slow');
 <% else %>
   toastr.info("<b><%= folder.name %></b> was removed from your pinned folders.")
+
   $('#folders').find(".folder[data-folder-id='<%= folder.id %>']").remove();
-  $(".folder[data-pinned='true']:last").after("<%= j render folder %>")
+
+  if($(".folder[data-pinned='true']:last").length >= 1) {
+    $(".folder[data-pinned='true']:last").after("<%= j render folder %>")
+  } else {
+    $("<%= j render folder %>").prependTo($('#folders'));
+    toastr.success('no pinned folders here. nothing should happen.')
+  }
 <% end %>
