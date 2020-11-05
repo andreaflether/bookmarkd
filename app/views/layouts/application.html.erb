@@ -64,7 +64,7 @@
           </nav>
         </div>
       </div>
-      <div class="row justify-content-center <%= 'align-items-center flex-fill h-100' if controller_name == 'pages' %> px-3">  
+      <div class="row justify-content-center <%= 'align-items-center flex-fill' if controller_name == 'pages' %> px-3">  
         <%= yield %>
       </div>
       <% unless !user_signed_in? %>

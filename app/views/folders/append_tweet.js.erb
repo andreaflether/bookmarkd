@@ -3,6 +3,8 @@ toastr.success("Tweet added to <b><%= j @folder.name %></b>!");
 $("<%= j render tweet %>").prependTo($('#tweets-container')).fadeIn('slow');
 $('#tweetUrl').val('');
 
-$('#tweetsCount').text("<%= j pluralize(@folder.tweets.count, 'tweet') %>")
+$('#tweetsCount').text("<%= j pluralize(@folder.tweets_count, 'tweet') %>")
 
 $('#no-tweets').remove();
+
+$('body').tooltip({selector: '[data-toggle="tooltip"]'});

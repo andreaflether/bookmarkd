@@ -6,4 +6,8 @@ module FoldersHelper
   def is_pinned(folder)
     folder.pinned?
   end
+
+  def folder_description(description)
+    "#{description.truncate(70)} ·" unless description.blank?  
+  end
 end
