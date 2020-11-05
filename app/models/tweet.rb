@@ -1,6 +1,6 @@
 class Tweet < ApplicationRecord
   has_many :bookmarks
-  has_many :folders, through: :bookmarks
+  has_many :folders, through: :bookmarks, dependent: :destroy
 
   validates :link, 
   presence: { message: 'Tweet URL is required!' },

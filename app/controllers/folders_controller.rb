@@ -11,10 +11,11 @@ class FoldersController < ApplicationController
 
   # GET /folders/1
   def show
-    @tweets = current_user.folders
+    @bookmarks = current_user.folders
       .find(@folder.id)
-      .tweets
-      .paginate(page: params[:page], per_page: 10)
+      .bookmarks
+      .includes([:tweet])
+      .paginate(page: params[:page], per_page: 4)
       .order('created_at DESC')   
     
     respond_to do |format|
