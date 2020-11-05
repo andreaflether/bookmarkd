@@ -22,9 +22,9 @@
       <%= time_ago_in_words(folder.updated_at) %> ago
     </p>
     <p class="card-text text-secondary small">
-      <%= folder.description %> · 
-      <span class="text-brand">
-        <%= pluralize(folder.tweets.count, 'tweet') %>
+      <%= folder_description(folder.description) %>
+      <span class="text-brand font-weight-bold">
+        <%= pluralize(folder.tweets_count, 'tweet') %>
       </span>
     </p>
     
@@ -36,7 +36,7 @@
       method: :delete, 
       title: "Delete folder: #{folder.name}",
       data: { 
-        confirm: t('delete_folder_confirmation', tweet_count: pluralize(folder.tweets.count, 'tweet'))
+        confirm: t('delete_folder_confirmation', tweet_count: pluralize(folder.tweets_count, 'tweet'))
       }, 
       class: 'btn btn-outline-danger delete btn-sm' do %>
       <i class="far fa-trash-alt"></i>

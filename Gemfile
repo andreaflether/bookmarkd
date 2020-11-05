@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Custom gems for this project
 gem 'awesome_print'
+gem 'bootstrap-will_paginate'
 gem 'devise'
 gem 'data-confirm-modal'
 gem 'faker'

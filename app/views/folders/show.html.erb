@@ -6,9 +6,9 @@
   
 <div class="w-100"></div>
 
-<div class="col-md-5 text-center">
+<div class="col-md-7 text-center">
   <% if @folder.description.present? %>
-    <small class="text-white-50"><%= @folder.description %></small>
+    <small class="text-lightgray"><%= @folder.description %></small>
   <% end %>
   <div class="mt-2 d-flex justify-content-center align-items-center">
     <p class="mb-0">by 
@@ -36,7 +36,8 @@
           class: 'dropdown-item text-danger',
           title: "Delete folder: #{@folder.name}",
           data: { 
-            confirm: t('delete_folder_confirmation', tweet_count: pluralize(@folder.tweets.count, 'tweet'))
+            confirm: t('delete_folder_confirmation', 
+            tweet_count: pluralize(@folder.tweets_count, 'tweet'))
           } do %>
           <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
         <% end %>
@@ -72,33 +73,34 @@
 
 <div class="w-100"></div>
   
-<div class="col-md-12 text-center mt-3 mb-0">
+<div id="col-md-7 my-2" id="pagination">
+  <%= will_paginate @bookmarks, 
+    renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer,
+    class: 'pagination-sm justify-content-center' 
+  %>
+</div>
+
+<div class="col-md-12 text-center">
   <span class="badge badge-pill badge-brand">
     <h6 class="mb-0 p-1" id="tweetsCount">
-      <%= pluralize(@folder.tweets.count, 'tweet') %>  
+      <%= pluralize(@folder.tweets_count, 'tweet') %>  
     </h6>
   </span>
 </div>
 
-<div class="col-md-7 text-center mt-2" id="tweets-container">
-  <% if @tweets.blank? %>
+<div class="w-100"></div>
+
+<div class="col-md-7 text-center mt-1" id="tweets-container">
+  <% if @bookmarks.blank? %>
     <h5 class="text-center text-brand font-weight-normal mt-2" id="no-tweets">
       This folder is empty. Add tweets to see them here!
     </h5>
   <% else %>
-    <%= render @tweets %>
+    <%= render @bookmarks %>
     <div class="w-100"></div>
-
-    <div id="paginate-load-more-button">
-      <%= will_paginate @tweets %>
-    </div>
-
-    <% if @tweets.next_page %>
-      <div id='load-more-tweets' class='btn btn-primary'>Load more tweets</div>
-    <% end %>
   <% end %>
 </div>
 
-  <%= link_to '#', class: "btn btn-primary back-to-top-button invisible" do %>
-      <i class="fas fa-arrow-up"></i>
-  <% end %>
+<%= link_to '#', class: "btn btn-primary back-to-top-button invisible" do %>
+  <i class="fas fa-arrow-up"></i>
+<% end %>
