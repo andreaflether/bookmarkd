@@ -7,7 +7,6 @@
 //= require general
 //= require folders
 //= require jquery-ui/ui/effect
-//= require load-more-tweets
 //= require toastr/build/toastr.min
 //= require data-confirm-modal
 //= require_tree .

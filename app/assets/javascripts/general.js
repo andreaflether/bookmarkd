@@ -26,18 +26,21 @@ $(document).ready(function() {
     hideMethod: 'fadeOut'
   }
 
-  let copyToClipboard = $('.copyTweetLink');
-
-  copyToClipboard.on('click', function(e){
-    e.preventDefault();
-    let copyLink = copyToClipboard.closest('div[data-tweeturl]').attr('data-tweeturl')
-    document.addEventListener('copy', function(e) {
-      e.clipboardData.setData('text/plain', copyLink);
-      e.preventDefault();
-    }, true);
-    document.execCommand('copy');
-    toastr.info('Tweet URL copied to clipboard!')  
-  })
+  $(document).on('ajax:success', function() {
+    let copyToClipboard = $('.copyTweetLink');
+    
+    copyToClipboard.on('click', function(e){
+      console.log('a')
+      // e.preventDefault();
+      let copyLink = $(this).closest('div[data-tweeturl]').attr('data-tweeturl')
+      document.addEventListener('copy', function(e) {
+        e.clipboardData.setData('text/plain', copyLink);
+        e.preventDefault();
+      }, true);
+      document.execCommand('copy');
+      toastr.info('Tweet URL copied to clipboard!')  
+    })
+  });
 
   $('.has-max-length').maxlength({
     alwaysShow: true, 
