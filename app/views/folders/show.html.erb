@@ -1,4 +1,4 @@
-<div class="col-md-7 text-center">
+<div class="col-md-9 col-lg-7 text-center">
   <h2 class="text-brand">
     <%= @folder.name %> 
   </h2>
@@ -6,7 +6,7 @@
   
 <div class="w-100"></div>
 
-<div class="col-md-7 text-center">
+<div class="col-md-9 col-lg-7 text-center">
   <% if @folder.description.present? %>
     <small class="text-lightgray"><%= @folder.description %></small>
   <% end %>
@@ -28,12 +28,12 @@
       </button>
 
       <div class="dropdown-menu no-shadow" aria-labelledby="folder-actions">
-        <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-primary' do %> 
+        <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-light' do %> 
           <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
         <% end %>
         <%= link_to folder_path(@folder), 
           method: :delete, 
-          class: 'dropdown-item text-danger',
+          class: 'dropdown-item text-light',
           title: "Delete folder: #{@folder.name}",
           data: { 
             confirm: t('delete_folder_confirmation', 
@@ -48,7 +48,7 @@
 
 <div class="w-100"></div>
 
-<div class="col-md-7 mt-3">
+<div class="col-md-12 col-lg-7 mt-3">
   <%= simple_form_for @folder, remote: true do |f| %>
     <%= f.simple_fields_for :bookmarks, @folder.bookmarks.build do |t| %>
       <%= t.simple_fields_for :tweet, Tweet.new do |tt| %>
@@ -73,26 +73,29 @@
 
 <div class="w-100"></div>
   
-<div id="col-md-7 my-2" id="pagination">
-  <%= will_paginate @bookmarks, 
-    renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer,
-    class: 'pagination-sm justify-content-center' 
+<div class="col-md-12 col-lg-7 <%= @bookmarks.next_page ? 'my-2' : 'mt-3 mb-0' %>" 
+  id="pagination"
+>
+  <%= paginate @bookmarks, 
+    theme: 'twitter-bootstrap-4',
+    pagination_class: 'pagination-sm justify-content-center'
   %>
 </div>
+
 
 <div class="col-md-12 text-center">
   <span class="badge badge-pill badge-brand">
     <h6 class="mb-0 p-1" id="tweetsCount">
-      <%= pluralize(@folder.tweets_count, 'tweet') %>  
+      <%= page_entries_info @bookmarks %>  
     </h6>
   </span>
 </div>
 
 <div class="w-100"></div>
 
-<div class="col-md-7 text-center mt-1" id="tweets-container">
+<div class="col-lg-7 col-md-12 text-center mt-1" id="tweets-container">
   <% if @bookmarks.blank? %>
-    <h5 class="text-center text-brand font-weight-normal mt-2" id="no-tweets">
+    <h5 class="text-center text-brand font-weight-normal mt-3" id="no-tweets">
       This folder is empty. Add tweets to see them here!
     </h5>
   <% else %>

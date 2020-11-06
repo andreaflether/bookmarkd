@@ -1,4 +1,4 @@
-let tweet = $('#tweets-container').find(".tweet[data-tweeturl='<%= tweet.link %>']");
+var tweet = $('#tweets-container').find(".tweet[data-tweeturl='<%= tweet.link %>']");
 
 tweet.fadeOut('slow', function() {
   tweet.remove();
@@ -6,8 +6,10 @@ tweet.fadeOut('slow', function() {
 
 toastr.info("Tweet successfully removed from <b><%= folder.name %></b>.")
 
-$('#tweetsCount').text("<%= j pluralize(folder.tweets_count, 'tweet') %>")
+$("#pagination").load(location.href+" #pagination>*","");
+
+$('#tweetsCount').html("<%= j page_entries_info bookmarks %>")
 
 <% if folder.tweets_count == 0 %>
-  $("<h5 class='text-center text-brand font-weight-normal mt-2' id='no-tweets'>This folder is empty. Add tweets to see them here!</h5>").appendTo($('#tweets-container')).fadeIn('slow');
+  $("<h5 class='text-center text-brand font-weight-normal mt-3' id='no-tweets'>This folder is empty. Add tweets to see them here!</h5>").appendTo($('#tweets-container')).fadeIn('slow');
 <% end %>
