@@ -73,7 +73,8 @@ button.close { text-shadow: none; }
 
 #toast-container > .toast-success,
 #toast-container > .toast-error,
-#toast-container > .toast-info {
+#toast-container > .toast-info,
+#toast-container > .toast-warning {
   background-image: none !important;
 }
 
@@ -106,7 +107,7 @@ abbr[title] { text-decoration: none; }
 
 .list-group-item.transparent {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .text-warning { color: rgba(#ffc107, 0.7) !important; }
@@ -118,13 +119,16 @@ abbr[title] { text-decoration: none; }
 .dropdown-menu {
   background-color: #333;
   border: none;
-  box-shadow: 3px 3px 5px 0px rgba(34, 34, 34, 0.6);
+  // box-shadow: 3px 3px 5px 0px rgba(34, 34, 34, 0.6);
+  // box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 10px, rgba(0, 0, 0, 0.2) 0px 0px 0px 1px;
+  box-shadow: 0 1px 10px rgba(34, 34, 34, 0.6), 0 0 0 1px rgba(34, 34, 34, 0.4);
 }
 
 .dropdown-item {
   padding: 0.4rem 1.5rem;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.04);
+    // background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(#ebebeb, 0.1);
   }
 }
 
@@ -182,15 +186,17 @@ footer {
   .page-item.active .page-link {
     background-color: $brand;
     border-color: $brand;
-    
-    &:hover { color: darken($color: white, $amount: 5%); }
-    
+    &:hover { color: darken($color: white, $amount: 5%); }  
   }
   .page-link {
     &:hover { color: darken($color: $brand, $amount: 5%); }
   }
 }
 
-.text-lightgray {
-  color: rgb(189, 183, 175);
+.text-lightgray { color: rgb(189, 183, 175); }
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0.9rem;
+  }
 }

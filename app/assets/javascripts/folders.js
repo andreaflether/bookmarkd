@@ -66,7 +66,4 @@ $(document).ready(function() {
   searchInput.focusout(function() {
     $(this).prev().switchClass('text-brand', 'text-muted', 50, 'easeInOutQuad' );
   });
-
-  $('.pagination .previous_page a').text('« Previous')
-  $('.pagination .next_page a').text('Next »')
 })

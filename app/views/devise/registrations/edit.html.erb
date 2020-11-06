@@ -93,12 +93,12 @@
       </div>
     </div>
 
-    <small class="text-white-50">Data fetched from 
+    <p class="small mb-3 mt-2 text-white-50">Data fetched from 
       <%= link_to 'Twitter', 'https://twitter.com/settings/your_twitter_data/account' %>
-    </small>
+    </p>
   </div>
 <% end %>
-<div class="col-md-3">
+<div class="col-md-3 <%= "col-md-5" if !current_user.provider.blank? %>">
   <% if current_user.provider == 'twitter' %>
     <h6>Connected as 
       <%= link_to @user.username, 
