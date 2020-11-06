@@ -1,5 +1,6 @@
 class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
+  before_action :set_bookmarks, only: [:show, :update, :destroy]
   before_action :authenticate_user!
   before_action :verify_user, only: [:show, :edit, :update, :destroy]
 
@@ -11,18 +12,20 @@ class FoldersController < ApplicationController
 
   # GET /folders/1
   def show
-    @bookmarks = current_user.folders
-      .find(@folder.id)
-      .bookmarks
-      .includes([:tweet])
-      .paginate(page: params[:page], per_page: 4)
-      .order('created_at DESC')   
-    
     respond_to do |format|
       format.html
       format.js
     end
   end
+
+  def set_bookmarks 
+    @bookmarks = current_user.folders
+      .find(@folder.id)
+      .bookmarks
+      .includes([:tweet])
+      .order('created_at DESC')   
+      .page(params[:page])
+  end 
 
   # GET /folders/new
   def new
@@ -52,7 +55,10 @@ class FoldersController < ApplicationController
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
         format.json { render :append_tweet, status: :ok, location: @folder }
-        format.js { render :append_tweet, locals: { tweet: @folder.tweets.last } }
+        format.js { 
+          render :append_tweet, 
+          locals: { tweet: @folder.tweets.last, bookmarks: @bookmarks } 
+        }
       else
         format.html { render :edit }
         format.js { 

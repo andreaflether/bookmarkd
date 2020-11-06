@@ -1,10 +1,15 @@
 toastr.success("Tweet added to <b><%= j @folder.name %></b>!");
 
-$("<%= j render tweet %>").prependTo($('#tweets-container')).fadeIn('slow');
 $('#tweetUrl').val('');
 
-$('#tweetsCount').text("<%= j pluralize(@folder.tweets_count, 'tweet') %>")
-
 $('#no-tweets').remove();
+
+$("#pagination").load(location.href+" #pagination>*","");
+
+$('#tweetsCount').html("<%= j page_entries_info bookmarks %>")
+
+$('#tweets-container').empty();
+
+$("<%= j render bookmarks %>").appendTo($('#tweets-container')).fadeIn('slow');
 
 $('body').tooltip({selector: '[data-toggle="tooltip"]'});

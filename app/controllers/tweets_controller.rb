@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :set_bookmarks, only: [:destroy]
 
   # GET /tweets
   # GET /tweets.json
@@ -70,9 +71,18 @@ class TweetsController < ApplicationController
       format.js { 
         render :destroy, 
         layout: false, 
-        locals: { tweet: @tweet, folder: @folder }  }
+        locals: { tweet: @tweet, folder: @folder, bookmarks: @bookmarks }  }
     end
   end
+
+  def set_bookmarks 
+    @bookmarks = current_user.folders
+        .find(params[:folder_id])
+        .bookmarks
+        .includes([:tweet])
+        .order('created_at DESC')   
+        .page(params[:page])
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.
