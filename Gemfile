@@ -38,16 +38,16 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Custom gems for this project
 gem 'awesome_print'
-gem 'bootstrap-will_paginate'
+gem 'bootstrap4-kaminari-views'
 gem 'devise'
 gem 'data-confirm-modal'
 gem 'faker'
 gem 'friendly_id'
+gem 'kaminari'
 gem 'omniauth-twitter'
 gem 'rest-client'
 gem 'simple_form'
 gem 'twitter'
-gem 'will_paginate'
 gem 'bullet', group: 'development'
 
 group :development, :test do
