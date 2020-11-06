@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2020_11_03_220550) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "folder_id"
-    t.integer "tweet_id"
+    t.bigint "folder_id"
+    t.bigint "tweet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["folder_id"], name: "index_bookmarks_on_folder_id"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_220550) do
   end
 
   create_table "folders", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "name"
     t.text "description"
     t.boolean "pinned", default: false
@@ -68,4 +71,6 @@ ActiveRecord::Schema.define(version: 2020_11_03_220550) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookmarks", "folders"
+  add_foreign_key "bookmarks", "tweets"
 end

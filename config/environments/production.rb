@@ -4,6 +4,19 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  # Devise mailer
+  config.action_mailer.default_url_options = { host: 'bookmarkdd.herokuapp.com' }
+
+  ActionMailer::Base.smtp_settings = {
+    user_name: 'bookmarkd',
+    password: Rails.application.credentials.sendgrid_api_key,
+    domain: 'bookmarkdd.herokuapp.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -27,11 +40,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
-
-  config.assets.digest = true
-  config.serve_static_assets = true
-  config.cache_classes = true
+  config.assets.compile = false
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
