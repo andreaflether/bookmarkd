@@ -8,7 +8,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'bookmarkdd.herokuapp.com' }
 
   ActionMailer::Base.smtp_settings = {
-    user_name: 'bookmarkd',
+    user_name: Rails.application.credentials.username,
     password: Rails.application.credentials.sendgrid_api_key,
     domain: 'bookmarkdd.herokuapp.com',
     address: 'smtp.sendgrid.net',
