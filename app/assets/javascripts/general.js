@@ -26,22 +26,6 @@ $(document).ready(function() {
     hideMethod: 'fadeOut'
   }
 
-  $(document).on('ajax:success', function() {
-    let copyToClipboard = $('.copyTweetLink');
-    
-    copyToClipboard.on('click', function(e){
-      console.log('a')
-      // e.preventDefault();
-      let copyLink = $(this).closest('div[data-tweeturl]').attr('data-tweeturl')
-      document.addEventListener('copy', function(e) {
-        e.clipboardData.setData('text/plain', copyLink);
-        e.preventDefault();
-      }, true);
-      document.execCommand('copy');
-      toastr.info('Tweet URL copied to clipboard!')  
-    })
-  });
-
   $('.has-max-length').maxlength({
     alwaysShow: true, 
     warningClass: 'small text-white-50 mt-1', 
@@ -52,5 +36,15 @@ $(document).ready(function() {
     appendToParent: true
   });
 
-  $('.input-group-append').find('button').switchClass('btn-outline-secondary', 'btn-outline-light')
+  $('.input-group-append').find('button').switchClass('btn-outline-secondary', 'btn-outline-light');
+
+  $('#page-content').on('click', '.copyTweetLink', function (){
+    let copyLink = $(this).closest('div[data-tweeturl]').attr('data-tweeturl')
+    document.addEventListener('copy', function(e) {
+      e.clipboardData.setData('text/plain', copyLink);
+      e.preventDefault();
+    }, true);
+    document.execCommand('copy');
+    toastr.info('Tweet URL copied to clipboard!')  
+  })
 })
