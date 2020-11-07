@@ -3,7 +3,7 @@
   data-pinned="<%= is_pinned(folder) %>"
 >
   <div class="card-body">
-    <h4 class="card-title d-flex align-items-center justify-content-between mb-1">
+    <h5 class="folder-title card-title d-flex align-items-center justify-content-between mb-1">
       <%= link_to folder.name, folder, class: 'link-brand font-weight-bold' %>
       <%= link_to toggle_pin_url(folder), 
         method: :put,  
@@ -13,9 +13,9 @@
         data: { 
           toggle: 'tooltip'
         } do %>
-        <i class="fas fa-thumbtack fa-xs pl-2"></i>
+        <i class="fas fa-thumbtack fa-xs"></i>
       <% end %>
-    </h4>
+    </h5>
     <p class="card-subtitle font-weight-bold text-black-50 small mt-2 mb-3">
       <i class="far fa-clock"></i>  
       <span class="text-muted font-weight-normal">last updated</span>
@@ -36,7 +36,10 @@
       method: :delete, 
       title: "Delete folder: #{folder.name}",
       data: { 
-        confirm: t('delete_folder_confirmation', tweet_count: pluralize(folder.tweets_count, 'tweet'))
+        confirm: t('delete_folder_confirmation', 
+        tweet_count: pluralize(folder.tweets_count, 'tweet')),
+        toggle: 'tooltip',
+        placement: 'right'
       }, 
       class: 'btn btn-outline-danger delete btn-sm' do %>
       <i class="far fa-trash-alt"></i>

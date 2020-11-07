@@ -1,15 +1,15 @@
-  <div class="col-md-9 text-center">
-    <h1 class="cover-heading">Organize your saved tweets.</h1>
-    <p class="lead my-4">Bookmarkd allows you to save tweets in folders! Create as many 
-    as you want and add the tweets of your choice. Just paste the tweet link and you're set to go 🤩</p>
-    <p class="lead">
-      <%= link_to user_twitter_omniauth_authorize_path, class: 'btn btn-lg btn-brand' do %>
-        <i class="fab fa-twitter"></i> Sign in with your Twitter 
-      <% end %>
-    </p>
-    <p>
+<div class="col-md-9 text-center">
+  <h1 class="cover-heading">No more messy bookmarks.</h1>
+  <p class="lead my-4">Bookmarkd allows you to save tweets in folders! Create as many 
+    as you want and add the tweets of your choice. Just paste the tweet link and you're good to go 🤩
+  </p>
+  <p class="lead">
+    <%= link_to user_twitter_omniauth_authorize_path, class: 'btn btn-lg btn-brand' do %>
+      <i class="fab fa-twitter"></i> Sign in with your Twitter 
+    <% end %>
+  </p>
+  <p>
     <span class="text-muted">or</span>
     <%= link_to 'Create an account', new_user_registration_path, class: 'font-weight-bold' %>
-    </p>
-  </div>
-
+  </p>
+</div>

@@ -8,14 +8,15 @@
 
 <div class="col-md-9 col-lg-7 text-center">
   <% if @folder.description.present? %>
-    <small class="text-lightgray"><%= @folder.description %></small>
+    <p class="text-lightgray mt-1 mb-2 small"><%= @folder.description %></p>
   <% end %>
-  <div class="mt-2 d-flex justify-content-center align-items-center">
+  <div class="d-flex justify-content-center align-items-center">
     <p class="mb-0">by 
       <span class="font-weight-bold">
         <%= current_user.provider.blank? ? current_user.name : current_user.username %>
       </span>
     </p> 
+    
     <div class="dropdown">
       <button class="btn btn-transparent btn-lg text-white-50" 
         type="button" 
@@ -55,11 +56,15 @@
         <% tt.input :link, 
           label: false,
           wrapper: :input_group do %>
+          <span class="icon-inside text-muted" id="search-icon">
+            <i class="fas fa-link"></i>
+          </span>
           <%= tt.input :link, 
             label: false, 
             wrapper: false, 
             input_html: { 
               id: 'tweetUrl',
+              class: 'hasToggledIcon',
               placeholder: 'Enter Tweet URL here'
             } %>
         <div class="input-group-append">   
@@ -82,10 +87,9 @@
   %>
 </div>
 
-
 <div class="col-md-12 text-center">
   <span class="badge badge-pill badge-brand">
-    <h6 class="mb-0 p-1" id="tweetsCount">
+    <h6 class="mb-0 px-2 py-1" id="tweetsCount">
       <%= page_entries_info @bookmarks %>  
     </h6>
   </span>
@@ -95,9 +99,13 @@
 
 <div class="col-lg-7 col-md-12 text-center mt-1" id="tweets-container">
   <% if @bookmarks.blank? %>
-    <h5 class="text-center text-brand font-weight-normal mt-3" id="no-tweets">
-      This folder is empty. Add tweets to see them here!
-    </h5>
+    <h2 class="text-muted mt-3">
+      <i class="far fa-folder-open"></i>
+    </h2>
+    <p class="text-center text-white-50 font-weight-normal" id="no-tweets">
+      This folder is empty. <br />
+      <span class="font-weight-bold">Add tweets to see them here!</span>
+    </p>
   <% else %>
     <%= render @bookmarks %>
     <div class="w-100"></div>

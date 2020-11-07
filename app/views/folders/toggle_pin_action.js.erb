@@ -11,6 +11,5 @@
     $(".folder[data-pinned='true']:last").after("<%= j render folder %>")
   } else {
     $("<%= j render folder %>").prependTo($('#folders'));
-    toastr.success('no pinned folders here. nothing should happen.')
   }
 <% end %>
