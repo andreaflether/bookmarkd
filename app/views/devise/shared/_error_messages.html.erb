@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-<div class="mt-3 alert border border-danger alert-danger alert-dismissible fade show" id="error_explanation" role="alert">
+<div class="mt-3 alert border-0 alert-danger alert-dismissible fade show" id="error_explanation" role="alert">
     <p class="text-center text-light mb-0">
       <%= raw I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,

@@ -1,4 +1,4 @@
-<div class="col-xl-5 col-lg-6 col-md-9 rounded bg-custom p-5 justify-content-center">
+<div class="col-xl-5 col-lg-6 col-md-9 rounded bg-custom justify-content-center">
   <h3 class="text-center">Log in</h3>
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     
@@ -10,14 +10,20 @@
       input_html: { data: { toggle: 'password' } } 
     %>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="text-center">
-        <%= f.input :remember_me, as: :boolean %>
-      </div>
-    <% end %>
+    <div class="d-flex justify-content-between">
+      <% if devise_mapping.rememberable? %>
+          <%= f.input :remember_me, as: :boolean, wrapper: :custom_boolean %>
+      <% end %>
+
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <div>
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+        </div>
+      <% end %> 
+    </div>
 
     <div class="actions">
-      <%= f.button :submit, 'Log in', class: 'btn btn-brand w-100 mb-3' %>
+      <%= f.button :submit, 'Log in', class: 'btn btn-brand w-100 mt-2 mb-3' %>
     </div>
 
     <%= render 'devise/shared/links' %>
