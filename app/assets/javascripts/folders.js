@@ -55,15 +55,4 @@ $(document).ready(function() {
     });  
     $('.no-results').hide();
   })
-
-  var searchInput = $('#search-folder');
-
-  // add class depending on whether the input is focused or not
-  searchInput.focusin(function() {
-    $(this).prev().switchClass('text-muted', 'text-brand', 50, 'easeInOutQuad' );
-  });
-
-  searchInput.focusout(function() {
-    $(this).prev().switchClass('text-brand', 'text-muted', 50, 'easeInOutQuad' );
-  });
 })

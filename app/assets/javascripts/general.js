@@ -38,6 +38,7 @@ $(document).ready(function() {
 
   $('.input-group-append').find('button').switchClass('btn-outline-secondary', 'btn-outline-light');
 
+  // Copy tweet link to clipboard
   $('#page-content').on('click', '.copyTweetLink', function (){
     let copyLink = $(this).closest('div[data-tweeturl]').attr('data-tweeturl')
     document.addEventListener('copy', function(e) {
@@ -47,4 +48,15 @@ $(document).ready(function() {
     document.execCommand('copy');
     toastr.info('Tweet URL copied to clipboard!')  
   })
+
+  function switchForBrand(el) {
+    el.prev().switchClass('text-muted', 'text-brand', 50, 'easeInOutQuad' );
+  }
+  
+  function switchForMuted(el) {
+    el.prev().switchClass('text-brand', 'text-muted', 50, 'easeInOutQuad' );
+  }
+  
+  $('.hasToggledIcon').on('focusin', function() { switchForBrand($(this)); })
+  $('.hasToggledIcon').on('focusout', function() { switchForMuted($(this)); })
 })

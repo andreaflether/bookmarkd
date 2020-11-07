@@ -1,7 +1,7 @@
 /*
  *= require bootstrap/dist/css/bootstrap
- *= require cover
  *= require toastr/build/toastr.min
- *= require_tree .
+ *= require dark
+ *= require custom
  *= require_self
  */
