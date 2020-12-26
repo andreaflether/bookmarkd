@@ -24,19 +24,12 @@
       hint: "#{@minimum_password_length} characters minimum.",
       input_html: { data: { toggle: 'password' } } 
     %>
-      
-    <%= f.input :password_confirmation, 
-      wrapper: :input_group,
-      required: true, 
-      autocomplete: 'new-password', 
-      input_html: { data: { toggle: 'password' } }
-    %>
 
     <div class="text-center my-4">
       <%= f.input :terms, as: :boolean, wrapper: :custom_boolean, 
         label: "I accept the 
-          #{link_to 'Terms of Service', terms_of_service_path, class: 'link-brand' } 
-          and #{link_to 'Privacy Policy', privacy_policy_path, class: 'link-brand' }".html_safe %>
+          #{link_to 'Terms of Service', terms_of_service_path, class: 'link-brand', target: '_blank' } 
+          and #{link_to 'Privacy Policy', privacy_policy_path, class: 'link-brand', target: '_blank' }".html_safe %>
     </div>
 
     <div class="actions">

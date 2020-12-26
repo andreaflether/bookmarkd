@@ -1,15 +1,15 @@
 <div class="text-center">
   <%- if controller_name != 'sessions' %>
     <p class="mb-1">
-      <span class="text-white-50">Already have an account? </span>
+      <span class="text-muted">Already have an account? </span>
       <b><%= link_to "Log in", new_session_path(resource_name) %></b>
     </p>
   <% end %>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <p class="mb-2">
+    <p class="mb-1">
       <b><%= link_to "Sign up", new_registration_path(resource_name) %></b>
-      <span class="text-white-50">for a new account </span>
+      <span class="text-muted">for a new account </span>
     </p>
   <% end %>
 
@@ -22,10 +22,10 @@
   <% end %>
 
   <%- if devise_mapping.omniauthable? %>
-    <div class="d-flex align-items-center mt-3 mb-2">
+    <div class="d-flex align-items-center mt-2 mb-2">
       <div class="flex-fill"><hr /></div>
       <div class="px-3">
-        <small class="text-uppercase text-white-50">or</small>
+        <small class="text-uppercase text-muted">or</small>
       </div>
       <div class="flex-fill"><hr /></div>
     </div>

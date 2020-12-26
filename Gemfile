@@ -49,7 +49,6 @@ gem 'omniauth-twitter'
 gem 'rest-client'
 gem 'simple_form'
 gem 'twitter'
-gem 'bullet', group: 'development'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -66,6 +65,7 @@ group :development do
   gem 'guard', '~> 2.15'
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
+  gem 'bullet'
 end
 
 

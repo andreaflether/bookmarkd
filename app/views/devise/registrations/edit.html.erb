@@ -18,41 +18,33 @@
 
       <div class="row">
         <div class="col-md-12">
-          <hr>
-          <h5 class="mb-0">
-            <a data-toggle="collapse" href="#password-change-fields" class="text-white-50">
-              Change password
-            </a>
-          </h5>
-
-          <div class="collapse" id="password-change-fields">
-            <p class="text-warning mt-3">
-              <i class="fas fa-exclamation-circle"></i>
-              Leave these fields blank if you don't wanna change your password.
-            </p>
-            <div class="row">
-              <div class="col-md-6">
-                <%= f.input :password, 
-                  wrapper: :input_group,
-                  autocomplete: 'new-password', 
-                  hint: "#{@minimum_password_length} characters minimum.",
-                  input_html: { data: { toggle: 'password' } }
-                %>
-              </div>
-
-              <div class="col-md-6">
-                <%= f.input :password_confirmation, 
-                  wrapper: :input_group,
-                  autocomplete: 'new-password',
-                  input_html: { data: { toggle: 'password' } }
-                %>  
-              </div>   
+          <p class="text-warning mt-2 small mb-2">
+            <i class="fas fa-exclamation-circle"></i>
+            Leave these fields blank if you don't wanna change your password.
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :password, 
+                wrapper: :input_group,
+                autocomplete: 'new-password', 
+                hint: "#{@minimum_password_length} characters minimum.",
+                input_html: { data: { toggle: 'password' } },
+                wrapper_html: { class: 'mb-0' }
+              %>
             </div>
+
+            <div class="col-md-6">
+              <%= f.input :password_confirmation, 
+                wrapper: :input_group,
+                autocomplete: 'new-password',
+                input_html: { data: { toggle: 'password' } }
+              %>  
+            </div>   
           </div>
         </div>
         <div class="col-md-12">
           <hr>
-          <p class="text-brand">Enter your current password in order to confirm the changes.</p>
+          <p class="text-brand font-weight-bold">Enter your current password in order to confirm the changes.</p>
           <%= f.input :current_password, wrapper: :input_group,
             autocomplete: 'current-password',
             required: true,
@@ -61,9 +53,8 @@
           <div class="actions">
             <%= f.button :submit, 'Update', class: 'btn btn-brand mb-3 w-100' %>
           </div>
-        </div>
-        
-    </div>
+        </div> 
+      </div>
     <% end %>
   </div>
 <% else %>
@@ -92,11 +83,12 @@
       </div>
     </div>
 
-    <p class="small mb-3 mt-2 text-white-50">Data fetched from 
+    <p class="small mb-3 mt-2 text-muted">Data fetched from 
       <%= link_to 'Twitter', 'https://twitter.com/settings/your_twitter_data/account' %>
     </p>
   </div>
 <% end %>
+
 <div class="col-md-3 <%= "col-md-5" if !current_user.provider.blank? %>">
   <% if current_user.provider == 'twitter' %>
     <h6>Connected as 
@@ -107,16 +99,16 @@
       %>
     </h6>
   <% end %>
-
   <hr>
-
-  <h5>Deactivate account</h5>
-  <p class="text-white-50">
-    <b>This action is permanent and cannot be undone.</b> 
-    Doing so, your twitter account won't be affected in any way. But all
-    your folders on this site, including its bookmarked tweets in each one, <b> will be deleted permanently.</b>
-    Be aware that it won't be possible to recover them after you deactivate your account.
-  </p>
+  <h5 class="text-danger">Deactivate account</h5>
+  <div class="small">
+    <p class="text-muted">
+      <b>This action is permanent and cannot be undone.</b> 
+      Doing so, your twitter account won't be affected in any way. But all
+      your folders on this site, including its bookmarked tweets in each one, <b> will be deleted permanently.</b>
+      Be aware that it won't be possible to recover them after you deactivate your account.
+    </p>
+  </div> 
   <p class="mb-0">
     If you read all of the warnings above and still want to proceed, click on the button below.
   </p>

@@ -1,8 +1,8 @@
 en:
-  delete_folder_confirmation: "<p class='text-white-50 mt-2 mb-1'>
+  delete_folder_confirmation: "<p class='mt-2 mb-1'>
       <b>Disclaimer:</b> This action is permanent and can not be undone. 
     </p>
-    <small class='text-white-50'>
+    <small class='text-muted'>
       <span class='text-brand'>
         %{tweet_count}
       </span>
