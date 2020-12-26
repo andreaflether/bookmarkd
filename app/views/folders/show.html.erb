@@ -1,3 +1,4 @@
+<%= content_for(:title, t('.', folder: @folder.name)) %>
 <div class="col-md-9 col-lg-7 text-center">
   <h2 class="text-brand">
     <%= @folder.name %> 
@@ -8,7 +9,7 @@
 
 <div class="col-md-9 col-lg-7 text-center">
   <% if @folder.description.present? %>
-    <p class="text-lightgray mt-1 mb-2 small"><%= @folder.description %></p>
+    <p class="text-secondary mt-1 mb-2 small"><%= @folder.description %></p>
   <% end %>
   <div class="d-flex justify-content-center align-items-center">
     <p class="mb-0">by 
@@ -18,7 +19,7 @@
     </p> 
     
     <div class="dropdown">
-      <button class="btn btn-transparent btn-lg text-white-50" 
+      <button class="btn btn-transparent btn-lg text-muted" 
         type="button" 
         id="folder-actions" 
         data-toggle="dropdown" 
@@ -28,13 +29,13 @@
         <i class="fas fa-ellipsis-h 2x"></i>
       </button>
 
-      <div class="dropdown-menu no-shadow" aria-labelledby="folder-actions">
-        <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-light' do %> 
+      <div class="dropdown-menu border-0 shadow-lg no-shadow" aria-labelledby="folder-actions">
+        <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-muted' do %> 
           <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
         <% end %>
         <%= link_to folder_path(@folder), 
           method: :delete, 
-          class: 'dropdown-item text-light',
+          class: 'dropdown-item text-muted',
           title: "Delete folder: #{@folder.name}",
           data: { 
             confirm: t('delete_folder_confirmation', 
@@ -67,10 +68,10 @@
               class: 'hasToggledIcon',
               placeholder: 'Enter Tweet URL here'
             } %>
-        <div class="input-group-append">   
-          <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
-        </div>
-      <% end %>
+          <div class="input-group-append">   
+            <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
@@ -88,10 +89,10 @@
 </div>
 
 <div class="col-md-12 text-center">
-  <span class="badge badge-pill badge-brand">
-    <h6 class="mb-0 px-2 py-1" id="tweetsCount">
+  <span class="badge badge-sm badge-pill badge-brand">
+    <p class="mb-0 px-2 py-1" id="tweetsCount">
       <%= page_entries_info @bookmarks %>  
-    </h6>
+    </p>
   </span>
 </div>
 
@@ -102,7 +103,7 @@
     <h2 class="text-muted mt-3">
       <i class="far fa-folder-open"></i>
     </h2>
-    <p class="text-center text-white-50 font-weight-normal" id="no-tweets">
+    <p class="text-center text-muted font-weight-normal" id="no-tweets">
       This folder is empty. <br />
       <span class="font-weight-bold">Add tweets to see them here!</span>
     </p>
@@ -112,6 +113,6 @@
   <% end %>
 </div>
 
-<%= link_to '#', class: "btn btn-primary back-to-top-button invisible" do %>
+<%= link_to '#', class: "btn btn-primary position-fixed back-to-top invisible" do %>
   <i class="fas fa-arrow-up"></i>
 <% end %>

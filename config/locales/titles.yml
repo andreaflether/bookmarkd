@@ -1,0 +1,25 @@
+en:
+  site_name: Bookmarkd
+  folders:
+    index: All folders
+    show: "%{folder}"
+    update: Edit folder info
+    edit: Edit folder info
+    new: New folder
+    create: New folder
+  devise:
+    registrations:
+      edit: Edit user info
+      create: Sign up
+      new: Sign up
+    sessions:
+      new: Sign in
+    passwords:
+      new: Password reset
+      create: Password reset
+      edit: Password change
+      update: Password change
+  pages:
+    home: 
+    privacy_policy: Privacy Policy
+    terms_of_service: Terms of Service
