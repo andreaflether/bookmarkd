@@ -1,7 +1,8 @@
 /*
  *= require bootstrap/dist/css/bootstrap
  *= require toastr/build/toastr.min
- *= require dark
- *= require custom
+ *= require tippy.js/themes/translucent
+ *= require general
+ *= require custom_bootstrap
  *= require_self
  */

@@ -1,12 +1,5 @@
 $(document).ready(function() {
-  $('[data-toggle="tooltip"]').tooltip({
-    container: 'body',
-    trigger: 'hover',
-  })
-
-  $('[data-toggle="tooltip"]').on('click', function () {
-    $(this).tooltip('dispose');
-  });
+  initializeTippy();
 
   toastr.options = {
     closeButton: false,
@@ -36,8 +29,6 @@ $(document).ready(function() {
     appendToParent: true
   });
 
-  $('.input-group-append').find('button').switchClass('btn-outline-secondary', 'btn-outline-light');
-
   // Copy tweet link to clipboard
   $('#page-content').on('click', '.copyTweetLink', function (){
     let copyLink = $(this).closest('div[data-tweeturl]').attr('data-tweeturl')
@@ -60,3 +51,14 @@ $(document).ready(function() {
   $('.hasToggledIcon').on('focusin', function() { switchForBrand($(this)); })
   $('.hasToggledIcon').on('focusout', function() { switchForMuted($(this)); })
 })
+
+$(document).ajaxComplete(function() {
+  initializeTippy();
+});
+
+function initializeTippy() {
+  tippy('[data-tippy-content]', {
+    // arrow: false
+    theme: 'translucent',
+  });
+}

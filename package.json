@@ -8,6 +8,7 @@
     "bootstrap-show-password": "^1.2.1",
     "jquery": "^3.5.1",
     "jquery-ui": "^1.12.1",
+    "tippy.js": "^6.2.7",
     "toastr": "^2.1.4"
   }
 }

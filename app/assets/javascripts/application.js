@@ -4,6 +4,8 @@
 //= require bootstrap/dist/js/bootstrap.bundle
 //= require bootstrap-maxlength/dist/bootstrap-maxlength
 //= require bootstrap-show-password/dist/bootstrap-show-password
+//= require @popperjs/core/dist/umd/popper.min
+//= require tippy.js/dist/tippy-bundle.umd.min
 //= require general
 //= require folders
 //= require jquery-ui/ui/effect
