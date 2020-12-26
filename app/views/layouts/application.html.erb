@@ -11,9 +11,9 @@
     <%= csp_meta_tag %>
 
     <% if cookies[:sun] %>
-      <%= stylesheet_link_tag 'application_light', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag 'light/application_light', media: 'all', 'data-turbolinks-track': 'reload' %>
     <% else %>
-      <%= stylesheet_link_tag 'application_dark', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag 'dark/application_dark', media: 'all', 'data-turbolinks-track': 'reload' %>
     <% end %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>

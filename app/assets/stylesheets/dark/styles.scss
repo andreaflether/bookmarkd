@@ -55,7 +55,7 @@ hr {
 .form-control:-webkit-autofill {
   border: 1px solid rgba($light, 0.2);
   -webkit-text-fill-color: #fff;
-  -webkit-box-shadow: 0 0 0px 1000px #090909 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #121212 inset;
   transition: background-color 5000s ease-in-out 0s;
   &:focus {
     border: 1px solid $brand !important;
