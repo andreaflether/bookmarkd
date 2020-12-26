@@ -1,4 +1,4 @@
-<div class="card folder no-shadow" 
+<div class="card folder shadow-lg border-0" 
   data-folder-id="<%= folder.id %>" 
   data-pinned="<%= is_pinned(folder) %>"
 >
@@ -9,9 +9,8 @@
         method: :put,  
         remote: true,
         class: is_pinned(folder) ? 'link-brand' : 'pin-folder-icon',
-        title: "#{is_pinned(folder) ? 'Unpin' : 'Pin'} this folder",
         data: { 
-          toggle: 'tooltip'
+          'tippy-content': "#{is_pinned(folder) ? 'Unpin' : 'Pin'} this folder"
         } do %>
         <i class="fas fa-thumbtack fa-xs"></i>
       <% end %>
@@ -21,7 +20,7 @@
       <span class="text-muted font-weight-normal">last updated</span>
       <%= time_ago_in_words(folder.updated_at) %> ago
     </p>
-    <p class="card-text text-secondary small">
+    <p class="card-text folder-desc small">
       <%= folder_description(folder.description) %>
       <span class="text-brand font-weight-bold">
         <%= pluralize(folder.tweets_count, 'tweet') %>
@@ -29,17 +28,20 @@
     </p>
     
     <%= link_to edit_folder_path(folder), 
-      class: 'btn btn-outline-primary btn-sm edit' do %>
+      class: 'btn btn-outline-primary btn-sm edit',
+      data: { 
+        'tippy-content': 'Edit folder info',
+        'tippy-placement': 'left' 
+      } do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
     <%= link_to folder_path(folder), 
       method: :delete, 
-      title: "Delete folder: #{folder.name}",
       data: { 
         confirm: t('delete_folder_confirmation', 
         tweet_count: pluralize(folder.tweets_count, 'tweet')),
-        toggle: 'tooltip',
-        placement: 'right'
+        'tippy-content': "Delete folder: #{folder.name}",
+        'tippy-placement': 'right'
       }, 
       class: 'btn btn-outline-danger delete btn-sm' do %>
       <i class="far fa-trash-alt"></i>

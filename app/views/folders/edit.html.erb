@@ -1,10 +1,11 @@
+<%= content_for(:title, t('.', folder: @folder.name)) %>
+
 <div class="col-md-9 col-lg-6 d-flex justify-content-between align-items-center text-center mb-3 mt-2">
   <%= link_to :back, 
-    class: 'text-white-50',
-    title: 'Return to previous page', 
+    class: 'text-muted',
     data: {
-      toggle: 'tooltip',
-      placement: 'bottom'  
+      'tippy-content': 'Return to previous page',
+      'tippy-placement': 'bottom'
     } do %>
     <i class="fas fa-arrow-left"></i>
   <% end %>
@@ -12,10 +13,9 @@
   <h3>Edit folder info</h3>
   <%= link_to folder_path(@folder), 
     target: '_blank', 
-    title: 'Open folder in a new tab',
     data: {
-      toggle: 'tooltip',
-      placement: 'bottom'
+      'tippy-content': 'Open folder in a new tab',
+      'tippy-placement': 'bottom'
     } do %>
     <i class="link-brand fas fa-external-link-alt"></i>
   <% end %>
@@ -23,11 +23,11 @@
 
 <div class="w-100"></div>
 
- <p class="small text-muted">
-    This folder was created on <%= @folder.created_at.strftime("%B %d, %Y %H:%M") %>
-  </p>
+<p class="small text-muted">
+  This folder was created on <b><%= @folder.created_at.strftime("%B %d, %Y %H:%M") %></b>
+</p>
 
-  <div class="w-100"></div>
+<div class="w-100"></div>
 
 <%= render 'form', folder: @folder %>
 
@@ -39,14 +39,11 @@
     folder_path(@folder), 
     method: :delete, 
     class: 'btn btn-outline-danger',
-    title: "Delete folder: #{@folder.name}",
-    data: { confirm: "<p class='text-white-50 font-weight-normal'> <b>Are you sure?</b>
-        <span class='text-brand'>
-          #{pluralize(@folder.tweets_count, 'tweet')}
-        </span>
-        will be deleted alongside this folder if you choose to proceed with this action.
-      </p>
-    " } 
+    data: { 
+      'tippy-content': "Delete folder: #{@folder.name}",
+      'tippy-placement': 'right',
+      confirm: t('delete_folder_confirmation', 
+      tweet_count: pluralize(@folder.tweets_count, 'tweet'))
+    }
   %>
-  <p class="text-white-50 mt-2 mb-1"><b>Disclaimer:</b> This action is permanent and can not be undone. </p>
 </div>
