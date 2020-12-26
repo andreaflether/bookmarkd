@@ -11,13 +11,15 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[twitter]
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name
-      user.username = auth.info.nickname
-      user.image = profile_picture(auth.info.image)
-    end
+    user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0, 20]
+    user.name = auth.info.name
+    user.username = auth.info.nickname
+    user.image = profile_picture(auth.info.image)
+
+    user.save
+    user
   end
 
   def self.profile_picture(pfp_url)
