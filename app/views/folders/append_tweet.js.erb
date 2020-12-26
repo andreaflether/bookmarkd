@@ -11,5 +11,3 @@ $('#tweetsCount').html("<%= j page_entries_info bookmarks %>")
 $('#tweets-container').empty();
 
 $("<%= j render bookmarks %>").appendTo($('#tweets-container')).fadeIn('slow');
-
-$('body').tooltip({selector: '[data-toggle="tooltip"]'});
