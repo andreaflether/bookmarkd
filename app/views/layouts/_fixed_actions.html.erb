@@ -1,0 +1,34 @@
+<% unless !user_signed_in? %>
+  <div class="action-buttons position-fixed">
+    <%= link_to new_folder_path,
+      class: 'link-brand',
+      data: { 
+        'tippy-content': 'Create a new folder',
+        'tippy-placement': 'left'
+      } do %>
+      <i class="fas fa-folder-plus fa-2x"></i>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="position-fixed application-mode">
+  <% if cookies[:sun] %>
+    <%= link_to moon_path, method: :get, 
+      data: { 
+        mode: 'light',
+        'tippy-content': 'Switch application to dark mode',
+        'tippy-placement': 'right'
+      } do %>
+      <i class="fas fa-moon fa-lg"></i>
+    <% end %>   
+  <% else %>
+    <%= link_to sun_path, method: :get, 
+      data: { 
+        mode: 'dark',
+        'tippy-content': 'Switch application to light mode',
+        'tippy-placement': 'right'
+      } do %>
+      <i class="fas fa-sun fa-lg"></i>
+    <% end %>
+  <% end %>
+</div>

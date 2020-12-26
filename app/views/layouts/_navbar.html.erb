@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg bg-transparent <%= cookies[:sun] ? 'navbar-light' : 'navbar-dark' %> sticky-top">
+  <a class="navbar-brand" href="/">
+    <h4 class="font-weight-bold text-logo">
+      <i class="far fa-bookmark text-brand"></i> Bookmarkd
+    </h4>
+  </a>
+  <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav text-center">
+      <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to edit_user_registration_path, class: 'nav-link' do %>
+          <% if current_user.provider == 'twitter' %>
+            <i class="fab fa-twitter text-brand"></i> 
+            @<%= current_user.username %>
+          <% else %>
+            <i class="fas fa-user-circle"></i>
+            <%= current_user.name %>
+          <% end %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to folders_path, class: 'nav-link' do %>
+          <i class="fas fa-folder-open"></i> Folders
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to destroy_user_session_path, class: 'nav-link', method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i> Sign out
+        <% end %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/sign_in">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-brand" href="/users/sign_up">Sign up</a>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</nav>
