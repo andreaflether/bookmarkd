@@ -2,7 +2,7 @@ class Folder < ApplicationRecord
   attr_accessor :tweets_count
 
   belongs_to :user 
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
   has_many :tweets, -> { distinct }, through: :bookmarks
 
   accepts_nested_attributes_for :bookmarks 
@@ -28,9 +28,9 @@ class Folder < ApplicationRecord
   end
 
   def slug_candidates 
-    [
-      [ Faker::Number.unique.number(digits: 4), :name ], 
-      [ :id, Faker::Number.unique.number(digits: 4), :name ]
+    [ 
+      :name,
+      [ Faker::Number.unique.number(digits: 4), :name ] 
     ]
   end 
 end
