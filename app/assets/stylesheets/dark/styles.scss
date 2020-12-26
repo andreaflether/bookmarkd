@@ -1,0 +1,168 @@
+$dark: #121212;
+$light: invert($color: $dark);
+$brand: #1DA1F2;
+
+/* Override default values */
+html, body { 
+  background-color: $dark !important; 
+  color: rgba($light, 0.8); 
+}
+
+hr { 
+  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+/* Overriding bootstrap default values */
+.btn-outline-secondary { 
+  border-color: rgba(255, 255, 255, 0.15) !important; 
+}
+
+.card { 
+  background-color: rgba($light, 0.05); 
+}
+
+.custom-control-label {
+  &:before {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15); 
+  }
+}
+
+.dropdown-menu { 
+  background-color: #191919; 
+}
+
+.dropdown-item {
+  color: rgba($light, 0.8) !important;
+  &:hover,
+  &:active {
+    background-color: rgba($light, 0.06);
+  }
+}
+
+.form-control {
+  color: rgba($light, 0.8); 
+  background-color: transparent;
+  border-color: rgba($light, 0.2);
+  &:focus, 
+  &:active {
+    color: rgb(181, 175, 166);
+    background-color: transparent;
+    outline-color: initial;
+  }
+}
+
+.form-control:-webkit-autofill {
+  border: 1px solid rgba($light, 0.2);
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px #090909 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  &:focus {
+    border: 1px solid $brand !important;
+  }
+}
+
+.list-group-item.transparent {
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-content {
+  background-color: $dark;
+  color: rgba(255, 255, 255, .6);
+  border-color: rgba($light, 0.1);
+  .modal-header { border-bottom: 1px solid rgba($light, 0.1); }
+  .modal-footer { border-top: 1px solid rgba($light, 0.1); }
+  button { 
+    color: rgba(255, 255, 255, .4);
+    &:hover {
+      color: rgba(255, 255, 255, 0.6);
+    } 
+  }
+  .commit { color: #f8f9fa; }
+  h5 { color: $light; }
+  p { 
+    margin-bottom: 0.5rem; 
+    font-weight: bold;
+  }
+}
+
+.navbar-nav li a { 
+  color: rgba(255, 255, 255, .70); 
+}
+
+/* Text related */
+.text-light { 
+  color: rgba($light, 0.7) !important; 
+}
+
+.text-black-50 { 
+  color: rgba(232, 230, 227, 0.5) !important; 
+}
+
+.policy-content, .terms-content {
+  p, ol { 
+    color: rgb(140, 145, 152); 
+  }
+}
+
+/* Buttons/Bgs */
+.bg-custom {
+  background-color: rgba($light, 0.03);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.btn-default {
+  border-color: rgba(255, 255, 255, .75);
+  color:rgba(255, 255, 255, .75) !important;
+  background-color: transparent;
+  &:hover, 
+  &:focus,
+  &:active {
+    color: $dark !important;
+    text-shadow: none; /* Prevent inheritance from `body` */
+    background-color:  $light;
+    border-color:  $light;
+  }
+}
+
+/* Custom styles */
+#error_explanation {
+  background-color: rgba(#dc3545, 0.5);
+  color: #cfcfcf;
+}
+
+/* Actions and/or Icons */
+.pin-folder-icon {
+  color: #696969;
+  &:hover { 
+    color: darken($color: #bbb, $amount: 10%) 
+  }
+}
+
+/* Pagination */
+.pagination {
+  text-shadow: none;
+  .page-item .page-link {
+    background-color: transparent;
+    border: 1px solid rgba($light, 0.2);
+    color: rgba($light, 0.4);
+    &:hover {
+      background-color: rgba($light, 0.1);
+      color: #fff;
+    }
+  }
+  .page-item.active .page-link {
+    background-color: $brand;
+    border-color: $brand;
+    color: #fff;
+    &:hover { 
+      color: darken($color: white, $amount: 5%); 
+    }  
+  }
+  .page-link {
+    &:hover { 
+      color: darken($color: $brand, $amount: 5%); 
+    }
+  }
+}

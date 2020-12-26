@@ -1,0 +1,168 @@
+$brand: #1DA1F2;
+$light-white: #F5F8FA;
+$dark: #121212;
+$light: invert($color: $dark);
+
+/* Reusable classes */
+.brand {
+  background-color: $brand;
+  color: $light-white;
+}
+
+.no-shadow {
+  text-shadow: none !important;
+}
+
+/* Override default values */
+a, abbr[title] { 
+  text-decoration: none !important; 
+}
+
+a, .link-brand {
+  color: $brand;
+  &:hover { 
+    color: darken($color: $brand, $amount: 5%); 
+  }
+}
+
+/* Text related */
+.fa-xs { 
+  font-size: .65em; 
+}
+
+.folder-title { 
+  font-size: 1.35rem !important; 
+}
+
+.no-results { 
+  display: none; 
+}
+
+.text-brand { 
+  color: $brand; 
+}
+
+.text-lightgray { 
+  color: rgba(189, 183, 175, 0.8); 
+}
+
+#tweetsCount {
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+/* Buttons/Bgs */
+.bg-brand, .badge-brand {
+  @extend .brand;
+}
+
+.btn-brand {
+  @extend .brand;
+  font-weight: bold;
+  &:hover {
+    color: $light-white;
+    background-color: darken($color: $brand, $amount: 5%);
+  }
+}
+
+button.close { 
+  @extend .no-shadow;
+}
+
+.bg-custom { 
+  padding: 2rem 3rem;
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
+/* Custom styles */
+footer {
+  color: #6c757d;
+  height: 60px;      /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+}
+
+/* Actions and/or Icons */
+.action-buttons, .application-mode, .back-to-top {
+  bottom: 20px;
+}
+
+.action-buttons {
+  right: 20px;
+}
+
+.application-mode {
+  left: 20px;
+}
+
+.back-to-top {
+  right: 50%;
+}
+
+.icon-inside {
+  position: absolute;
+  top: calc(50% - 12px);
+  z-index: 999;
+}
+
+#remove-search {
+  right: 10px;
+  display: block;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  &:hover {
+    color: #ea3c53 !important;
+  }
+}
+
+.hasToggledIcon {
+  padding-left: 35px;
+  border-top-left-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25rem !important;
+}
+
+#search-icon { 
+  left: 10px; 
+}
+
+#search-folder {
+  padding-left: 35px;
+  padding-right: 35px;
+  transition: all .2s ease-in-out;
+}
+
+/* Custom components */ 
+span.bootstrap-maxlength {
+  z-index: 3 !important;
+}
+
+/* Custom styles for Toastr */
+.toast {
+  @extend .no-shadow;
+  color: #212529;
+}
+
+[id^=toast-container] > div {
+  box-shadow: none !important;
+  padding: 15px 25px !important;
+  top: 10px;
+  right: 10px;
+}
+
+#toast-container.toast-top-center > div,
+.toast-top-center { 
+  width: auto !important; 
+}
+
+#toast-container > .toast-success,
+#toast-container > .toast-error,
+#toast-container > .toast-info,
+#toast-container > .toast-warning { 
+  background-image: none !important; 
+}
+
+/* Media queries */
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0.9rem;
+  }
+}

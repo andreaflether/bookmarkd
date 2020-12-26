@@ -1,0 +1,57 @@
+$brand: #1DA1F2;
+
+/* Buttons */
+button,
+.btn {
+  &:active,
+  &:visited,
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.input-group-append .btn-outline-secondary { 
+  border-left: none; 
+}
+
+.navbar-nav li a {
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+}
+
+.position-fixed {
+  z-index: 9999;
+}
+
+/* Checkbox */ 
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before,
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+  background-color: $brand !important;
+}
+
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 1px $brand;
+}
+
+/* Inputs */
+.form-control {
+  &:focus {
+    box-shadow: 0 0 1px $brand;
+    border-color: $brand;
+  }
+}
+
+.form-control.is-invalid {
+  &:focus, &:active {
+    box-shadow: none;
+  }
+}
+
+/* Overriding default bootstrap values */
+.dropdown-item { 
+  padding: 0.4rem 1.5rem; 
+}
+
+.shadow-lg { 
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.16) !important; 
+}

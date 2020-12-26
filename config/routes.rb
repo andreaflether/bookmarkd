@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   unauthenticated :user do root to: 'pages#home' end
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  get '/moon', to: 'application#moon', as: 'moon'
+  get '/sun', to: 'application#sun', as: 'sun'
 end

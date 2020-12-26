@@ -1,0 +1,78 @@
+$secondary:  #14171A;  // RGB 20 23 26
+$dark-grey:  #657786;  // RGB 101 119 134
+$light-grey: #AAB8C2;  // RGB 170 184 194
+
+body { 
+  color: $secondary;  
+}
+
+/* Overring bootstrap default values */
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(#333, 0.6);
+  &:focus,
+  &:hover { 
+    color: darken($color: $dark-grey, $amount: 10%) !important; 
+  }
+}
+
+.dropdown-item {
+  &:hover,
+  &:active {
+    background-color: rgba(32, 34, 35, 0.05);
+  }
+}
+
+/* Buttons/Bgs */
+.btn-outline-secondary {
+  color: $dark-grey; 
+  background-color: transparent;
+  border-color: #ced4da;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #ced4da;
+    border-color: #ced4da;
+    color: #333;
+  }
+}
+
+.input-group-append .btn-outline-secondary {
+  border-left: none;
+}
+
+.bg-lightgrey {
+  background-color: #F9FAFB;
+}
+
+.bg-custom {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+  background-color: #fff;
+}
+
+#error_explanation {
+  background-color: rgba(254,242,242, 1);
+  color: rgb(185, 28, 28) !important;
+}
+
+/* Text related */
+.text-logo { 
+  color: #333; 
+}
+
+.folder-desc {
+  color: #343a40 !important;
+}
+
+.policy-content, .terms-content {
+  p, ol { 
+    color: rgb(90, 95, 102); 
+  }
+}
+
+/* Actions */
+.pin-folder-icon {
+  color: darken($color: #bbb, $amount: 10%); 
+  &:hover { 
+    color: #696969;
+  }
+}

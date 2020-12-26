@@ -1,86 +1,37 @@
 <!DOCTYPE html>
 <html class="h-100">
   <head>
-    <title>Bookmarkd</title>
+    <title><%= title %></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:widgets:theme" content="<%= application_mode %>">
     <%= favicon_link_tag 'bookmark.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% if cookies[:sun] %>
+      <%= stylesheet_link_tag 'application_light', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% else %>
+      <%= stylesheet_link_tag 'application_dark', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% end %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'https://kit.fontawesome.com/8d9d868ad3.js', crossorigin: 'anonymous' %>
     <%= custom_flash_messages %>
   </head>
 
-  <body class="h-100">
+  <body class="h-100 <%= 'bg-lightgrey' if devise_controller? %>">
     <div class="container d-flex flex-column h-100">
       <div class="row justify-content-center">
         <div class="col-md-12 col-lg-9 mt-3">
-          <nav class="navbar navbar-expand-lg navbar-dark bg-transparent sticky-top">
-            <a class="navbar-brand" href="/">
-              <h3 class="font-weight-bold"><i class="far fa-bookmark text-brand"></i> Bookmarkd</h3>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav text-center">
-                <% if user_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to edit_user_registration_path, class: 'nav-link' do %>
-                    <% if current_user.provider == 'twitter' %>
-                      <i class="fab fa-twitter text-brand"></i> 
-                      @<%= current_user.username %>
-                    <% else %>
-                      <i class="fas fa-user-circle"></i>
-                      <%= current_user.name %>
-                    <% end %>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to folders_path, class: 'nav-link' do %>
-                    <i class="fas fa-folder-open"></i> Folders
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to destroy_user_session_path, class: 'nav-link', method: :delete do %>
-                    <i class="fas fa-sign-out-alt"></i> Sign out
-                  <% end %>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <a class="nav-link" href="/users/sign_up">Sign up</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/users/sign_in">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                  </a>
-                </li>
-              <% end %>
-              </ul>
-            </div>
-          </nav>
+          <%= render 'layouts/navbar' %>
         </div>
       </div>
       <div class="row justify-content-center <%= 'align-items-center flex-fill' if controller_name == 'pages' %> px-3" id="page-content">  
         <%= yield %>
       </div>
-      <% unless !user_signed_in? %>
-        <div class="action-buttons position-fixed">
-          <%= link_to new_folder_path,
-            title: 'Create a new folder',
-            class: 'link-brand',
-            data: { 
-              toggle: 'tooltip',
-              placement: 'left'
-            } do %>
-            <i class="fas fa-folder-plus fa-2x"></i>
-          <% end %>
-        </div>
-      <% end %>
+      <%= render 'layouts/fixed_actions' %>
       <footer class="text-center mt-auto footer">
         © <%= Date.today.year %> <span class="font-weight-bold">Bookmarkd</span>. All rights reserved.
       </footer>

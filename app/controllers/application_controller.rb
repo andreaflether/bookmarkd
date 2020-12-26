@@ -5,10 +5,26 @@ class ApplicationController < ActionController::Base
     folders_path
   end
 
+  def moon
+    cookies.delete(:sun)
+    redirect_to request.referer
+  end
+
+  def sun
+    cookies[:sun] = {
+      value: 'light mode on'
+    }
+    redirect_to request.referer
+  end
+
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :terms) }
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :password_confirmation, :current_password) }
+    devise_parameter_sanitizer.permit(:sign_up) do |u| 
+      u.permit(:name, :email, :password, :password_confirmation, :terms) 
+    end
+    devise_parameter_sanitizer.permit(:account_update) do |u| 
+      u.permit(:name, :email, :password, :password_confirmation, :current_password)
+    end
   end
 end
