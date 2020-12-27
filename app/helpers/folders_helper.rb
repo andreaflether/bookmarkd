@@ -8,6 +8,10 @@ module FoldersHelper
   end
 
   def folder_description(description)
-    "#{description.truncate(70)} ·" unless description.blank?  
+    description.truncate(70) unless description_blank?(description)
+  end
+
+  def description_blank?(description)
+    description.blank?
   end
 end

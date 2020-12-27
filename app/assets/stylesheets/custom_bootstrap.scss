@@ -49,9 +49,14 @@ button,
 
 /* Overriding default bootstrap values */
 .dropdown-item { 
-  padding: 0.4rem 1.5rem; 
+  padding: 0.7rem 1.5rem; 
+}
+
+.dropdown-menu {
+  box-shadow: 0 0.2rem 0.35rem rgba(0, 0, 0, 0.2) !important;
+  padding: 0;
 }
 
 .shadow-lg { 
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.16) !important; 
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.17) !important; 
 }

@@ -1,50 +1,59 @@
-<div class="card folder shadow-lg border-0" 
-  data-folder-id="<%= folder.id %>" 
-  data-pinned="<%= is_pinned(folder) %>"
->
-  <div class="card-body">
-    <h5 class="folder-title card-title d-flex align-items-center justify-content-between mb-1">
-      <%= link_to folder.name, folder, class: 'link-brand font-weight-bold' %>
-      <%= link_to toggle_pin_url(folder), 
-        method: :put,  
-        remote: true,
-        class: is_pinned(folder) ? 'link-brand' : 'pin-folder-icon',
-        data: { 
-          'tippy-content': "#{is_pinned(folder) ? 'Unpin' : 'Pin'} this folder"
-        } do %>
-        <i class="fas fa-thumbtack fa-xs"></i>
-      <% end %>
-    </h5>
-    <p class="card-subtitle font-weight-bold text-black-50 small mt-2 mb-3">
-      <i class="far fa-clock"></i>  
-      <span class="text-muted font-weight-normal">last updated</span>
-      <%= time_ago_in_words(folder.updated_at) %> ago
-    </p>
-    <p class="card-text folder-desc small">
-      <%= folder_description(folder.description) %>
-      <span class="text-brand font-weight-bold">
-        <%= pluralize(folder.tweets_count, 'tweet') %>
-      </span>
-    </p>
-    
-    <%= link_to edit_folder_path(folder), 
-      class: 'btn btn-outline-primary btn-sm edit',
-      data: { 
-        'tippy-content': 'Edit folder info',
-        'tippy-placement': 'left' 
-      } do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to folder_path(folder), 
-      method: :delete, 
-      data: { 
-        confirm: t('delete_folder_confirmation', 
-        tweet_count: pluralize(folder.tweets_count, 'tweet')),
-        'tippy-content': "Delete folder: #{folder.name}",
-        'tippy-placement': 'right'
-      }, 
-      class: 'btn btn-outline-danger delete btn-sm' do %>
-      <i class="far fa-trash-alt"></i>
-    <% end %>
+<div class="col-sm-6 col-md-4 mb-4 folder" data-folder-id="<%= folder.id %>" 
+    data-pinned="<%= is_pinned(folder) %>">
+  <div class="card shadow-lg border-0 teste">
+    <div class="card-body">
+      <h5 class="folder-title card-title d-flex align-items-center justify-content-between mb-1">
+        <%= link_to folder.name, folder, class: 'link-brand font-weight-bold' %>
+        <%= link_to toggle_pin_url(folder), 
+          method: :put,  
+          remote: true,
+          class: is_pinned(folder) ? 'link-brand' : 'pin-folder-icon',
+          data: { 
+            'tippy-content': "#{is_pinned(folder) ? 'Unpin' : 'Pin'} this folder"
+          } do %>
+          <i class="fas fa-thumbtack fa-xs"></i>
+        <% end %>
+      </h5>
+      <p class="card-subtitle font-weight-bold text-black-50 small mt-2 mb-3">
+        <i class="far fa-clock"></i>  
+        <span class="text-muted font-weight-normal">last updated</span>
+        <%= time_ago_in_words(folder.updated_at) %> ago
+      </p>
+      <div class="d-flex align-items-center justify-content-between">
+        <p class="card-text folder-desc small mb-0">
+          <% unless description_blank?(folder.description) %>
+            <%= folder_description(folder.description) %> <br />
+          <% end %>
+          <span class="text-brand"><%= pluralize(folder.bookmarks.size, 'tweet') %></span>
+        </p>
+        <div class="dropdown">
+          <a class="folder-dropdown-options" 
+            type="button" 
+            id="folder-actions" 
+            data-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+          >
+            <i class="fas fa-ellipsis-h 2x"></i>
+          </a>
+
+          <div class="dropdown-menu border-0" aria-labelledby="folder-actions">
+            <%= link_to edit_folder_path(folder), class: 'dropdown-item text-muted' do %> 
+              <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
+            <% end %>
+            <%= link_to folder_path(folder), 
+              method: :delete, 
+              class: 'dropdown-item text-muted',
+              title: "Delete folder: #{folder.name}",
+              data: { 
+                confirm: t('delete_folder_confirmation', 
+                tweet_count: pluralize(folder.bookmarks.size, 'tweet'))
+              } do %>
+              <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

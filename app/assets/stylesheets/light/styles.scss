@@ -70,7 +70,7 @@ body {
 }
 
 /* Actions */
-.pin-folder-icon {
+.pin-folder-icon, .folder-dropdown-options {
   color: darken($color: #bbb, $amount: 10%); 
   &:hover { 
     color: #696969;

@@ -133,7 +133,7 @@ hr {
 }
 
 /* Actions and/or Icons */
-.pin-folder-icon {
+.pin-folder-icon, .folder-dropdown-options {
   color: #696969;
   &:hover { 
     color: darken($color: #bbb, $amount: 10%) 

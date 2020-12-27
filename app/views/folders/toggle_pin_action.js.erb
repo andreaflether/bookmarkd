@@ -1,16 +1,30 @@
+var folder = $("<%= j render folder %>")
+var removed = $('#folders').find(".folder[data-folder-id='<%= folder.id %>']")
+
+$grid = $('#folders').imagesLoaded( function() {
+  $('#folders').packery({
+      itemSelector: '.folder'
+  });
+});
+
 <% if folder.pinned? %>
   toastr.success("<b><%= folder.name %></b> was added to your pinned folders!")
-  $('#folders').find(".folder[data-folder-id='<%= folder.id %>']").remove();
-  $("<%= j render folder %>").prependTo($('#folders')).fadeIn('slow');
+  $grid.packery('remove', removed).packery('layout');
+  $grid.prepend(folder).packery('prepended', folder);  
 <% else %>
   toastr.info("<b><%= folder.name %></b> was removed from your pinned folders.")
 
-  $('#folders').find(".folder[data-folder-id='<%= folder.id %>']").remove();
-
   if($(".folder[data-pinned='true']:last").length >= 1) {
-    $(".folder[data-pinned='true']:last").after("<%= j render folder %>")
+    $grid.packery('remove', removed).packery('layout')
+    $(".folder[data-pinned='true']:last").after(folder)
+    setTimeout(function() { 
+      $grid.packery('layout')
+    }, 500)
   } else {
-    $("<%= j render folder %>").prependTo($('#folders'));
+    $grid.packery('remove', removed).packery('layout');
+    $grid.prepend(folder).packery('prepended', folder)
   }
+  $grid.packery('reloadItems').packery('layout')
 <% end %>
+
 initializeTippy();

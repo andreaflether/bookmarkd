@@ -1,5 +1,11 @@
 $(document).ready(function() {
   initializeTippy();
+  
+  $grid = $('#folders').imagesLoaded( function() {
+    $('#folders').packery({
+        itemSelector: '.folder'
+    });
+  });
 
   toastr.options = {
     closeButton: false,
@@ -55,6 +61,8 @@ $(document).ready(function() {
 $(document).ajaxComplete(function() {
   initializeTippy();
 });
+
+
 
 function initializeTippy() {
   tippy('[data-tippy-content]', {

@@ -22,7 +22,11 @@
   </div>
 </div>
 <div class="w-100"></div>
-
+<div class="col-9 mt-3 no-results text-muted text-center">
+    <h5 class="font-weight-normal">No results found for 
+      "<b><span class="text-brand" id="searchTerm"></span></b>".
+    </h5>
+  </div>
 <% if @folders.blank? %>
   <div class="col-lg-7 col-md-12 col-sm-12 my-3 text-muted text-center">
     <h2>¯\_(ツ)_/¯</h2>
@@ -35,14 +39,8 @@
   </div>
 <% else %>
 <div class="col-9">
-  <div class="card-columns mt-4" id="folders">
+  <div class="row mt-4" id="folders" data-packery='{"percentPosition": true }'>
     <%= render @folders %>
-  </div>
-  <div class="no-results text-muted text-center">
-    <h5 class="font-weight-normal">No results found for 
-      "<b><span class="text-brand" id="searchTerm"></span></b>".
-    </h5>
   </div>
 </div>
 <% end %>
-

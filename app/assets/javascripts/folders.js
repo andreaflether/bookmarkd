@@ -26,6 +26,7 @@ $(document).ready(function() {
       
       $('#folders').children('.folder').each(function () {
       	if ($(this).is(':visible')) {
+          $grid.packery('layout');
         	noResult = false; // toggle flag to false when no folder is visible
         }
       });   
@@ -56,3 +57,4 @@ $(document).ready(function() {
     $('.no-results').hide();
   })
 })
+
