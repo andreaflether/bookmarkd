@@ -1,11 +1,13 @@
 //= require rails-ujs
 //= require activestorage
-//= require jquery/dist/jquery
-//= require bootstrap/dist/js/bootstrap.bundle
+//= require jquery/dist/jquery.min
+//= require bootstrap/dist/js/bootstrap.bundle.min
 //= require bootstrap-maxlength/dist/bootstrap-maxlength
-//= require bootstrap-show-password/dist/bootstrap-show-password
+//= require bootstrap-show-password/dist/bootstrap-show-password.min
 //= require @popperjs/core/dist/umd/popper.min
 //= require tippy.js/dist/tippy-bundle.umd.min
+//= require packery/dist/packery.pkgd.min
+//= require imagesloaded/imagesloaded.pkgd.min
 //= require general
 //= require folders
 //= require jquery-ui/ui/effect
