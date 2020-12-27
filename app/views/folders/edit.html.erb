@@ -43,7 +43,7 @@
       'tippy-content': "Delete folder: #{@folder.name}",
       'tippy-placement': 'right',
       confirm: t('delete_folder_confirmation', 
-      tweet_count: pluralize(@folder.tweets_count, 'tweet'))
+      tweet_count: pluralize(@folder.bookmarks.size, 'tweet'))
     }
   %>
 </div>

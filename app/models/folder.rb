@@ -1,6 +1,4 @@
 class Folder < ApplicationRecord
-  attr_accessor :tweets_count
-
   belongs_to :user 
   has_many :bookmarks, dependent: :destroy
   has_many :tweets, -> { distinct }, through: :bookmarks
@@ -14,10 +12,6 @@ class Folder < ApplicationRecord
     presence: { message: 'Folder name is required.' }, 
     length: { maximum: 25 }
   validates_length_of :description, maximum: 200
-
-  def tweets_count
-    self.tweets.count
-  end 
 
   def get_tweet_id(url)
     url.partition('/status').last.gsub("?s=20", "")

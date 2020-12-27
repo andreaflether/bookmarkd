@@ -10,6 +10,6 @@ $("#pagination").load(location.href+" #pagination>*","");
 
 $('#tweetsCount').html("<%= j page_entries_info bookmarks %>")
 
-<% if folder.tweets_count == 0 %>
+<% if folder.bookmarks.size == 0 %>
   $("<h5 class='text-center text-brand font-weight-normal mt-3' id='no-tweets'>This folder is empty. Add tweets to see them here!</h5>").appendTo($('#tweets-container')).fadeIn('slow');
 <% end %>

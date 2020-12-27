@@ -29,7 +29,7 @@
         <i class="fas fa-ellipsis-h 2x"></i>
       </button>
 
-      <div class="dropdown-menu border-0 shadow-lg no-shadow" aria-labelledby="folder-actions">
+      <div class="dropdown-menu border-0" aria-labelledby="folder-actions">
         <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-muted' do %> 
           <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
         <% end %>
@@ -39,7 +39,7 @@
           title: "Delete folder: #{@folder.name}",
           data: { 
             confirm: t('delete_folder_confirmation', 
-            tweet_count: pluralize(@folder.tweets_count, 'tweet'))
+            tweet_count: pluralize(@folder.bookmarks.size, 'tweet'))
           } do %>
           <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
         <% end %>
