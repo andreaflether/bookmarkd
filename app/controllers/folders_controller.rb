@@ -1,8 +1,8 @@
 class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
+  before_action :verify_user, only: [:show, :edit, :update, :destroy]
   before_action :set_bookmarks, only: [:show, :update, :destroy]
   before_action :authenticate_user!
-  before_action :verify_user, only: [:show, :edit, :update, :destroy]
 
   # GET /folders
   def index
