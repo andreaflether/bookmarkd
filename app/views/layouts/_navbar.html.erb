@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-transparent <%= cookies[:sun] ? 'navbar-light' : 'navbar-dark' %> sticky-top">
+<nav class="navbar sticky-top navbar-expand-lg bg-transparent navbar-<%= application_mode %>">
   <a class="navbar-brand" href="/">
     <h4 class="font-weight-bold text-logo">
       <i class="far fa-bookmark text-brand"></i> Bookmarkd
@@ -11,7 +11,12 @@
     <ul class="navbar-nav text-center">
       <% if user_signed_in? %>
       <li class="nav-item">
-        <%= link_to edit_user_registration_path, class: 'nav-link' do %>
+        <%= link_to folders_path, class: 'nav-link' do %>
+          <i class="fas fa-folder-open"></i> Folders
+        <% end %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link user-dropdown dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <% if current_user.provider == 'twitter' %>
             <i class="fab fa-twitter text-brand"></i> 
             @<%= current_user.username %>
@@ -19,17 +24,20 @@
             <i class="fas fa-user-circle"></i>
             <%= current_user.name %>
           <% end %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to folders_path, class: 'nav-link' do %>
-          <i class="fas fa-folder-open"></i> Folders
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to destroy_user_session_path, class: 'nav-link', method: :delete do %>
-          <i class="fas fa-sign-out-alt"></i> Sign out
-        <% end %>
+        </a>
+        <div class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+          <%= link_to edit_user_registration_path, class: 'dropdown-item text-muted' do %>
+            <% if current_user.provider == 'twitter' %>
+              <i class="fas fa-user-alt mr-2"></i>User info
+            <% else %>
+              <i class="fas fa-user-edit mr-2"></i>Edit user info
+            <% end %>
+          <% end %>
+          
+          <%= link_to destroy_user_session_path, class: 'dropdown-item text-muted', method: :delete do %>
+            <i class="fas fa-sign-out-alt mr-2"></i>Sign out
+          <% end %>
+        </div>
       </li>
     <% else %>
       <li class="nav-item">
