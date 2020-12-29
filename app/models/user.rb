@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   has_many :folders
   validates :name, presence: true, length: { maximum: 50, allow_blank: true } 
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, 
          :omniauthable, omniauth_providers: %i[twitter]
@@ -28,4 +28,8 @@ class User < ApplicationRecord
     end
     pfp_url
   end 
+
+  def pinned_folders
+    folders.where(pinned: true)
+  end
 end

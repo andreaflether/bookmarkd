@@ -6,7 +6,7 @@ class FoldersController < ApplicationController
 
   # GET /folders
   def index
-    @folders = Folder.where(user: current_user)
+    @folders = current_user.folders
       .order(pinned: :desc, updated_at: :desc)
   end
 
@@ -87,7 +87,7 @@ class FoldersController < ApplicationController
         format.js { render :toggle_pin_action, locals: { folder: @folder } }
       else 
         format.js { 
-          render :errors,
+          render :error,
           layout: false, 
           locals: { error: @folder.errors.full_messages } 
         }
