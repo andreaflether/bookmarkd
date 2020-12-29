@@ -1,0 +1,30 @@
+<div class="border-right position-fixed folder-menu">
+  <p class="font-weight-bold mb-1 actions px-3">Actions</p>
+  <div class="list-group">
+    <%= link_to folders_path, class: 'list-group-item list-group-item-action' do %>
+      <i class="fas fa-folder-open text-brand mr-2"></i></i> All folders
+    <% end %>
+    <%= link_to new_folder_path, class: 'list-group-item list-group-item-action' do %>
+      <i class="fas fa-folder-plus text-brand mr-2"></i></i> Create new folder
+    <% end %>
+  </div>
+  
+  <p class="font-weight-bold mb-1 mt-2 px-3">Pinned</p>
+  <div class="list-group" id="pinned-folders">
+    <% if @pinned.size >= 1 %>
+      <% @pinned.each do |pinned |%>
+        <%= render 'folders/pinned', pinned_folder: pinned %>
+      <% end %>
+    <% else %>
+      <div class="no-pinned-folders text-muted px-3 small">
+        <p class="mb-1 font-weight-bold mt-2 ">You haven’t pinned any Folders yet.</p>
+        <p>When you do, it’ll show up here.</p>
+      </div>
+    <% end %>
+  </div>    
+  <div class="position-fixed d-flex align-items-center border-right border-top tips">
+    <p class="text-muted small ml-5 px-3 my-auto">
+      <b>Tip:</b> Press the <b>F</b> key on your keyboard to toggle the Folders sidebar.
+    </p>
+  </div>
+</div>

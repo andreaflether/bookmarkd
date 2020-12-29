@@ -46,6 +46,12 @@ a, .link-brand {
   color: rgba(189, 183, 175, 0.8); 
 }
 
+.tips {
+  bottom: 0; 
+  height: 13vh; 
+  width: 250px;
+}
+
 #tweetsCount {
   font-size: 0.9rem;
   font-weight: normal;
@@ -82,16 +88,12 @@ footer {
 }
 
 /* Actions and/or Icons */
-.action-buttons, .application-mode, .back-to-top {
+.application-mode, .back-to-top {
   bottom: 20px;
 }
 
-.action-buttons {
-  right: 20px;
-}
-
 .application-mode {
-  left: 20px;
+  right: 20px;
 }
 
 .back-to-top {
@@ -165,4 +167,45 @@ span.bootstrap-maxlength {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding-left: 0.9rem;
   }
+}
+
+.list-group-item-action {
+  border: none;
+  padding: 0.5rem 1.25rem;
+  background-color: transparent;
+  border-radius: 0 !important;
+  color: rgba($dark, 0.6);
+}
+
+.list-group-item-action.active {
+  color: rgba($dark, 0.8);
+}
+
+.folder-sidebar {
+  bottom: 20px; 
+  left: 20px;
+}
+
+.actions {
+  margin-top: 15px;
+}
+
+.folder-menu {
+  left: -500px;
+  transition: all .6s ease;
+  width: 250px; 
+  height: 87vh; 
+  overflow: hidden;
+  
+  &:hover {
+    overflow-y: auto;
+  }
+  /* width */
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+}
+
+.expanded {
+  left: 0 !important;
 }

@@ -9,12 +9,12 @@ html, body {
 }
 
 hr { 
-  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+  border-top: 1px solid rgba(#fff, 0.1); 
 }
 
 /* Overriding bootstrap default values */
 .btn-outline-secondary { 
-  border-color: rgba(255, 255, 255, 0.15) !important; 
+  border-color: rgba(#fff, 0.15) !important; 
 }
 
 .card { 
@@ -24,7 +24,7 @@ hr {
 .custom-control-label {
   &:before {
     background-color: transparent;
-    border-color: rgba(255, 255, 255, 0.15); 
+    border-color: rgba(#fff, 0.15); 
   }
 }
 
@@ -64,19 +64,19 @@ hr {
 
 .list-group-item.transparent {
   background: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(#fff, 0.2);
 }
 
 .modal-content {
   background-color: $dark;
-  color: rgba(255, 255, 255, .6);
+  color: rgba(#fff, .6);
   border-color: rgba($light, 0.1);
   .modal-header { border-bottom: 1px solid rgba($light, 0.1); }
   .modal-footer { border-top: 1px solid rgba($light, 0.1); }
   button { 
-    color: rgba(255, 255, 255, .4);
+    color: rgba(#fff, .4);
     &:hover {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(#fff, 0.6);
     } 
   }
   .commit { color: #f8f9fa; }
@@ -87,8 +87,11 @@ hr {
   }
 }
 
-.navbar-nav li a { 
-  color: rgba(255, 255, 255, .70); 
+.navbar-nav .nav-item .nav-link  { 
+  color: rgba(#fff, .60); 
+  &:hover {
+    color: rgba(#fff, .80);
+  }
 }
 
 /* Text related */
@@ -113,8 +116,8 @@ hr {
 }
 
 .btn-default {
-  border-color: rgba(255, 255, 255, .75);
-  color:rgba(255, 255, 255, .75) !important;
+  border-color: rgba(#fff, .75);
+  color:rgba(#fff, .75) !important;
   background-color: transparent;
   &:hover, 
   &:focus,
@@ -165,4 +168,54 @@ hr {
       color: darken($color: $brand, $amount: 5%); 
     }
   }
+}
+
+.border-right {
+  border-color: rgba($light, 0.1) !important;
+}
+
+.list-group-item-action {
+  &:hover {
+    background-color: rgba($light, 0.06);
+  }
+}
+
+.muted {
+  background-color: rgba($light, 0.06);
+  color: rgba($light, 0.7) !important;
+}
+
+.list-group-item-action {
+  color: rgba($light, 0.5);
+}
+
+.list-group-item-action.active {
+  @extend .muted;
+}
+
+.list-group-item-action {
+  &:focus,
+  &:hover,
+  &:active {
+    @extend .muted;
+  }
+}
+
+.folder-menu {
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgba($light, 0.2); 
+  } 
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background:rgba($light, 0.3); 
+  }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba($light, 0.4); 
+  }
+}
+
+.folder-menu, .tips {
+  background-color: $dark;
 }

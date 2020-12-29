@@ -1,4 +1,5 @@
 /*
+ *= require @fortawesome/fontawesome-free/css/all
  *= require bootstrap/dist/css/bootstrap
  *= require toastr/build/toastr.min
  *= require tippy.js/themes/translucent

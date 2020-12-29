@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :pinned_folders, if: :user_signed_in? 
+
+  def pinned_folders
+    @pinned = current_user.folders.where(pinned: true)
+  end
 
   def after_sign_in_path_for(resource)
     folders_path
@@ -11,9 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sun
-    cookies[:sun] = {
-      value: 'light mode on'
-    }
+    cookies[:sun] = { value: 'light mode on' }
     redirect_to request.referer
   end
 

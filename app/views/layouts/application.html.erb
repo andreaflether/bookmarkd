@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:widgets:theme" content="<%= application_mode %>">
+    <meta name="application-theme" content="<%= application_mode %>">
     <%= favicon_link_tag 'bookmark.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,11 +18,13 @@
     <% end %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://kit.fontawesome.com/8d9d868ad3.js', crossorigin: 'anonymous' %>
     <%= custom_flash_messages %>
   </head>
 
   <body class="h-100 <%= 'bg-lightgrey' if devise_controller? %>">
+    <% if user_signed_in? %>
+      <%= render 'layouts/folder_toggle_sidebar' %>
+    <% end %>
     <div class="container d-flex flex-column h-100">
       <div class="row justify-content-center">
         <div class="col-md-12 col-lg-9 mt-3">

@@ -22,6 +22,11 @@ body {
   }
 }
 
+.list-group-item.active {
+  background-color: rgba(32, 34, 35, 0.08);
+}
+
+
 /* Buttons/Bgs */
 .btn-outline-secondary {
   color: $dark-grey; 
@@ -75,4 +80,23 @@ body {
   &:hover { 
     color: #696969;
   }
+}
+
+.folder-menu {
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgba($secondary, 0.05); 
+  } 
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background:rgba($secondary, 0.1); 
+  }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba($secondary, 0.2); 
+  }
+}
+
+.folder-menu, .tips {
+  background-color: #fff;
 }

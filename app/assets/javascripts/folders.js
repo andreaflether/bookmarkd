@@ -57,4 +57,3 @@ $(document).ready(function() {
     $('.no-results').hide();
   })
 })
-

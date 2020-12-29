@@ -1,12 +1,6 @@
 $(document).ready(function() {
   initializeTippy();
   
-  $grid = $('#folders').imagesLoaded( function() {
-    $('#folders').packery({
-        itemSelector: '.folder'
-    });
-  });
-
   toastr.options = {
     closeButton: false,
     debug: false,
@@ -27,7 +21,7 @@ $(document).ready(function() {
 
   $('.has-max-length').maxlength({
     alwaysShow: true, 
-    warningClass: 'small text-white-50 mt-1', 
+    warningClass: 'small text-muted mt-1', 
     limitReachedClass: 'small text-danger mt-1', 
     placement: 'bottom-right-inside',
     showOnReady: true, 
@@ -56,17 +50,53 @@ $(document).ready(function() {
   
   $('.hasToggledIcon').on('focusin', function() { switchForBrand($(this)); })
   $('.hasToggledIcon').on('focusout', function() { switchForMuted($(this)); })
+
+  // Active pages on the toggle folders sidebar
+  var current = location.pathname;
+  $('a.list-group-item-action').each(function(){
+      var $this = $(this);
+      // if the current path is like this link, make it active
+      if($this.attr('href') == current){
+          $this.addClass('active');
+      }
+  })
+
+  // Folders toggle sidebar
+  $('#toggle-sidebar').on('click', function() {
+    toggleSidebarClass($(this))
+  })
+  
+  // Switch toggle button classes
+  function toggleSidebarClass(el) {
+    $('.folder-menu').toggleClass('expanded');
+    let icon = $('#toggle-sidebar').find('svg')
+    if(icon.hasClass('fa-folder')) {
+      window.setTimeout(function() {
+        icon.switchClass('fa-folder', 'fa-folder-open');
+      }, 300);
+    } else {
+      window.setTimeout(function() {
+        icon.switchClass('fa-folder-open', 'fa-folder');
+      }, 200);
+    }
+  }
+
+  // Toggle folder sidebar on F press
+  $(document).keydown(function(e) {
+    if (e.keyCode == 70) { // F key
+      if(e.target.matches("input, textarea")) return;
+      toggleSidebarClass($('#toggle-sidebar').find('svg'))
+    }
+  });
 })
 
 $(document).ajaxComplete(function() {
   initializeTippy();
 });
 
-
-
 function initializeTippy() {
   tippy('[data-tippy-content]', {
-    // arrow: false
+    arrow: false,
     theme: 'translucent',
   });
 }

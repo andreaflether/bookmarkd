@@ -8,9 +8,9 @@
 //= require tippy.js/dist/tippy-bundle.umd.min
 //= require packery/dist/packery.pkgd.min
 //= require imagesloaded/imagesloaded.pkgd.min
-//= require general
-//= require folders
 //= require jquery-ui/ui/effect
 //= require toastr/build/toastr.min
 //= require data-confirm-modal
+//= require folders
+//= require general
 //= require_tree .

@@ -4,7 +4,6 @@
 
 <div class="col-md-6">
   <div class="input-group mb-3">
-    
     <span class="icon-inside text-muted" id="search-icon">
       <i class="fas fa-search"></i>
     </span>
@@ -39,7 +38,7 @@
   </div>
 <% else %>
 <div class="col-9">
-  <div class="row mt-4" id="folders" data-packery='{"percentPosition": true }'>
+  <div class="row mt-4" id="folders" data-packery='{"percentPosition": true, "isAnimated": true, "itemSelector": ".folder"}'>
     <%= render @folders %>
   </div>
 </div>
