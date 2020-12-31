@@ -17,10 +17,22 @@
     <span class="icon-inside text-muted d-none" id="remove-search">
       <i class="fas fa-times-circle"></i>
     </span>
-    
   </div>
 </div>
+
 <div class="w-100"></div>
+
+<% if @folders.total_pages > 1 %>
+  <div class="col-md-12 col-lg-7 mt-2 mb-0" 
+    id="pagination"
+  >
+    <%= paginate @folders, 
+      theme: 'twitter-bootstrap-4',
+      pagination_class: 'pagination-sm justify-content-center'
+    %>
+  </div>
+<% end %>
+
 <div class="col-9 mt-3 no-results text-muted text-center">
     <h5 class="font-weight-normal">No results found for 
       "<b><span class="text-brand" id="searchTerm"></span></b>".
@@ -38,7 +50,7 @@
   </div>
 <% else %>
 <div class="col-9">
-  <div class="row mt-4" id="folders" data-packery='{"percentPosition": true, "isAnimated": true, "itemSelector": ".folder", "horizontalOrder": true,}'>
+  <div class="row mt-4" id="folders">
     <%= render @folders %>
   </div>
 </div>

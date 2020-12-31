@@ -184,6 +184,7 @@ span.bootstrap-maxlength {
 .folder-sidebar {
   bottom: 20px; 
   left: 20px;
+  cursor: pointer;
 }
 
 .actions {
@@ -196,7 +197,7 @@ span.bootstrap-maxlength {
   width: 250px; 
   height: 87vh; 
   overflow: hidden;
-  
+
   &:hover {
     overflow-y: auto;
   }
@@ -208,4 +209,19 @@ span.bootstrap-maxlength {
 
 .expanded {
   left: 0 !important;
+}
+
+/* Pagination */
+.pagination {
+  .page-item .page-link {
+    color: $brand;
+  }
+  .page-item.active .page-link {
+    background-color: $brand;
+    border-color: $brand;
+    color: #fff;
+    &:hover { 
+      color: darken($color: white, $amount: 5%); 
+    }  
+  }
 }

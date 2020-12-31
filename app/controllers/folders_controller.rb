@@ -8,6 +8,7 @@ class FoldersController < ApplicationController
   def index
     @folders = current_user.folders
       .order(pinned: :desc, updated_at: :desc)
+      .page(params[:page])
   end
 
   # GET /folders/1
