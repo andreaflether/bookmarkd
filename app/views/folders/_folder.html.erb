@@ -14,7 +14,10 @@
           <i class="fas fa-thumbtack fa-xs"></i>
         <% end %>
       </h5>
-      <p class="card-subtitle font-weight-bold text-black-50 small mt-2 mb-3">
+      <p class="card-subtitle font-weight-bold text-black-50 small mt-2 mb-3"
+        data-tippy-content="<small><%= datetime_formatted(folder.updated_at) %></small>" 
+        data-tippy-placement="bottom"
+      >
         <i class="far fa-clock"></i>  
         <span class="text-muted font-weight-normal">last updated</span>
         <%= time_ago_in_words(folder.updated_at) %> ago
@@ -24,7 +27,7 @@
           <% unless description_blank?(folder.description) %>
             <%= folder_description(folder.description) %> <br />
           <% end %>
-          <span class="text-brand"><%= pluralize(folder.bookmarks.size, 'tweet') %></span>
+          <span class="text-brand number-of-tweets"><%= pluralize(folder.bookmarks.size, 'tweet') %></span>
         </p>
         <div class="dropdown">
           <a class="folder-dropdown-options" 

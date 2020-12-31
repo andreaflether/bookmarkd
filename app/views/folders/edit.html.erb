@@ -24,7 +24,7 @@
 <div class="w-100"></div>
 
 <p class="small text-muted">
-  This folder was created on <b><%= @folder.created_at.strftime("%B %d, %Y %H:%M") %></b>
+  This folder was created on <b><%= datetime_formatted(@folder.created_at) %></b>
 </p>
 
 <div class="w-100"></div>

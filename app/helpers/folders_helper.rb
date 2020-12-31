@@ -14,4 +14,8 @@ module FoldersHelper
   def description_blank?(description)
     description.blank?
   end
+
+  def datetime_formatted(datetime)
+    datetime.strftime("%B %d, %Y %H:%M")
+  end
 end
