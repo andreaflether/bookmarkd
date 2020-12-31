@@ -1,5 +1,5 @@
 class Bookmark < ApplicationRecord
-  belongs_to :folder, counter_cache: true
+  belongs_to :folder, counter_cache: true, touch: true
   belongs_to :tweet
 
   accepts_nested_attributes_for :tweet
