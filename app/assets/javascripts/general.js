@@ -69,15 +69,11 @@ $(document).ready(function() {
   // Switch toggle button classes
   function toggleSidebarClass(el) {
     $('.folder-menu').toggleClass('expanded');
-    let icon = $('#toggle-sidebar').find('svg')
-    if(icon.hasClass('fa-folder')) {
-      window.setTimeout(function() {
-        icon.switchClass('fa-folder', 'fa-folder-open');
-      }, 300);
+    let icon = $('#toggle-sidebar').find('i');
+    if(icon.hasClass('fa-folder-open')) {
+      icon.switchClass('fa-folder-open', 'fa-folder', 200, 'linear');
     } else {
-      window.setTimeout(function() {
-        icon.switchClass('fa-folder-open', 'fa-folder');
-      }, 200);
+      icon.switchClass('fa-folder', 'fa-folder-open', 200, 'linear');
     }
   }
 
@@ -98,5 +94,6 @@ function initializeTippy() {
   tippy('[data-tippy-content]', {
     arrow: false,
     theme: 'translucent',
+    allowHTML: true,
   });
 }
