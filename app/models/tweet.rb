@@ -3,12 +3,7 @@ class Tweet < ApplicationRecord
   has_many :folders, through: :bookmarks, dependent: :destroy
 
   validates :link, 
-  presence: { message: 'Tweet URL is required!' },
-  format: { 
-    with: /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)\/status\/\d{18,19}/i, 
-    message: 'Incorrect format for Twitter URL!',
-    allow_blank: true
-  }
+  presence: { message: 'Tweet URL is required!' }
   
   validate :return_html_content
 
