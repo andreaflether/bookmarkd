@@ -20,8 +20,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= custom_flash_messages %>
   </head>
-
-  <body class="h-100 <%= 'bg-lightgrey' if devise_controller? %>">
+  <body class="h-100 <%= 'bg-lightgrey' if devise_controller? && !not_edit_user_registration_path %>">
     <% if user_signed_in? %>
       <%= render 'layouts/folder_toggle_sidebar' %>
     <% end %>
