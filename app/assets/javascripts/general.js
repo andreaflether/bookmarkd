@@ -1,6 +1,8 @@
 $(document).ready(function() {
   initializeTippy();
-  
+  toggleExpandedClass()
+  toggleIcon(); 
+
   toastr.options = {
     closeButton: false,
     debug: false,
@@ -63,32 +65,24 @@ $(document).ready(function() {
 
   // Folders toggle sidebar
   $('#toggle-sidebar').on('click', function() {
-    toggleSidebarClass($(this))
+    toggleSidebarClass();  
   })
-  
+
   // Switch toggle button classes
-  function toggleSidebarClass(el) {
+  function toggleSidebarClass() {
+    $('.folder-menu').css('transition', 'all .5s ease')
     $('.folder-menu').toggleClass('expanded');
-    let icon = $('#toggle-sidebar').find('i');
-    if(icon.hasClass('fa-folder-open')) {
-      icon.switchClass('fa-folder-open', 'fa-folder', 200, 'linear');
-    } else {
-      icon.switchClass('fa-folder', 'fa-folder-open', 200, 'linear');
-    }
+    toggleIcon();
   }
 
   // Toggle folder sidebar on F press
   $(document).keydown(function(e) {
     if (e.keyCode == 70) { // F key
       if(e.target.matches("input, textarea")) return;
-      toggleSidebarClass($('#toggle-sidebar').find('svg'))
+      toggleSidebarClass()
     }
   });
 })
-
-$(document).ajaxComplete(function() {
-  initializeTippy();
-});
 
 function initializeTippy() {
   tippy('[data-tippy-content]', {
@@ -96,4 +90,26 @@ function initializeTippy() {
     theme: 'translucent',
     allowHTML: true,
   });
+}
+
+function toggleIcon() {
+  let icon = $('#toggle-sidebar').find('i');
+  if($('.folder-menu').hasClass('expanded')) {
+    icon.switchClass('fa-folder', 'fa-folder-open');
+  } else {
+    icon.switchClass('fa-folder-open', 'fa-folder');
+  }
+}
+
+$(window).on('resize', function() {
+  toggleExpandedClass();
+  toggleIcon();
+})
+
+function toggleExpandedClass() {
+  if($(document).width() > 1350) {
+    $('.folder-menu').addClass('expanded');
+  } else {
+    $('.folder-menu').removeClass('expanded');
+  }
 }
