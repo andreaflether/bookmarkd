@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   get '/moon', to: 'application#moon', as: 'moon'
   get '/sun', to: 'application#sun', as: 'sun'
+
+  put '/order_folders_by', to: 'preferences#order_folders_by'
 end
