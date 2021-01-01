@@ -33,6 +33,8 @@ GEM
       activemodel (= 5.2.4.4)
       activesupport (= 5.2.4.4)
       arel (>= 9.0)
+    activerecord-typedstore (1.3.1)
+      activerecord (>= 5.2)
     activestorage (5.2.4.4)
       actionpack (= 5.2.4.4)
       activerecord (= 5.2.4.4)
@@ -301,6 +303,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-typedstore
   awesome_print
   bootsnap (>= 1.1.0)
   bootstrap4-kaminari-views

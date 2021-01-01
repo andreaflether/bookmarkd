@@ -3,6 +3,15 @@ class User < ApplicationRecord
 
   validates_acceptance_of :terms, message: 'You need to accept the terms and conditions.'
 
+  typed_store :preferences do |s|
+    s.string :order_folders_by, default: 'original-order', null: false
+  end
+
+  validates :order_folders_by, inclusion: { 
+    in: %w(original-order number_of_tweets name),
+    message: 'Please provide a valid filter.'
+  }
+
   has_many :folders
   validates :name, presence: true, length: { maximum: 50, allow_blank: true } 
 

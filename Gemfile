@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Custom gems for this project
+gem 'activerecord-typedstore'
 gem 'awesome_print'
 gem 'bootstrap4-kaminari-views'
 gem 'devise'
