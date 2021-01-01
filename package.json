@@ -8,6 +8,7 @@
     "bootstrap-maxlength": "^1.10.0",
     "bootstrap-show-password": "^1.2.1",
     "imagesloaded": "^4.1.4",
+    "isotope-layout": "^3.0.6",
     "jquery": "^3.5.1",
     "jquery-ui": "^1.12.1",
     "packery": "^2.1.2",

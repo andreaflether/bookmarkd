@@ -5,15 +5,15 @@ var folder_from_grid = $('#folders').find(folder_in_html)
 var folder_from_toggle = $('#pinned-folders').find(folder_in_html)
 
 $grid = $('#folders').imagesLoaded(function() {
-  $('#folders').packery();
+  $('#folders').isotope();
 });
 
 $("#pinned-folders").load(location.href+" #pinned-folders>*","");
 
 <% if folder.pinned? %>
   toastr.success("<b><%= folder.name %></b> was added to your pinned folders!")
-  $grid.packery('remove', folder_from_grid).packery('layout');
-  $grid.prepend(folder).packery('prepended', folder);  
+  $grid.isotope('remove', folder_from_grid).isotope('layout');
+  $grid.isotope('insert', folder)
 
   pinned.prependTo($('#pinned-folders')).fadeIn('slow');
 <% else %>
@@ -21,19 +21,21 @@ $("#pinned-folders").load(location.href+" #pinned-folders>*","");
 
   folder_from_toggle.fadeOut('slow').remove();
   
-  $grid.packery('remove', folder_from_grid)
+  $grid.isotope('remove', folder_from_grid)
   folder_from_grid.remove();
+
+  $grid.isotope('reloadItems')
+  $grid.isotope('layout')
   
+
   if($(".folder[data-pinned='true']:last").length >= 1) {
-    $(".folder[data-pinned='true']:last").after(folder)
+    $grid.isotope('insert', folder)
   } else {
-    $grid.prepend(folder).packery('prepended', folder)
+    $grid.prepend(folder).isotope('prepended', folder)
   }
-  
-  $grid.packery('reloadItems').packery('layout')
-  
-  
-  
+
+  $grid.isotope('layout')
+
 <% end %>
 
 initializeTippy();

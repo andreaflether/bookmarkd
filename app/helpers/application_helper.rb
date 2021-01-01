@@ -36,4 +36,12 @@ module ApplicationHelper
   def application_mode 
     light_mode? ? 'light' : 'dark'
   end
+
+  def sort_by_template(display_text, sort_by) 
+    link_to display_text, order_folders_by_path(params: { order_folders_by: sort_by}), 
+    data: { 'sort-by': sort_by },
+    method: :put, 
+    remote: true,
+    class: 'btn'
+  end
 end

@@ -35,7 +35,8 @@ hr {
 .dropdown-item {
   color: rgba($light, 0.8) !important;
   &:hover,
-  &:active {
+  &:active,
+  &:focus {
     background-color: rgba($light, 0.06);
   }
 }
@@ -155,14 +156,6 @@ hr {
       color: #fff;
     }
   }
-  .page-item.active .page-link {
-    background-color: $brand;
-    border-color: $brand;
-    color: #fff;
-    &:hover { 
-      color: darken($color: white, $amount: 5%); 
-    }  
-  }
   .page-link {
     &:hover { 
       color: darken($color: $brand, $amount: 5%); 
@@ -218,4 +211,13 @@ hr {
 
 .folder-menu, .tips {
   background-color: $dark;
+}
+
+.sort-by-button-group .btn {
+  border-color: rgba(#fff, 0.2);
+  color: rgba(#fff, 0.3);
+  &:hover {
+    background-color: rgba(#fff, 0.1);
+    color: #fff;
+  }
 }

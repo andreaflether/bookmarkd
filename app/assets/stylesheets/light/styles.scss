@@ -1,4 +1,4 @@
-$secondary:  #14171A;  // RGB 20 23 26
+$secondary:  #212529;  // RGB 33 37 41
 $dark-grey:  #657786;  // RGB 101 119 134
 $light-grey: #AAB8C2;  // RGB 170 184 194
 
@@ -39,6 +39,10 @@ body {
     border-color: #ced4da;
     color: #333;
   }
+}
+
+.sort-by-button-group .btn {
+  @extend .btn-outline-secondary;
 }
 
 .input-group-append .btn-outline-secondary {

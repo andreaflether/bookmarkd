@@ -80,6 +80,15 @@ button.close {
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
 }
 
+.sort-by-button-group .btn.is-checked {
+  @extend .brand;
+  &:hover,
+  &:active,
+  &:focus {
+    @extend .brand;
+  }
+}
+
 /* Custom styles */
 footer {
   color: #6c757d;
@@ -192,8 +201,8 @@ span.bootstrap-maxlength {
 }
 
 .folder-menu {
-  left: -500px;
-  transition: all .6s ease;
+  left: -250px;
+  // transition: all .6s ease;
   width: 250px; 
   height: 87vh; 
   overflow: hidden;
@@ -207,8 +216,9 @@ span.bootstrap-maxlength {
   }
 }
 
-.expanded {
-  left: 0 !important;
+.folder-menu.expanded {
+  left: 0;
+  // transition: all .6s ease;
 }
 
 /* Pagination */
