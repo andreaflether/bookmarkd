@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :pinned_folders, if: :user_signed_in? 
 
   def pinned_folders
-    @pinned = current_user.pinned_folders
+    @pinned = current_user.pinned_folders.order(updated_at: :desc)
   end
 
   def after_sign_in_path_for(resource)
@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
     cookies[:sun] = { value: 'light mode on' }
     redirect_to request.referer
   end
+
+  def folder_belongs_to_user?(folder)
+    current_user.id == folder.user.id
+  end
+  helper_method :folder_belongs_to_user?
 
   protected
 

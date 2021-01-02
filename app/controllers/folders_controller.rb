@@ -100,7 +100,7 @@ class FoldersController < ApplicationController
   end
 
   def verify_user
-    unless helpers.folder_belongs_to_user(@folder) && user_signed_in?
+    unless folder_belongs_to_user?(@folder)
       redirect_to folders_path, alert: 'This folder was not shared with you.'
     end
   end
