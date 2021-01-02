@@ -1,16 +1,25 @@
-var folder = $('#folders').find(".folder[data-folder-id='<%= folder.id %>']");
+var folder_in_html = $(".folder[data-folder-id='<%= folder.id %>']")
+var folder_from_grid = $('#folders').find(folder_in_html)
 
-$grid.isotope('remove', folder)
-folder.remove();
+console.log(folder_from_grid.attr('data-pinned'))
+
+if(folder_from_grid.attr('data-pinned')) {
+  var folder_from_toggle = $('#pinned-folders').find(folder_in_html)
+  folder_from_toggle.fadeOut('slow').remove();
+}
+
+$grid.isotope('remove', folder_from_grid)
+folder_from_grid.remove();
 
 $grid.isotope('reloadItems')
 $grid.isotope('layout')
 
 toastr.info("Folder was successfully deleted.")
 
+$("#pinned-folders").load(location.href+" #pinned-folders>*","");
 $("#pagination").load(location.href+" #pagination>*","");
 
-if(!$('.folders').length) {
+if(!$('.folder').length) {
   $('.no-results').after("<%= j render 'no_folders' %>")
   $('#sort-filters').fadeOut().remove();
 }
