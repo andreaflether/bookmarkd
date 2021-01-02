@@ -48,9 +48,10 @@
               method: :delete, 
               class: 'dropdown-item text-muted',
               title: "Delete folder: #{folder.name}",
+              remote: true,
               data: { 
                 confirm: t('delete_folder_confirmation', 
-                tweet_count: pluralize(folder.bookmarks.size, 'tweet'))
+                tweet_count: pluralize(folder.bookmarks.size, 'tweet')),
               } do %>
               <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
             <% end %>

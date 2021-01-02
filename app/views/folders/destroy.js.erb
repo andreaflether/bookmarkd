@@ -1,0 +1,16 @@
+var folder = $('#folders').find(".folder[data-folder-id='<%= folder.id %>']");
+
+$grid.isotope('remove', folder)
+folder.remove();
+
+$grid.isotope('reloadItems')
+$grid.isotope('layout')
+
+toastr.info("Folder was successfully deleted.")
+
+$("#pagination").load(location.href+" #pagination>*","");
+
+if(!$('.folders').length) {
+  $('.no-results').after("<%= j render 'no_folders' %>")
+  $('#sort-filters').fadeOut().remove();
+}
