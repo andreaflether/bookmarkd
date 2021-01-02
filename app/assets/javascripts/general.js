@@ -1,7 +1,7 @@
 $(document).ready(function() {
   initializeTippy();
   toggleExpandedClass()
-  toggleIcon(); 
+  toggleIcon();   
 
   toastr.options = {
     closeButton: false,

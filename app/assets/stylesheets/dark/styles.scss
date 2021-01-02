@@ -15,6 +15,11 @@ hr {
 /* Overriding bootstrap default values */
 .btn-outline-secondary { 
   border-color: rgba(#fff, 0.15) !important; 
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: rgba(#fff, 0.07);
+  }
 }
 
 .card { 
@@ -156,9 +161,9 @@ hr {
       color: #fff;
     }
   }
-  .page-link {
-    &:hover { 
-      color: darken($color: $brand, $amount: 5%); 
+  .page-item.active .page-link {
+    &:hover {
+      background-color: $brand;
     }
   }
 }

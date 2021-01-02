@@ -230,8 +230,10 @@ span.bootstrap-maxlength {
     background-color: $brand;
     border-color: $brand;
     color: #fff;
-    &:hover { 
-      color: darken($color: white, $amount: 5%); 
-    }  
+  }
+  .page-item.active .page-link, .page-item .page-link {
+    &:focus {
+      box-shadow: none;
+    }
   }
 }
