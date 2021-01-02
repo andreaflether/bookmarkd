@@ -67,6 +67,8 @@ group :development do
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
   gem 'bullet'
+  gem 'query_diet'
+  gem 'sql_tracker'
 end
 
 
