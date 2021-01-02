@@ -58,7 +58,7 @@ class FoldersController < ApplicationController
         format.json { render :append_tweet, status: :ok, location: @folder }
         format.js { 
           render :append_tweet, 
-          locals: { tweet: @folder.tweets.last, bookmarks: @bookmarks } 
+          locals: { bookmark: @folder.bookmarks.last, bookmarks: @bookmarks } 
         }
       else
         format.html { render :edit }
@@ -76,7 +76,10 @@ class FoldersController < ApplicationController
     @folder.destroy
     respond_to do |format|
       format.html { redirect_to folders_url, notice: 'Folder was successfully deleted.' }
-      format.json { head :no_content }
+      format.js { 
+        render :destroy,
+        locals: { folder: @folder }
+       }
     end
   end
 

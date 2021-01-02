@@ -98,21 +98,17 @@
 
 <div class="w-100"></div>
 
-<div class="col-lg-7 col-md-12 text-center mt-1" id="tweets-container">
+<div class="col-lg-7 col-md-12 text-center mt-1" id="tweets-container">  
   <% if @bookmarks.blank? %>
-    <h2 class="text-muted mt-3">
-      <i class="far fa-folder-open"></i>
-    </h2>
-    <p class="text-center text-muted font-weight-normal" id="no-tweets">
-      This folder is empty. <br />
-      <span class="font-weight-bold">Add tweets to see them here!</span>
-    </p>
+    <%= render 'tweets/no_bookmarks' %>
   <% else %>
     <%= render @bookmarks %>
     <div class="w-100"></div>
   <% end %>
 </div>
 
-<%= link_to '#', class: "btn btn-primary position-fixed back-to-top invisible" do %>
+<%= link_to '#', 
+  class: 'btn btn-primary position-fixed back-to-top invisible',
+  data: { 'tippy-content': 'Go back to top', 'tippy-placement': 'right'} do %>
   <i class="fas fa-arrow-up"></i>
 <% end %>

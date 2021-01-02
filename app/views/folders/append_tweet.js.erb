@@ -8,6 +8,8 @@ $("#pagination").load(location.href+" #pagination>*","");
 
 $('#tweetsCount').html("<%= j page_entries_info bookmarks %>")
 
-$('#tweets-container').empty();
+$("<%= j render bookmark %>").prependTo($('#tweets-container')).fadeIn('slow');
 
+$('#tweets-container').empty();
 $("<%= j render bookmarks %>").appendTo($('#tweets-container')).fadeIn('slow');
+

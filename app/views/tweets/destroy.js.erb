@@ -2,6 +2,9 @@ var tweet = $('#tweets-container').find(".tweet[data-tweeturl='<%= tweet.link %>
 
 tweet.fadeOut('slow', function() {
   tweet.remove();
+  if(!$('.tweet').length) {
+    $("<%= j render 'no_bookmarks' %>").appendTo($('#tweets-container')).fadeIn('slow');
+  }
 });
 
 toastr.info("Tweet successfully removed from <b><%= folder.name %></b>.")
@@ -9,7 +12,3 @@ toastr.info("Tweet successfully removed from <b><%= folder.name %></b>.")
 $("#pagination").load(location.href+" #pagination>*","");
 
 $('#tweetsCount').html("<%= j page_entries_info bookmarks %>")
-
-<% if folder.bookmarks.size == 0 %>
-  $("<h5 class='text-center text-brand font-weight-normal mt-3' id='no-tweets'>This folder is empty. Add tweets to see them here!</h5>").appendTo($('#tweets-container')).fadeIn('slow');
-<% end %>
