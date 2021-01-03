@@ -10,8 +10,7 @@
 //= require imagesloaded/imagesloaded.pkgd.min
 //= require isotope-layout/dist/isotope.pkgd.min
 //= require jquery-ui/ui/effect
+//= require easy-autocomplete/dist/jquery.easy-autocomplete.min
 //= require toastr/build/toastr.min
 //= require data-confirm-modal
-//= require folders
-//= require general
 //= require_tree .
