@@ -4,7 +4,7 @@
     <div class="card-body">
       <h5 class="folder-title card-title d-flex align-items-center justify-content-between mb-1 text-break">
         <%= link_to folder.name, folder, class: 'link-brand font-weight-bold' %>
-        <%= link_to toggle_pin_url(folder), 
+        <%= link_to toggle_pin_folders_path(folder), 
           method: :put,  
           remote: true,
           class: is_pinned(folder) ? 'link-brand' : 'pin-folder-icon',

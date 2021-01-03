@@ -1,7 +1,5 @@
 $(document).ready(function() {
   initializeTippy();
-  toggleExpandedClass()
-  toggleIcon();   
 
   toastr.options = {
     closeButton: false,
@@ -52,36 +50,6 @@ $(document).ready(function() {
   
   $('.hasToggledIcon').on('focusin', function() { switchForBrand($(this)); })
   $('.hasToggledIcon').on('focusout', function() { switchForMuted($(this)); })
-
-  // Active pages on the toggle folders sidebar
-  var current = location.pathname;
-  $('a.list-group-item-action').each(function(){
-      var $this = $(this);
-      // if the current path is like this link, make it active
-      if($this.attr('href') == current){
-          $this.addClass('active');
-      }
-  })
-
-  // Folders toggle sidebar
-  $('#toggle-sidebar').on('click', function() {
-    toggleSidebarClass();  
-  })
-
-  // Switch toggle button classes
-  function toggleSidebarClass() {
-    $('.folder-menu').css('transition', 'all .5s ease')
-    $('.folder-menu').toggleClass('expanded');
-    toggleIcon();
-  }
-
-  // Toggle folder sidebar on F press
-  $(document).keydown(function(e) {
-    if (e.keyCode == 70) { // F key
-      if(e.target.matches("input, textarea")) return;
-      toggleSidebarClass()
-    }
-  });
 })
 
 function initializeTippy() {
@@ -90,26 +58,4 @@ function initializeTippy() {
     theme: 'translucent',
     allowHTML: true,
   });
-}
-
-function toggleIcon() {
-  let icon = $('#toggle-sidebar').find('i');
-  if($('.folder-menu').hasClass('expanded')) {
-    icon.switchClass('fa-folder', 'fa-folder-open');
-  } else {
-    icon.switchClass('fa-folder-open', 'fa-folder');
-  }
-}
-
-$(window).on('resize', function() {
-  toggleExpandedClass();
-  toggleIcon();
-})
-
-function toggleExpandedClass() {
-  if($(document).width() > 1350) {
-    $('.folder-menu').addClass('expanded');
-  } else {
-    $('.folder-menu').removeClass('expanded');
-  }
 }
