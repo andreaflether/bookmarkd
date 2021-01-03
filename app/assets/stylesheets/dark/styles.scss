@@ -226,3 +226,23 @@ hr {
     color: #fff;
   }
 }
+
+.easy-autocomplete input {
+  border-color: rgba($light, 0.2);
+  color: rgba($light, 0.8); 
+}
+
+.easy-autocomplete-container ul {
+  border-top: 1px dotted lighten($color: $dark, $amount: 50%);
+  background-color: lighten($color: $dark, $amount: 5%);
+}
+
+.easy-autocomplete-container ul li {
+  border-color: rgba($light, 0.2);
+  color: rgba($light, 0.8); 
+  background-color: $dark;
+}
+
+.easy-autocomplete-container ul li.selected {
+  background: none repeat scroll 0 0 lighten($color: $dark, $amount: 5%) !important;
+}

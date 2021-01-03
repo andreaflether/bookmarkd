@@ -19,7 +19,16 @@
         <p>When you do, it’ll show up here.</p>
       </div>
     <% end %>
-  </div>    
+  </div>   
+  <p class="font-weight-bold mb-2 mt-2 px-3">Search</p> 
+  <%= form_with url: search_folders_path, 
+    local: true, 
+    html: { autocomplete: :off },
+    html: { class: 'px-3' },
+    method: :get do |form| %>
+    <%= form.text_field :q, placeholder: 'Type a folder...', data: { behavior: 'autocomplete' },
+      class: 'form-control', id: 'sidebar-folder-search' %>
+  <% end %>
   <div class="position-fixed d-flex align-items-center border-right border-top tips">
     <p class="text-muted small ml-5 px-3 my-auto">
       <b>Tip:</b> Press the <b>F</b> key on your keyboard to toggle the Folders sidebar.

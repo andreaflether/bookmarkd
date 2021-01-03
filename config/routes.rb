@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  resources :folders
-
-  put 'pin_folder/:id', to: 'folders#toggle_folder_pin', as: :toggle_pin 
-  
   resources :folders do
+    put 'pin_folder/:id', on: :collection, to: 'folders#toggle_folder_pin', as: :toggle_pin 
     resources :tweets, only: [:destroy]
+    get 'search', on: :collection
   end
-
+  
   get '/privacy-policy', to: 'pages#privacy_policy'
   get '/terms-of-service', to: 'pages#terms_of_service'
 

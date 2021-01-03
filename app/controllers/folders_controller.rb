@@ -1,9 +1,18 @@
 class FoldersController < ApplicationController
+  before_action :force_json, only: [:search]
   before_action :set_folder, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
   before_action :verify_user, only: [:show, :edit, :update, :destroy]
   before_action :set_bookmarks, only: [:show, :update, :destroy]
   before_action :authenticate_user!
 
+  # GET /folders/search
+  def search 
+    @q = current_user.folders
+      .ransack(params[:q])
+    @folders = @q.result
+      .limit(5)
+  end
+  
   # GET /folders
   def index
     @folders = current_user.folders
@@ -106,15 +115,19 @@ class FoldersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_folder
-      @folder = Folder.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_folder
+    @folder = Folder.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def folder_params
-      params.require(:folder).permit(:name, :description, :pinned, 
-        bookmarks_attributes: [ tweet_attributes: [ :id, :link ] ]
-      )
-    end
+  # Only allow a list of trusted parameters through.
+  def folder_params
+    params.require(:folder).permit(:name, :description, :pinned, 
+      bookmarks_attributes: [ tweet_attributes: [ :id, :link ] ]
+    )
+  end
+
+  def force_json 
+    request.format = :json
+  end
 end
