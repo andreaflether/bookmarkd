@@ -22,7 +22,7 @@
         <span class="text-muted font-weight-normal">last updated</span>
         <%= time_ago_in_words(folder.updated_at) %> ago
       </p>
-      <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-end justify-content-between">
         <p class="card-text folder-desc small mb-0">
           <% unless description_blank?(folder.description) %>
             <%= folder_description(folder.description) %> <br />

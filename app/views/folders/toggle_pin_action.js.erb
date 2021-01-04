@@ -24,18 +24,7 @@ $("#pinned-folders").load(location.href+" #pinned-folders>*","");
   $grid.isotope('remove', folder_from_grid)
   folder_from_grid.remove();
 
-  $grid.isotope('reloadItems')
-  $grid.isotope('layout')
-  
-
-  if($(".folder[data-pinned='true']:last").length >= 1) {
-    $grid.isotope('insert', folder)
-  } else {
-    $grid.prepend(folder).isotope('prepended', folder)
-  }
-
-  $grid.isotope('layout')
-
+  $grid.isotope('insert', folder)
 <% end %>
 
 initializeTippy();
