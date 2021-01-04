@@ -10,14 +10,18 @@ class FoldersController < ApplicationController
     @q = current_user.folders
       .ransack(params[:q])
     @folders = @q.result
+      .order(name: :asc)
       .limit(5)
   end
   
   # GET /folders
   def index
-    @folders = current_user.folders
+    @q = current_user.folders 
+      .ransack(params[:q])
+    @folders = @q.result
       .order(pinned: :desc, updated_at: :desc)
       .page(params[:page])
+    @search = params[:q]['name_or_description_cont'] if params[:q]  
   end
 
   # GET /folders/1

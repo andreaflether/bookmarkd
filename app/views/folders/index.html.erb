@@ -1,26 +1,61 @@
-<div class="col-md-12">
-  <h2 class="text-center mb-3">Folders</h2>
-</div>
-
 <div class="col-lg-6 col-md-9 col-sm-12">
-  <div class="input-group mb-3">
-    <span class="icon-inside text-muted" id="search-icon">
-      <i class="fas fa-search"></i>
-    </span>
-    
-    <input type="text" 
-      placeholder="Search in folders" 
-      class="form-control rounded hasToggledIcon"
-      id="search-folder" 
-      maxlength=50
-    >
-    <span class="icon-inside text-muted d-none" id="remove-search">
-      <i class="fas fa-times-circle"></i>
-    </span>
-  </div>
+  <% if @search %>
+    <%= link_to :back, 
+      class: 'text-muted float-left mt-2', 
+      data: { 'tippy-content': 'Return to previous page', 'tippy-placement': 'right'} do %>
+      <i class="fas fa-arrow-left"></i>
+    <% end %>
+  <% end %>
+
+  <h3 class="text-center mb-4">Folders</h3>
 </div>
 
 <div class="w-100"></div>
+
+<div class="col-lg-6 col-md-9 col-sm-12">
+  <%= search_form_for @q do |f| %>
+    <div class="input-group mb-3">
+      <%= f.search_field :name_or_description_cont, class: 'form-control',
+      placeholder: 'Search for name, description...', maxlength: 50 %>
+      <div class="input-group-append">
+        <%= button_tag :submit, class: 'btn btn-brand' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="w-100"></div>
+
+<% if @folders.blank? && !@search %>
+  <%= render 'no_folders' %>
+<% else %>
+  <% if @search %>
+    <div class="col-7 mt-3 text-center">
+      <h5 class="font-weight-normal">No results found for 
+        "<b><span class="font-weight-bold" id="searchTerm"><%= @search %></span></b>".
+      </h5>
+      <p class="text-muted mt-3">
+        The term you entered did not bring up any results. Try again with another term 
+        or return to <%= link_to 'your folders', folders_path %>. 
+      </p>
+    </div>  
+  <% else %>
+    <div class="col-md-6 col-sm-12 text-center" id="sort-filters">
+      <div class="btn-group sort-by-button-group" role="group">
+        <%= sort_by_template('Last update', 'original-order') %>
+        <%= sort_by_template('Name', 'name') %>
+        <%= sort_by_template('No. of tweets', 'number_of_tweets') %>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-9">
+      <div class="row mt-4" id="folders" data-sort-by="<%= current_user.order_folders_by %>">
+        <%= render @folders %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 
 <% if @folders.total_pages > 1 %>
   <div class="col-md-12 col-lg-7 mt-2 mb-0" 
@@ -30,28 +65,5 @@
       theme: 'twitter-bootstrap-4',
       pagination_class: 'pagination-sm justify-content-center'
     %>
-  </div>
-<% end %>
-
-<div class="col-9 mt-3 no-results text-muted text-center">
-  <h5 class="font-weight-normal">No results found for 
-    "<b><span class="text-brand" id="searchTerm"></span></b>".
-  </h5>
-</div>
-
-<% if @folders.blank? %>
-  <%= render 'no_folders' %>
-<% else %>
-  <div class="col-md-6 col-sm-12 text-center" id="sort-filters">
-    <div class="btn-group sort-by-button-group" role="group">
-      <%= sort_by_template('Last update', 'original-order') %>
-      <%= sort_by_template('Name', 'name') %>
-      <%= sort_by_template('No. of tweets', 'number_of_tweets') %>
-    </div>
-  </div>
-  <div class="col-md-12 col-lg-9">
-    <div class="row mt-4" id="folders" data-sort-by="<%= current_user.order_folders_by %>">
-      <%= render @folders %>
-    </div>
   </div>
 <% end %>
