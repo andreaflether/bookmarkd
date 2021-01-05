@@ -1,0 +1,22 @@
+  <h5 class="text-danger mt-3">Deactivate account</h5>
+  <hr />
+
+  <div>
+    <p class="small text-muted">
+      <b>This action is permanent and cannot be undone.</b> 
+      Doing so, your twitter account won't be affected at all. But all
+      your folders on this site, including its bookmarked tweets in each one, <b> will be deleted permanently.</b>
+      Be aware that it won't be possible to recover them after you deactivate your account.
+    </p>
+    <p class="mb-0">
+      If you read all of the warnings above and still want to proceed, click on the button below.
+    </p>
+    <span class="text-center">
+      <%= button_to 'Deactivate', 
+        registration_path(resource_name), 
+        data: { title: 'Deactivate account', confirm: 'Are you sure?', toggle: 'tooltip' }, 
+        method: :delete,
+        class: 'btn btn-danger mt-3' 
+      %>
+    </span>
+  </div> 

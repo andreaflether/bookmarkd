@@ -1,0 +1,32 @@
+
+<div class="col-lg-6 col-md-8">
+  <h3 class="mb-3 text-center"><%= resource_name.to_s.humanize %> info</h3>
+  <div class="media rounded bg-custom p-3">
+    <%= image_tag @user.image, class: 'rounded-circle w-25 mr-3 img-fluid align-self-center' %>
+    <div class="media-body">
+      <ul class="list-group list-group-flush bg-transparent">
+        <li class="list-group-item transparent">
+          <i class="fas fa-at text-brand mr-2"></i> 
+          <%= @user.username %>
+        </li>
+        <li class="list-group-item transparent">
+          <i class="fas fa-user-circle text-brand mr-2"></i> 
+          <%= @user.name %>
+        </li>
+        <li class="list-group-item transparent">
+          <i class="far fa-envelope text-brand mr-2"></i> 
+          <%= @user.email %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <p class="small mb-3 mt-2 text-muted">Data fetched from 
+    <%= link_to 'Twitter', 'https://twitter.com/settings/your_twitter_data/account' %>. It will refresh once you sign in successfully.
+  </p>
+</div>
+
+<div class="w-100"></div>
+
+<div class="col-lg-6">
+  <%= render 'devise/registrations/deactivate' %>
+</div>
