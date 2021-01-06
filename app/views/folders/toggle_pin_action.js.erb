@@ -14,8 +14,6 @@ $("#pinned-folders").load(location.href+" #pinned-folders>*","");
   toastr.success("<b><%= folder.name %></b> was added to your pinned folders!")
   $grid.isotope('remove', folder_from_grid).isotope('layout');
   $grid.isotope('insert', folder)
-
-  pinned.prependTo($('#pinned-folders')).fadeIn('slow');
 <% else %>
   toastr.info("<b><%= folder.name %></b> was removed from your pinned folders.")
 

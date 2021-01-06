@@ -1,7 +1,7 @@
 class FoldersController < ApplicationController
   before_action :force_json, only: [:search]
   before_action :set_folder, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
-  before_action :verify_user, only: [:show, :edit, :update, :destroy]
+  before_action :verify_user, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
   before_action :set_bookmarks, only: [:show, :update, :destroy]
   before_action :authenticate_user!
 
@@ -16,12 +16,8 @@ class FoldersController < ApplicationController
   
   # GET /folders
   def index
-    @q = current_user.folders 
-      .ransack(params[:q])
-    @folders = @q.result
+    @folders = current_user.folders 
       .order(pinned: :desc, updated_at: :desc)
-      .page(params[:page])
-    @search = params[:q]['name_or_description_cont'] if params[:q]  
   end
 
   # GET /folders/1
@@ -75,11 +71,7 @@ class FoldersController < ApplicationController
         }
       else
         format.html { render :edit }
-        format.js { 
-          render :error, 
-          layout: false, 
-          locals: { error: @folder.errors.full_messages } 
-        }
+        format.js { render :error, layout: false, locals: { error: @folder.errors.full_messages } }
       end
     end
   end
@@ -89,13 +81,11 @@ class FoldersController < ApplicationController
     @folder.destroy
     respond_to do |format|
       format.html { redirect_to folders_url, notice: 'Folder was successfully deleted.' }
-      format.js { 
-        render :destroy,
-        locals: { folder: @folder }
-       }
+      format.js { render :destroy, locals: { folder: @folder } }
     end
   end
 
+  # PUT /folders/pin_folder/1
   def toggle_folder_pin
     @folder.toggle(:pinned)
 
@@ -103,11 +93,7 @@ class FoldersController < ApplicationController
       if @folder.save 
         format.js { render :toggle_pin_action, locals: { folder: @folder } }
       else 
-        format.js { 
-          render :error,
-          layout: false, 
-          locals: { error: @folder.errors.full_messages } 
-        }
+        format.js { render :error, layout: false, locals: { error: @folder.errors.full_messages } }
       end 
     end 
   end

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   
   # Preferences
   typed_store :preferences do |s|
-    s.string :order_folders_by, default: 'original-order', null: false
+    s.string :order_folders_by, default: 'updated_at', null: false
   end
   
   # Validations
@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   # Validations: Preferences
   validates :order_folders_by, inclusion: { 
-    in: %w(original-order number_of_tweets name),
+    in: %w(updated_at number_of_tweets name),
     message: 'Please provide a valid filter.'
   }  
 
