@@ -71,6 +71,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+    cursor-paginate (0.1.1)
+      rails (>= 5.2.3)
     data-confirm-modal (1.6.3)
       railties (>= 3.0)
     devise (4.7.3)
@@ -319,6 +321,7 @@ DEPENDENCIES
   bullet
   byebug
   coffee-rails (~> 4.2)
+  cursor-paginate
   data-confirm-modal
   devise
   faker

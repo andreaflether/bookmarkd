@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'activerecord-typedstore'
 gem 'awesome_print'
 gem 'bootstrap4-kaminari-views'
+gem 'cursor-paginate'
 gem 'devise'
 gem 'data-confirm-modal'
 gem 'faker'
@@ -31,7 +32,6 @@ gem 'twitter'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'faker'
 end
 
 group :development do
