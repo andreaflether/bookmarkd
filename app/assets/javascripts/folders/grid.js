@@ -24,9 +24,9 @@ $(document).ready(function() {
           updated_at.innerHTML = html 
           return Date.parse(updated_at.innerText)
         },
-        number_of_tweets: function(itemElem) {
-          var number_of_tweets = $(itemElem).find('.number-of-tweets')
-          return parseInt(number_of_tweets.text().match(/\d+/)[0]);
+        number_of_bookmarks: function(itemElem) {
+          var number_of_bookmarks = $(itemElem).find('.number-of-bookmarks')
+          return parseInt(number_of_bookmarks.text().match(/\d+/)[0]);
         }
       },
       sortBy: ['category', sort_by ],
@@ -86,7 +86,7 @@ $(document).ready(function() {
   }
 
   function getAsc(value) {
-    if(value == 'number_of_tweets' || value == 'updated_at') {
+    if(value == 'number_of_bookmarks' || value == 'updated_at') {
       return false;
     } else {
       return { 

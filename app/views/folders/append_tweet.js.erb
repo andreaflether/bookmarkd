@@ -4,12 +4,8 @@ $('#tweetUrl').val('');
 
 $('#no-tweets').remove();
 
-$("#pagination").load(location.href+" #pagination>*","");
-
-$('#tweetsCount').html("<%= j page_entries_info bookmarks %>")
+$('#tweetsCount').html("<%= pluralize_bookmarks_count(@folder) %>")
 
 $("<%= j render bookmark %>").prependTo($('#tweets-container')).fadeIn('slow');
 
-$('#tweets-container').empty();
-$("<%= j render bookmarks %>").appendTo($('#tweets-container')).fadeIn('slow');
-
+initializeTippy();

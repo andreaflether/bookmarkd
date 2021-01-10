@@ -1,13 +1,8 @@
 <%= content_for(:title, t('.', folder: @folder.name)) %>
-<div class="col-md-9 col-lg-7 text-center">
-  <h2 class="text-brand">
-    <%= @folder.name %> 
-  </h2>
-</div>
-  
-<div class="w-100"></div>
 
-<div class="col-md-9 col-lg-7 text-center">
+<h2 class="col-12 text-brand text-center"><%= @folder.name %></h2>
+  
+<div class="col-lg-7 col-md-12 text-center">
   <% if @folder.description.present? %>
     <p class="text-secondary mt-1 mb-2 small"><%= @folder.description %></p>
   <% end %>
@@ -39,7 +34,8 @@
           title: "Delete folder: #{@folder.name}",
           data: { 
             confirm: t('delete_folder_confirmation', 
-            tweet_count: pluralize(@folder.bookmarks.size, 'tweet'))
+              bookmarks_count: pluralize_bookmarks_count(@folder)
+            )
           } do %>
           <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
         <% end %>
@@ -48,9 +44,7 @@
   </div>
 </div>
 
-<div class="w-100"></div>
-
-<div class="col-md-12 col-lg-7 mt-3">
+<div class="col-lg-7 col-md-12 mt-3">
   <%= simple_form_for @folder, remote: true do |f| %>
     <%= f.simple_fields_for :bookmarks, @folder.bookmarks.build do |t| %>
       <%= t.simple_fields_for :tweet, Tweet.new do |tt| %>
@@ -66,7 +60,8 @@
             input_html: { 
               id: 'tweetUrl',
               class: 'hasToggledIcon',
-              placeholder: 'Enter Tweet URL here'
+              placeholder: 'Enter Tweet URL here',
+              autocomplete: 'off'
             } %>
           <div class="input-group-append">   
             <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
@@ -77,38 +72,36 @@
   <% end %>
 </div>
 
-<div class="w-100"></div>
-  
-<div class="col-md-12 col-lg-7 <%= @bookmarks.next_page ? 'my-2' : 'mt-3 mb-0' %>" 
-  id="pagination"
->
-  <%= paginate @bookmarks, 
-    theme: 'twitter-bootstrap-4',
-    pagination_class: 'pagination-sm justify-content-center'
-  %>
-</div>
-
-<div class="col-md-12 text-center">
+<div class="col-12 text-center">
   <span class="badge badge-sm badge-pill badge-brand">
     <p class="mb-0 px-2 py-1" id="tweetsCount">
-      <%= page_entries_info @bookmarks %>  
+      <%= pluralize_bookmarks_count(@folder) %>
     </p>
   </span>
 </div>
 
-<div class="w-100"></div>
-
 <div class="col-lg-7 col-md-12 text-center mt-1" id="tweets-container">  
   <% if @bookmarks.blank? %>
-    <%= render 'tweets/no_bookmarks' %>
+    <%= render 'bookmarks/no_bookmarks' %>
   <% else %>
-    <%= render @bookmarks %>
-    <div class="w-100"></div>
+    <%= render @bookmarks %> 
   <% end %>
 </div>
 
-<%= link_to '#', 
-  class: 'btn btn-primary position-fixed back-to-top invisible',
-  data: { 'tippy-content': 'Go back to top', 'tippy-placement': 'right'} do %>
-  <i class="fas fa-arrow-up"></i>
-<% end %>
+<div class="col-lg-7 col-md-12 mt-3 mb-0 text-center" 
+  id="pagination"
+>
+  <nav aria-label="pagination">
+    <ul class="pagination">
+      <% if @bookmarks.has_next? %>
+        <li class="page-item">
+          <%= link_to 'Next', { 
+            controller: :folders, 
+            action: :show, 
+            cursor: @bookmarks.next_cursor 
+          }, class: 'page-link next' %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>

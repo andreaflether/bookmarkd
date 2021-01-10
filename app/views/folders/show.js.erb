@@ -1,0 +1,8 @@
+$('#tweets-container').append('<%= j render @bookmarks %>');
+
+<% unless @bookmarks.has_next? %>
+  $(window).off('scroll');
+  $('#pagination').remove();
+<% end %>
+
+initializeTippy();

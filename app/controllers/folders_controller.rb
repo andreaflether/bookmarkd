@@ -24,18 +24,10 @@ class FoldersController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.js
+      format.js 
+      # format.json
     end
   end
-
-  def set_bookmarks 
-    @bookmarks = current_user.folders
-      .find(@folder.id)
-      .bookmarks
-      .includes([:tweet])
-      .order('created_at DESC')   
-      .page(params[:page])
-  end 
 
   # GET /folders/new
   def new
@@ -67,7 +59,7 @@ class FoldersController < ApplicationController
         format.json { render :append_tweet, status: :ok, location: @folder }
         format.js { 
           render :append_tweet, 
-          locals: { bookmark: @folder.bookmarks.last, bookmarks: @bookmarks } 
+          locals: { bookmark: @folder.bookmarks.last, bookmarks: @folder.bookmarks_count } 
         }
       else
         format.html { render :edit }
@@ -110,14 +102,20 @@ class FoldersController < ApplicationController
     @folder = Folder.find(params[:id])
   end
 
+  def set_bookmarks 
+    @bookmarks = @folder.bookmarks 
+      .includes([:tweet])
+      .before(id: params[:cursor]).limit(5)
+  end 
+
+  def force_json 
+    request.format = :json
+  end
+
   # Only allow a list of trusted parameters through.
   def folder_params
     params.require(:folder).permit(:name, :description, :pinned, 
       bookmarks_attributes: [ tweet_attributes: [ :id, :link ] ]
     )
-  end
-
-  def force_json 
-    request.format = :json
   end
 end
