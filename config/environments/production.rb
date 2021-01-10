@@ -7,16 +7,16 @@ Rails.application.configure do
   # Devise mailer
   config.action_mailer.default_url_options = { host: 'bookmarkdd.herokuapp.com' }
 
-  ActionMailer::Base.smtp_settings = {
-    user_name: 'apikey',
-    password: Rails.application.credentials.sendgrid_api_key,
-    domain: 'bookmarkdd.herokuapp.com',
-    address: 'smtp.sendgrid.net',
-    port: 587,
-    authentication: :plain,
-    enable_starttls_auto: true
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    :address              => 'smtp.gmail.com',
+    :port                 => 587,
+    :user_name            => Rails.application.credentials.email[:user_name],
+    :password             => Rails.application.credentials.email[:password],
+    :authentication       => 'plain',
+    :enable_starttls_auto => true
   }
-
+  
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
