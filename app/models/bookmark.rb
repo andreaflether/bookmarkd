@@ -5,6 +5,12 @@ class Bookmark < ApplicationRecord
   accepts_nested_attributes_for :tweet
 
   before_validation :find_or_create_tweet, unless: Proc.new { |p| p.tweet.invalid? } 
+  after_destroy :delete_tweet_on_folders_reset
+
+  def delete_tweet_on_folders_reset
+    # Deletes the tweet alongside with the bookmark when no other folder contains it
+    tweet.destroy! if !tweet.folders.any?
+  end
 
   validates_uniqueness_of :tweet_id,
                           scope: :folder_id,

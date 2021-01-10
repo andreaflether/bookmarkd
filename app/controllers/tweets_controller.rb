@@ -56,16 +56,10 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   # DELETE /tweets/1.json
   def destroy
-    @folder = Folder.find(params[:folder_id]) if params[:folder_id]
+    @folder = Folder.find(params[:folder_id])
 
-    @tweet.destroy if @tweet.folders.count == 1 
+    @folder.bookmarks.destroy @bookmark
     
-    @folder.tweets.delete @tweet
-    @folder.save  
-
-    # redirect_to request.referer, notice: "Tweet successfully removed from <b>#{@folder.name}</b>."
-  
-    # @tweet.destroy
     respond_to do |format|
       format.html { redirect_to request.referer, notice: "Tweet removed successfully." }
       format.js { 
@@ -87,7 +81,7 @@ class TweetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
-      @tweet = Tweet.find(params[:id])
+      @bookmark = Bookmark.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
