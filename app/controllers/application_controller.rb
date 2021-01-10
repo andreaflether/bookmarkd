@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :pinned_folders, if: :user_signed_in? 
 
   def pinned_folders
-    @pinned = current_user.pinned_folders.order(updated_at: :desc)
+    @pinned = current_user.pinned_folders.order(name: :asc)
   end
 
   def after_sign_in_path_for(resource)
