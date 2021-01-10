@@ -71,3 +71,7 @@ button,
   transform: rotate(45deg);
   margin-left: 0.4rem;
 }
+
+.list-group-item.active {
+  border-left: 3px solid $brand;
+}

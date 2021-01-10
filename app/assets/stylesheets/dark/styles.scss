@@ -8,8 +8,8 @@ html, body {
   color: rgba($light, 0.8); 
 }
 
-hr { 
-  border-top: 1px solid rgba(#fff, 0.1); 
+hr, .modal-footer { 
+  border-top: 1px solid rgba(#fff, 0.1);
 }
 
 /* Overriding bootstrap default values */
@@ -53,32 +53,28 @@ hr {
   &:focus, 
   &:active {
     color: rgb(181, 175, 166);
-    background-color: transparent;
+    background-color: transparent !important;
     outline-color: initial;
   }
 }
 
-.form-control:-webkit-autofill {
-  border: 1px solid rgba($light, 0.2);
+.form-control:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
   -webkit-text-fill-color: #fff;
-  -webkit-box-shadow: 0 0 0px 1000px #121212 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #121212 inset !important;
   transition: background-color 5000s ease-in-out 0s;
-  &:focus {
-    border: 1px solid $brand !important;
-  }
 }
 
 .list-group-item.transparent {
   background: transparent;
-  border-bottom: 1px solid rgba(#fff, 0.2);
 }
 
 .modal-content {
   background-color: $dark;
   color: rgba(#fff, .6);
   border-color: rgba($light, 0.1);
-  .modal-header { border-bottom: 1px solid rgba($light, 0.1); }
-  .modal-footer { border-top: 1px solid rgba($light, 0.1); }
   button { 
     color: rgba(#fff, .4);
     &:hover {
@@ -90,6 +86,10 @@ hr {
   p { 
     margin-bottom: 0.5rem; 
     font-weight: bold;
+  }
+
+  .modal-header {
+    border-bottom: 1px solid rgba(#fff, 0.1);
   }
 }
 
@@ -118,7 +118,6 @@ hr {
 /* Buttons/Bgs */
 .bg-custom {
   background-color: rgba($light, 0.03);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .btn-default {
@@ -126,7 +125,6 @@ hr {
   color:rgba(#fff, .75) !important;
   background-color: transparent;
   &:hover, 
-  &:focus,
   &:active {
     color: $dark !important;
     text-shadow: none; /* Prevent inheritance from `body` */
@@ -154,7 +152,6 @@ hr {
   text-shadow: none;
   .page-item .page-link {
     background-color: transparent;
-    border: 1px solid rgba($light, 0.2);
     color: rgba($light, 0.4);
     &:hover {
       background-color: rgba($light, 0.1);
@@ -199,19 +196,27 @@ hr {
   }
 }
 
-.folder-menu {
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: rgba($light, 0.2); 
-  } 
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background:rgba($light, 0.3); 
-  }
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba($light, 0.4); 
-  }
+.list-group-flush > .list-group-item.transparent {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.list-group-flush > .list-group-item:last-child {
+  border-bottom-width: 0;
+}
+
+body::-webkit-scrollbar-track,
+.folder-menu::-webkit-scrollbar-track {
+  background: rgba($light, 0.1); 
+}
+
+body::-webkit-scrollbar-thumb,
+.folder-menu::-webkit-scrollbar-thumb {
+  background: rgba($light, 0.2);
+}
+
+body::-webkit-scrollbar-thumb:hover,
+.folder-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba($light, 0.3); 
 }
 
 .folder-menu, .tips {
@@ -233,7 +238,6 @@ hr {
 }
 
 .easy-autocomplete-container ul {
-  border-top: 1px dotted lighten($color: $dark, $amount: 50%);
   background-color: lighten($color: $dark, $amount: 5%);
 }
 

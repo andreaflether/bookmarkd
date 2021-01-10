@@ -6,15 +6,6 @@ body {
   color: $secondary;  
 }
 
-/* Overring bootstrap default values */
-.navbar-light .navbar-nav .nav-link {
-  color: rgba(#333, 0.6);
-  &:focus,
-  &:hover { 
-    color: darken($color: $dark-grey, $amount: 10%) !important; 
-  }
-}
-
 .dropdown-item {
   &:hover,
   &:active {
@@ -86,19 +77,19 @@ body {
   }
 }
 
-.folder-menu {
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: rgba($secondary, 0.05); 
-  } 
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background:rgba($secondary, 0.1); 
-  }
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba($secondary, 0.2); 
-  }
+body::-webkit-scrollbar-track,
+.folder-menu::-webkit-scrollbar-track {
+  background: rgba($secondary, 0.1); 
+}
+
+body::-webkit-scrollbar-thumb,
+.folder-menu::-webkit-scrollbar-thumb {
+  background: rgba($secondary, 0.15);
+}
+
+body::-webkit-scrollbar-thumb:hover,
+.folder-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba($secondary, 0.25); 
 }
 
 .folder-menu, .tips {
