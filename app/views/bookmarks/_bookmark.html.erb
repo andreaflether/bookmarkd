@@ -4,8 +4,10 @@
     <div class="mt-2">
       <small class="text-muted d-flex align-items-center">
         <i class="far fa-clock ml-2"></i>
-        <span class="ml-2">
-          <%= bookmark.tweet.created_at.strftime("%d/%m/%Y") %>
+        <span class="ml-2" 
+          data-tippy-content="<small><%= datetime_formatted(bookmark.created_at) %></small>"
+        >
+          <%= bookmark.created_at.strftime("%d/%m/%Y") %>
         </span>
       </small>
     </div>
@@ -19,13 +21,15 @@
         }) do %>
         <i class="fas fa-copy mt-2 ml-2 text-muted"></i>
       <% end %>
-      <%= link_to folder_tweet_path(@folder, bookmark.tweet), 
+      <%= link_to folder_bookmark_path(@folder, bookmark), 
         method: :delete, 
         remote: true,
         class: 'text-danger',
-        title: 'Delete tweet from folder',
         data: { 
-          confirm: 'Are you sure?'
+          confirm: 'Are you sure?',
+          title: 'Remove bookmark from folder',
+          'tippy-content': 'Remove bookmark from folder',
+          'tippy-placement': 'right'
         } do %>
         <i class="fas fa-trash-alt mt-2 mx-2"></i>
       <% end %>

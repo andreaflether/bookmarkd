@@ -53,9 +53,14 @@ $(document).ready(function() {
 })
 
 function initializeTippy() {
-  tippy('[data-tippy-content]', {
+  tippy('[data-tippy-content], button', {
     arrow: false,
     theme: 'translucent',
     allowHTML: true,
+    content(reference) {
+      const title = reference.getAttribute('title');
+      reference.removeAttribute('title');
+      return title;
+    },
   });
-}
+};
