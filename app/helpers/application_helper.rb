@@ -39,7 +39,11 @@ module ApplicationHelper
 
   def sort_by_template(display_text, sort_by) 
     link_to display_text, order_folders_by_path(params: { order_folders_by: sort_by}), 
-    data: { 'sort-by': sort_by },
+    data: { 
+      'sort-by': sort_by, 
+      'tippy-content': "Sort folders by #{t("content.sort_by.#{sort_by}")}",
+      'tippy-placement': 'bottom'
+    },
     method: :put, 
     remote: true,
     class: 'btn'

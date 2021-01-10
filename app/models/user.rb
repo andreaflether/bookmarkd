@@ -8,7 +8,7 @@ class User < ApplicationRecord
   attr_accessor :terms
 
   # Relationships
-  has_many :folders
+  has_many :folders, dependent: :destroy
   
   # Preferences
   typed_store :preferences do |s|
@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   # Validations: Preferences
   validates :order_folders_by, inclusion: { 
-    in: %w(updated_at number_of_tweets name),
+    in: %w(updated_at number_of_bookmarks name),
     message: 'Please provide a valid filter.'
   }  
 
