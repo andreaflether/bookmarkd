@@ -1,14 +1,18 @@
 <div class="col-md-9 col-lg-6 d-flex justify-content-between align-items-center text-center mb-3 mt-2">
   <%= link_to :back, 
     class: 'text-muted', 
-    data: { 'tippy-content': 'Return to previous page', 'tippy-placement': 'right'} do %>
+    data: { 
+      'tippy-content': t('content.tippy.folders.previous_page'), 
+      'tippy-placement': 'right'
+    } do %>
     <i class="fas fa-arrow-left"></i>
   <% end %>
 
-  <h3>New folder</h3>
+  <h3><%= t('content.actions.folders.new') %></h3>
 
   <div></div>
 </div>
 
 <div class="w-100"></div>
+
 <%= render 'form', folder: @folder %>

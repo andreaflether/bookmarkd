@@ -1,5 +1,5 @@
 <div class="col-md-8 col-lg-6">
-  <h3 class="text-center mb-3">Edit <%= resource_name.to_s.humanize.downcase %> info</h3>
+  <h3 class="text-center mb-3"><%= t('content.actions.users.registrations.edit') %></h3>
   <%= render 'devise/shared/error_messages', resource: resource %>
 
   <h5>Your account</h5>
@@ -13,7 +13,11 @@
       autocomplete: 'email',
       required: true %>
 
-    <p class="text-warning mt-2 small mb-2">
+    <br />
+    <h5>Change your password</h5>
+    <hr />
+
+    <p class="text-warning small mb-2">
       <i class="fas fa-exclamation-circle"></i>
       Leave these fields blank if you don't wanna change your password.
     </p>
@@ -36,8 +40,10 @@
         %>  
       </div>   
     </div> 
-      
-    <p class="mt-4 text-brand font-weight-bold">Enter your current password in order to confirm the changes.</p>
+    
+    <br />
+
+    <p class="text-brand mt-2 font-weight-bold">Enter your current password in order to confirm the changes.</p>
     <hr>
     <%= f.input :current_password, wrapper: :input_group,
       autocomplete: 'current-password',

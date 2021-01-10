@@ -14,7 +14,13 @@
     <span class="text-center">
       <%= button_to 'Deactivate', 
         registration_path(resource_name), 
-        data: { title: 'Deactivate account', confirm: 'Are you sure?', toggle: 'tooltip' }, 
+        data: { 
+          title: 'Deactivate account', 
+          confirm: 'Are you sure?', 
+          toggle: 'tooltip',
+          'tippy-content': 'Deactivate account',
+          'tippy-placement': 'right' 
+        }, 
         method: :delete,
         class: 'btn btn-danger mt-3' 
       %>

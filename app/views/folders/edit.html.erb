@@ -1,49 +1,46 @@
 <%= content_for(:title, t('.', folder: @folder.name)) %>
 
-<div class="col-md-9 col-lg-6 d-flex justify-content-between align-items-center text-center mb-3 mt-2">
+<div class="col-md-12 col-lg-6 d-flex justify-content-between align-items-center text-center mb-3 mt-2">
   <%= link_to :back, 
     class: 'text-muted',
     data: {
-      'tippy-content': 'Return to previous page',
+      'tippy-content': t('content.tippy.folders.previous_page'),
       'tippy-placement': 'right'
     } do %>
     <i class="fas fa-arrow-left"></i>
   <% end %>
 
-  <h3>Edit folder info</h3>
+  <h3><%= t('content.actions.folders.edit') %></h3>
   <%= link_to folder_path(@folder), 
     target: '_blank', 
     data: {
-      'tippy-content': 'Open folder in a new tab',
+      'tippy-content': t('content.tippy.folders.open_in_new_tab'),
       'tippy-placement': 'bottom'
     } do %>
     <i class="link-brand fas fa-external-link-alt"></i>
   <% end %>
 </div>
 
-<div class="w-100"></div>
-
-<p class="small text-muted">
+<p class="small text-muted text-center col-12">
   This folder was created on <b><%= datetime_formatted(@folder.created_at) %></b>
 </p>
-
-<div class="w-100"></div>
 
 <%= render 'form', folder: @folder %>
 
 <div class="w-100"></div>
 
-<div class="col-md-9 col-lg-6 mt-2 text-center">
+<div class="col-md-12 col-lg-6 mt-2 text-center">
   <hr>
-  <%= link_to 'Delete folder', 
+  <%= link_to t('content.actions.folders.delete'), 
     folder_path(@folder), 
     method: :delete, 
     class: 'btn btn-outline-danger',
     data: { 
-      'tippy-content': "Delete folder: #{@folder.name}",
+      'tippy-content': t('content.tippy.folders.delete', folder: @folder.name),
       'tippy-placement': 'right',
       confirm: t('delete_folder_confirmation', 
-      tweet_count: pluralize(@folder.bookmarks.size, 'tweet'))
+        bookmarks_count: pluralize_bookmarks_count(@folder)
+      )
     }
   %>
 </div>

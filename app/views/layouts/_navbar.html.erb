@@ -28,25 +28,27 @@
         <div class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
           <%= link_to edit_user_registration_path, class: 'dropdown-item text-muted' do %>
             <% if current_user.provider == 'twitter' %>
-              <i class="fas fa-user-alt mr-2"></i>User info
+              <i class="fas fa-user-alt mr-2"></i><%= t('content.actions.users.omniauth.show') %>
             <% else %>
-              <i class="fas fa-user-edit mr-2"></i>Edit user info
+              <i class="fas fa-user-edit mr-2"></i><%= t('content.actions.users.registrations.edit') %>
             <% end %>
           <% end %>
           
           <%= link_to destroy_user_session_path, class: 'dropdown-item text-muted', method: :delete do %>
-            <i class="fas fa-sign-out-alt mr-2"></i>Sign out
+            <i class="fas fa-sign-out-alt mr-2"></i><%= t('content.actions.users.sessions.destroy') %>
           <% end %>
         </div>
       </li>
     <% else %>
       <li class="nav-item">
-        <a class="nav-link" href="/users/sign_in">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </a>
+        <%= link_to new_user_session_path, class: 'nav-link' do %>
+          <i class="fas fa-sign-in-alt"></i> <%= t('content.actions.users.sessions.new') %>
+        <% end %>
       </li>
       <li class="nav-item">
-        <a class="nav-link link-brand" href="/users/sign_up">Sign up</a>
+        <%= link_to new_user_registration_path, class: 'nav-link' do %>
+          <%= t('content.actions.users.registrations.new') %>
+        <% end %>
       </li>
     <% end %>
     </ul>

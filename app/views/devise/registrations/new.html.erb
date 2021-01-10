@@ -1,5 +1,5 @@
 <div class="col-xl-5 col-lg-6 col-md-9 rounded bg-custom justify-content-center">
-  <h3 class="text-center">Sign up</h3>
+  <h3 class="text-center"> <%= t('content.actions.users.registrations.new') %></h3>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render 'devise/shared/error_messages', resource: resource %>
@@ -29,11 +29,15 @@
       <%= f.input :terms, as: :boolean, wrapper: :custom_boolean, 
         label: "I accept the 
           #{link_to 'Terms of Service', terms_of_service_path, class: 'link-brand', target: '_blank' } 
-          and #{link_to 'Privacy Policy', privacy_policy_path, class: 'link-brand', target: '_blank' }".html_safe %>
+          and #{link_to 'Privacy Policy', privacy_policy_path, class: 'link-brand', target: '_blank' }".html_safe 
+      %>
     </div>
 
     <div class="actions">
-      <%= f.button :submit, 'Sign up', class: 'btn btn-brand w-100 mb-3' %>
+      <%= f.button :submit, 
+        t('content.actions.users.registrations.new'), 
+        class: 'btn btn-brand w-100 mb-4' 
+      %>
     </div>
   <% end %>
   <%= render 'devise/shared/links' %>

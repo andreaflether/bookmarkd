@@ -2,13 +2,13 @@
   <%- if controller_name != 'sessions' %>
     <p class="mb-1">
       <span class="text-muted">Already have an account? </span>
-      <b><%= link_to "Log in", new_session_path(resource_name) %></b>
+      <b><%= link_to t('content.actions.users.sessions.new'), new_session_path(resource_name) %></b>
     </p>
   <% end %>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <p class="mb-1">
-      <b><%= link_to "Sign up", new_registration_path(resource_name) %></b>
+      <b><%= link_to t('content.actions.users.registrations.new'), new_registration_path(resource_name) %></b>
       <span class="text-muted">for a new account </span>
     </p>
   <% end %>
@@ -30,16 +30,11 @@
       <div class="flex-fill"><hr /></div>
     </div>
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to omniauth_authorize_path(resource_name, provider), class: 'mb-0' do %>
-        
-        <%- if provider.to_s == "twitter" %>
-          <span class="link-brand">
-            <i class="fab fa-twitter"></i>
-          <b>Sign in with <%= OmniAuth::Utils.camelize(provider) %></b>
-          </span>
-        <% else %>
-          Sign in with <%= OmniAuth::Utils.camelize(provider) %>
-        <% end %>
+      <%= link_to omniauth_authorize_path(resource_name, provider), class: 'mb-0' do %> 
+        <span class="link-brand">
+          <i class="fab fa-twitter"></i>
+        <b><%= t('content.actions.users.omniauth.new', provider: OmniAuth::Utils.camelize(provider)) %></b>
+        </span>
       <% end %>
     <% end %>
   <% end %>

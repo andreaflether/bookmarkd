@@ -1,4 +1,32 @@
-
 en:
   errors:
     format: "%{message}"
+  content:
+    sort_by:
+      number_of_bookmarks: Number of Bookmarks
+      name: Name
+      updated_at: Last Update
+    actions:
+      folders: 
+        delete: Delete folder
+        edit: Edit folder info
+        new: New folder
+      users: 
+        registrations:
+          edit: Edit user info
+          new: Sign up
+        sessions:
+          destroy: Sign out
+          new: Log in
+        omniauth:
+          show: User info
+          new: Sign in with %{provider}
+        passwords:
+          new: Forgot your password?
+          edit: Change your password
+    tippy:
+      folders:
+        delete: "Delete folder: %{folder}"
+        toggle_pin: "%{state} this folder"
+        open_in_new_tab: Open folder in a new tab
+        previous_page: Return to previous page
