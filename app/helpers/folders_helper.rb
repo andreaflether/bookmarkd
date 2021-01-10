@@ -14,4 +14,12 @@ module FoldersHelper
   def datetime_formatted(datetime)
     datetime.strftime("%B %d, %Y %H:%M")
   end
+
+  def pluralize_bookmarks_count(folder)
+    pluralize(folder.bookmarks_count, 'bookmark')
+  end
+
+  def state_name(folder)
+    is_pinned(folder) ? 'Unpin' : 'Pin'
+  end
 end

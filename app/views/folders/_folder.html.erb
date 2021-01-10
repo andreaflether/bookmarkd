@@ -9,7 +9,7 @@
           remote: true,
           class: is_pinned(folder) ? 'link-brand' : 'pin-folder-icon',
           data: { 
-            'tippy-content': "#{is_pinned(folder) ? 'Unpin' : 'Pin'} this folder"
+            'tippy-content': t('content.tippy.folders.toggle_pin', state: state_name(folder))
           } do %>
           <i class="fas fa-thumbtack fa-xs"></i>
         <% end %>
@@ -29,11 +29,11 @@
         </p>
         
       <div class="d-flex align-items-end justify-content-between">
-        <span class="text-brand small number-of-tweets"><%= pluralize(folder.bookmarks.size, 'tweet') %></span>
+        <span class="text-brand small number-of-bookmarks"><%= pluralize_bookmarks_count(folder) %></span>
         <div class="dropdown">
           <a class="folder-dropdown-options" 
             type="button" 
-            id="folder-actions" 
+            id="folder-actions"
             data-toggle="dropdown" 
             aria-haspopup="true" 
             aria-expanded="false"
@@ -43,18 +43,21 @@
 
           <div class="dropdown-menu border-0" aria-labelledby="folder-actions">
             <%= link_to edit_folder_path(folder), class: 'dropdown-item text-muted' do %> 
-              <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
+              <i class="fas fa-pencil-alt"></i> &nbsp; <%= t('content.actions.folders.edit') %>
             <% end %>
             <%= link_to folder_path(folder), 
               method: :delete, 
               class: 'dropdown-item text-muted',
-              title: "Delete folder: #{folder.name}",
               remote: true,
               data: { 
                 confirm: t('delete_folder_confirmation', 
-                tweet_count: pluralize(folder.bookmarks.size, 'tweet')),
+                  bookmarks_count: pluralize_bookmarks_count(folder)
+                ), 
+                title: t('content.tippy.folders.delete', folder: folder.name),
+                'tippy-content': t('content.tippy.folders.delete', folder: folder.name),
+                'tippy-placement': 'bottom'
               } do %>
-              <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
+              <i class="fas fa-trash-alt"></i> &nbsp; <%= t('content.actions.folders.delete') %>
             <% end %>
           </div>
         </div>
