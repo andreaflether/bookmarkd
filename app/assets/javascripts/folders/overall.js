@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // hide or show the "back to top button" depending on scroll from top
-  $(window).scroll(function(){
+  $(document).on('scroll load', function(){
     if ($(this).scrollTop() > 1000 ) {
       $('.back-to-top').removeClass('invisible');
     } else {

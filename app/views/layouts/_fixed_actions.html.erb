@@ -31,3 +31,9 @@
     </a>
   </div>
 <% end %>
+
+<%= link_to '#', 
+  class: 'btn btn-primary position-fixed back-to-top invisible',
+  data: { 'tippy-content': 'Go back to top', 'tippy-placement': 'right'} do %>
+  <i class="fas fa-arrow-up"></i>
+<% end %>

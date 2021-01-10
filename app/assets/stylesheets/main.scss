@@ -25,6 +25,10 @@ a, .link-brand {
   }
 }
 
+body::-webkit-scrollbar {
+  width: 0.8em;
+}
+
 /* Text related */
 .fa-xs { 
   font-size: .65em; 
@@ -106,7 +110,7 @@ footer {
 }
 
 .back-to-top {
-  right: 50%;
+  right: 48.5%;
 }
 
 .icon-inside {
