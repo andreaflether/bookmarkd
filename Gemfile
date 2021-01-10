@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
 # Custom gems for this project
+gem 'actionmailer_inline_css'
 gem 'activerecord-typedstore'
 gem 'bootstrap4-kaminari-views'
 gem 'cursor-paginate'
