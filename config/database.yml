@@ -1,4 +1,17 @@
 default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/bookmarkd_development
+
+test:
+  <<: *default
+  database: db/bookmarkd_test
+
+production:
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
@@ -6,18 +19,4 @@ default: &default
   password: <%= Rails.application.credentials.db_password %>
   host: localhost
   port: 5432
-
-development:
-  <<: *default
-  database: bookmarkd_development
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: bookmarkd_development
-
-production:
-  <<: *default
   database: bookmarkd_production
