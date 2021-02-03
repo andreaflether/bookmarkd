@@ -15,7 +15,7 @@
     html: { autocomplete: :off, class: 'px-3' },
     method: :get do |form| %>
     <%= form.text_field :q, placeholder: 'Type a folder name...', data: { behavior: 'autocomplete' },
-      class: 'form-control mb-4', id: 'sidebar-folder-search' %>
+      class: 'form-control', id: 'sidebar-folder-search' %>
   <% end %>
   <hr />
   <p class="font-weight-bold mb-1 px-3">Pinned</p>
