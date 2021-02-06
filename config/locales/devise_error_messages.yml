@@ -1,22 +1,32 @@
 en:
   activerecord:
-      errors:
-        models:
-          user:
-            attributes:
-              password:
-                blank: "%{attribute} is required."
-                confirmation: does not match
-                too_short: "%{attribute} is too short! Minimum is %{count} characters."
-              name:
-                blank: "%{attribute} can't be blank."
-              email:
-                blank: "%{attribute} is required."
-                invalid: "Please enter a valid email."
-                taken: "This email is already taken."
-                accepted: the girls are fightingggggg
-              current_password:
-                invalid: Invalid password!
-                blank: Please provide your current password.
-              password_confirmation:
-                confirmation: "Doesn't match %{attribute}"
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: "%{attribute} is required."
+              too_short: "%{attribute} is too short! Minimum is %{count} characters."
+            name:
+              blank: "%{attribute} can't be blank."
+              too_long: Your name must be shorter than %{count}.
+            email:
+              blank: "%{attribute} is required."
+              invalid: Please enter a valid email.
+              taken: This email is already taken.
+            current_password:
+              invalid: Invalid password!
+              blank: Please provide your current password.
+            password_confirmation:
+              confirmation: Doesn't match %{attribute}.
+            username:
+              taken: This username is already taken.
+              blank: Please enter a valid username.
+              too_long: Your username must be shorter than %{count} characters.
+              too_short: Your username must be longer than %{count} characters.
+              invalid: "Your username can only contain letters, numbers and '_'."
+              numeric_only: Please include a non-number character.
+            terms:
+              accepted: You need to accept the terms and conditions.
+            order_folders_by:
+              inclusion: Please provide a valid filter.
