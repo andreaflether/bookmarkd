@@ -5,7 +5,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -40,20 +40,20 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.around(:each) do |example|
+  config.around do |example|
     DatabaseCleaner.cleaning do
       example.run
     end
   end
 
-  Shoulda::Matchers.configure do |config| 
-    config.integrate do |with| 
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
       # Test framework
       with.test_framework :rspec
-      
+
       # Libraries
       with.library :rails
-    end 
+    end
   end
 
   # Add Devise modules
