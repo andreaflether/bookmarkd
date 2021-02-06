@@ -18,21 +18,22 @@ gem 'actionmailer_inline_css'
 gem 'activerecord-typedstore'
 gem 'bootstrap4-kaminari-views'
 gem 'cursor-paginate'
-gem 'devise'
 gem 'data-confirm-modal'
+gem 'devise'
 gem 'faker'
 gem 'friendly_id'
-gem 'pg'
 gem 'kaminari'
 gem 'omniauth-twitter'
+gem 'pg'
 gem 'ransack'
 gem 'rest-client'
+gem 'rubocop-rspec', require: false
 gem 'simple_form'
 gem 'twitter'
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
 end
 
@@ -50,7 +51,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
-group :test do 
+group :test do
   gem 'database_cleaner', '~> 1.7'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'json_matchers'
@@ -63,4 +64,4 @@ group :test do
   gem 'webmock'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
