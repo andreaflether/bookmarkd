@@ -12,6 +12,12 @@ hr, .modal-footer {
   border-top: 1px solid rgba(#fff, 0.1);
 }
 
+// input,
+// textarea,
+// [contenteditable] {
+//   caret-color: red;
+// }
+
 /* Overriding bootstrap default values */
 .btn-outline-secondary { 
   border-color: rgba(#fff, 0.15) !important; 
@@ -65,10 +71,15 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #fff;
   -webkit-box-shadow: 0 0 0px 1000px #121212 inset !important;
   transition: background-color 5000s ease-in-out 0s;
+  caret-color: rgb(181, 175, 166);
 }
 
 .list-group-item.transparent {
   background: transparent;
+}
+
+.list-group-item-action {
+  color: rgba($dark, 0.6);
 }
 
 .modal-content {

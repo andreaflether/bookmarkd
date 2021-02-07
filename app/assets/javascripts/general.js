@@ -53,7 +53,7 @@ $(document).ready(function() {
 })
 
 function initializeTippy() {
-  tippy('[data-tippy-content], button', {
+  tippy('[data-tippy-content], button.btn-action', {
     arrow: false,
     theme: 'translucent',
     allowHTML: true,
