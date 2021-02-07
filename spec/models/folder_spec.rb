@@ -18,11 +18,14 @@ RSpec.describe Folder, type: :model do
   end
 
   describe '#name' do
+    let(:user) { create(:user) }
+    let(:folder) { create(:folder, user: user) }
+
     it {
-      expect(subject).to validate_presence_of(:name).with_message(I18n.t('activerecord.errors.models.folder.attributes.name.blank'))
+      expect(folder).to validate_presence_of(:name).with_message(I18n.t('activerecord.errors.models.folder.attributes.name.blank'))
     }
 
-    it { is_expected.to validate_length_of(:name).is_at_most(25) }
+    it { expect(folder).to validate_length_of(:name).is_at_most(25) }
   end
 
   describe '#description' do

@@ -22,8 +22,7 @@ class Folder < ApplicationRecord
 
   def slug_candidates
     [
-      :name,
-      [Faker::Number.unique.number(digits: 4), :name]
+      [user.username, :name]
     ]
   end
 
