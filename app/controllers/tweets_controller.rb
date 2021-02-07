@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :set_tweet, only: %i[show edit update destroy]
   before_action :set_bookmarks, only: [:destroy]
 
   # GET /tweets
@@ -10,8 +10,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1
   # GET /tweets/1.json
-  def show
-  end
+  def show; end
 
   # GET /tweets/new
   def new
@@ -19,14 +18,13 @@ class TweetsController < ApplicationController
   end
 
   # GET /tweets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tweets
   # POST /tweets.json
   def create
     @tweet = Tweet.find_or_create_by(tweet_params)
-    
+
     respond_to do |format|
       if @tweet.save
         Folder.find(params[:tweet][:folder_ids]).tweets << @tweet
@@ -59,33 +57,35 @@ class TweetsController < ApplicationController
     @folder = Folder.find(params[:folder_id])
 
     @folder.bookmarks.destroy @bookmark
-    
+
     respond_to do |format|
-      format.html { redirect_to request.referer, notice: "Tweet removed successfully." }
-      format.js { 
-        render :destroy, 
-        layout: false, 
-        locals: { tweet: @tweet, folder: @folder, bookmarks: @bookmarks }  }
+      format.html { redirect_to request.referer, notice: 'Tweet removed successfully.' }
+      format.js do
+        render :destroy,
+               layout: false,
+               locals: { tweet: @tweet, folder: @folder, bookmarks: @bookmarks }
+      end
     end
   end
 
-  def set_bookmarks 
+  def set_bookmarks
     @bookmarks = current_user.folders
-        .find(params[:folder_id])
-        .bookmarks
-        .includes([:tweet])
-        .order('created_at DESC')   
-        .page(params[:page])
-  end 
+                             .find(params[:folder_id])
+                             .bookmarks
+                             .includes([:tweet])
+                             .order('created_at DESC')
+                             .page(params[:page])
+  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @bookmark = Bookmark.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tweet_params
-      params.require(:tweet).permit(:link, folder_ids: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tweet
+    @bookmark = Bookmark.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def tweet_params
+    params.require(:tweet).permit(:link, folder_ids: [])
+  end
 end

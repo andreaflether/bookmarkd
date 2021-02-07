@@ -1,30 +1,30 @@
 class FoldersController < ApplicationController
   before_action :force_json, only: [:search]
-  before_action :set_folder, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
-  before_action :verify_user, only: [:show, :edit, :update, :destroy, :toggle_folder_pin]
-  before_action :set_bookmarks, only: [:show, :update, :destroy]
+  before_action :set_folder, only: %i[show edit update destroy toggle_folder_pin]
+  before_action :verify_user, only: %i[show edit update destroy toggle_folder_pin]
+  before_action :set_bookmarks, only: %i[show update destroy]
   before_action :authenticate_user!
 
   # GET /folders/search
-  def search 
+  def search
     @q = current_user.folders
-      .ransack(params[:q])
+                     .ransack(params[:q])
     @folders = @q.result
-      .order(name: :asc)
-      .limit(5)
+                 .order(name: :asc)
+                 .limit(5)
   end
-  
+
   # GET /folders
   def index
-    @folders = current_user.folders 
-      .order(pinned: :desc, updated_at: :desc)
+    @folders = current_user.folders
+                           .order(pinned: :desc, updated_at: :desc)
   end
 
   # GET /folders/1
   def show
     respond_to do |format|
       format.html
-      format.js 
+      format.js
       # format.json
     end
   end
@@ -57,10 +57,10 @@ class FoldersController < ApplicationController
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
         format.json { render :append_tweet, status: :ok, location: @folder }
-        format.js { 
-          render :append_tweet, 
-          locals: { bookmark: @folder.bookmarks.last, bookmarks: @folder.bookmarks_count } 
-        }
+        format.js do
+          render :append_tweet,
+                 locals: { bookmark: @folder.bookmarks.last, bookmarks: @folder.bookmarks_count }
+        end
       else
         format.html { render :edit }
         format.js { render :error, layout: false, locals: { error: @folder.errors.full_messages } }
@@ -82,40 +82,38 @@ class FoldersController < ApplicationController
     @folder.toggle(:pinned)
 
     respond_to do |format|
-      if @folder.save 
+      if @folder.save
         format.js { render :toggle_pin_action, locals: { folder: @folder } }
-      else 
+      else
         format.js { render :error, layout: false, locals: { error: @folder.errors.full_messages } }
-      end 
-    end 
-  end
-
-  def verify_user
-    unless folder_belongs_to_user?(@folder)
-      redirect_to folders_path, alert: 'This folder was not shared with you.'
+      end
     end
   end
 
+  def verify_user
+    redirect_to folders_path, alert: 'This folder was not shared with you.' unless folder_belongs_to_user?(@folder)
+  end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_folder
     @folder = Folder.find(params[:id])
   end
 
-  def set_bookmarks 
-    @bookmarks = @folder.bookmarks 
-      .includes([:tweet])
-      .before(id: params[:cursor]).limit(5)
-  end 
+  def set_bookmarks
+    @bookmarks = @folder.bookmarks
+                        .includes([:tweet])
+                        .before(id: params[:cursor]).limit(5)
+  end
 
-  def force_json 
+  def force_json
     request.format = :json
   end
 
   # Only allow a list of trusted parameters through.
   def folder_params
-    params.require(:folder).permit(:name, :description, :pinned, 
-      bookmarks_attributes: [ tweet_attributes: [ :id, :link ] ]
-    )
+    params.require(:folder).permit(:name, :description, :pinned,
+                                   bookmarks_attributes: [tweet_attributes: %i[id link]])
   end
 end

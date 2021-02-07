@@ -2,7 +2,7 @@ require 'open-uri'
 
 p 'Creating default user...'
 user = User.create(
-  name: 'User', 
+  name: 'User',
   email: 'user@user.com',
   password: 'user@123'
 )

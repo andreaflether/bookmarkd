@@ -6,14 +6,16 @@ class BookmarksController < ApplicationController
     @folder = Folder.find(params[:folder_id])
 
     respond_to do |format|
-      format.js { 
-        render :destroy, 
-        layout: false, 
-        locals: { tweet: @bookmark.tweet, folder: @folder, bookmarks: @folder.bookmarks_count }  }
+      format.js do
+        render :destroy,
+               layout: false,
+               locals: { tweet: @bookmark.tweet, folder: @folder, bookmarks: @folder.bookmarks_count }
+      end
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_bookmark
     @bookmark = Bookmark.find(params[:id])

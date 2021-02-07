@@ -12,7 +12,7 @@ module FoldersHelper
   end
 
   def datetime_formatted(datetime)
-    datetime.strftime("%B %d, %Y %H:%M")
+    datetime.strftime('%B %d, %Y %H:%M')
   end
 
   def pluralize_bookmarks_count(folder)

@@ -5,8 +5,8 @@ Rails.application.configure do
   Bullet.enable = true
   Bullet.console = true
   Bullet.rails_logger = true
-  Bullet.bullet_logger = true 
-  
+  Bullet.bullet_logger = true
+
   # Guard LiveReload
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
@@ -15,7 +15,7 @@ Rails.application.configure do
 
   # Mailcatcher
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => '127.0.0.1', :port => 1025 }
+  config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
   config.action_mailer.raise_delivery_errors = false
   config.action_controller.asset_host = 'http://localhost:3000'
   config.action_mailer.asset_host = config.action_controller.asset_host

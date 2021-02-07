@@ -20,32 +20,32 @@ module ApplicationHelper
   end
 
   def title
-    if content_for?(:title)
-      # allows the title to be set in the view by using t(".title")
-      page_title = content_for(:title)
-    else
-      page_title = t("#{ controller_path.tr('/', '.') }.#{ action_name }")
-    end
+    page_title = if content_for?(:title)
+                   # allows the title to be set in the view by using t(".title")
+                   content_for(:title)
+                 else
+                   t("#{controller_path.tr('/', '.')}.#{action_name}")
+                 end
     page_title.include?('translation_missing') ? t(:site_name) : "#{page_title} / #{t(:site_name)}"
   end
 
-  def light_mode? 
+  def light_mode?
     cookies[:sun]
   end
 
-  def application_mode 
+  def application_mode
     light_mode? ? 'light' : 'dark'
   end
 
-  def sort_by_template(display_text, sort_by) 
-    link_to display_text, order_folders_by_path(params: { order_folders_by: sort_by}), 
-    data: { 
-      'sort-by': sort_by, 
-      'tippy-content': "Sort folders by #{t("content.sort_by.#{sort_by}")}",
-      'tippy-placement': 'bottom'
-    },
-    method: :put, 
-    remote: true,
-    class: 'btn'
+  def sort_by_template(display_text, sort_by)
+    link_to display_text, order_folders_by_path(params: { order_folders_by: sort_by }),
+            data: {
+              'sort-by': sort_by,
+              'tippy-content': "Sort folders by #{t("content.sort_by.#{sort_by}")}",
+              'tippy-placement': 'bottom'
+            },
+            method: :put,
+            remote: true,
+            class: 'btn'
   end
 end
