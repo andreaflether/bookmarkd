@@ -12,6 +12,9 @@
     <%= f.input :email, 
       autocomplete: 'email',
       required: true %>
+    <%= f.input :username, 
+      maxlength: 15, 
+      input_html: { class: 'has-max-length' } %>
 
     <br />
     <h5>Change your password</h5>

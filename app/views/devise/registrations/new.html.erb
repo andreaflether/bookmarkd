@@ -12,6 +12,14 @@
       input_html: { class: 'has-max-length' } 
     %>
 
+    <%= f.input :username, 
+      required: true,
+      autofocus: true, 
+      maxlength: 15,
+      autocomplete: 'username',
+      input_html: { class: 'has-max-length' } 
+    %>
+
     <%= f.input :email, 
       autocomplete: 'email', 
       required: true 
