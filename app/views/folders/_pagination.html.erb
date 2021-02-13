@@ -1,0 +1,15 @@
+<div class="col-lg-7 col-md-12 mt-3 mb-0 text-center" id="pagination">
+  <nav aria-label="pagination d-none">
+    <ul class="pagination">
+      <% if @bookmarks.has_next? %>
+        <li class="page-item">
+          <%= link_to 'Next', { 
+            controller: :folders, 
+            action: :show, 
+            cursor: @bookmarks.next_cursor 
+          }, class: 'page-link next' %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
