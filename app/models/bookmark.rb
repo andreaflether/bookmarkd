@@ -14,7 +14,7 @@ class Bookmark < ApplicationRecord
 
   validates_uniqueness_of :tweet_id,
                           scope: :folder_id,
-                          message: 'Tweet is already listed in this folder!'
+                          message: I18n.t('activerecord.errors.models.folder.attributes.bookmark.already_listed')
 
   def find_or_create_tweet
     # Find or create the author by tweet status ID
