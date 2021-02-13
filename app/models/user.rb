@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # Virtual attributes
   attr_accessor :terms
 
-  # Consts
+  # Constants
   FOLDER_FILTERS = %w[updated_at number_of_bookmarks name]
 
   # Relationships
@@ -25,7 +25,7 @@ class User < ApplicationRecord
                        format: { with: /\A^[A-Za-z0-9_]+\Z/, allow_blank: true },
                        length: { minimum: 4, maximum: 15, allow_blank: true }
 
-  validate :username_has_at_least_one_letter
+  validate :username_has_at_least_one_letter, unless: -> { username.blank? }
 
   validates_acceptance_of :terms,
                           message: I18n.t('activerecord.errors.models.user.attributes.terms.accepted')
