@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    errors:
+      models:
+        folder:
+          attributes:
+            name: 
+              blank: Folder name is required.
+            pinned:
+              limit_reached: You can't pin more than %{max_pins} folders.
+            bookmark:
+              already_listed: Tweet is already listed in this folder!  
+        tweet:
+          attributes:
+            link:
+              blank: Tweet URL is required!
+              private: Only tweets from public accounts are allowed.
+              invalid: Tweet URL is not valid!
