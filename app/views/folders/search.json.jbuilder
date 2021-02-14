@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.folders do
   json.array!(@folders) do |folder|
     json.name folder.name

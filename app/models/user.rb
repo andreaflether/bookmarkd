@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Devise
   devise :database_authenticatable, :registerable,
@@ -8,7 +10,7 @@ class User < ApplicationRecord
   attr_accessor :terms
 
   # Constants
-  FOLDER_FILTERS = %w[updated_at number_of_bookmarks name]
+  FOLDER_FILTERS = %w[updated_at number_of_bookmarks name].freeze
 
   # Relationships
   has_many :folders, dependent: :destroy
@@ -37,7 +39,7 @@ class User < ApplicationRecord
   }
 
   def username_has_at_least_one_letter
-    unless username.count('a-zA-Z') > 0
+    unless username.count('a-zA-Z').positive?
       errors.add(:username, I18n.t('activerecord.errors.models.user.attributes.username.numeric_only'))
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tweet < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :folders, through: :bookmarks, dependent: :destroy

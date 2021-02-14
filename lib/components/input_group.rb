@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # custom component requires input group wrapper
 module InputGroup
   def prepend(_wrapper_options = nil)

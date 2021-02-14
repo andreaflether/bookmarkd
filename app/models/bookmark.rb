@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Bookmark < ApplicationRecord
   belongs_to :folder, counter_cache: true, touch: true
   belongs_to :tweet

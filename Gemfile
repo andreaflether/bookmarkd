@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -28,6 +30,7 @@ gem 'pg'
 gem 'ransack'
 gem 'rest-client'
 gem 'rubocop-rspec', require: false
+gem 'rubocop-rails', require: false
 gem 'simple_form'
 gem 'twitter'
 

@@ -3,7 +3,8 @@
     <%= f.input :name, 
       placeholder: 'Folder name', 
       maxlength: '25', 
-      input_html: { class: 'has-max-length'} 
+      input_html: { class: 'has-max-length'},
+      error: f.object.errors[:name].first.try(:html_safe)
     %>
     <%= f.input :description, 
       maxlength: '200', 

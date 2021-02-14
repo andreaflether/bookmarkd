@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[show edit update destroy]
   before_action :set_bookmarks, only: [:destroy]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :folders do
     put 'pin_folder/:id', on: :collection, to: 'folders#toggle_folder_pin', as: :toggle_pin

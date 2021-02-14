@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FoldersHelper
   def is_pinned(folder)
     folder.pinned?

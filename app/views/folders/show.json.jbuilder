@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.bookmarks do
   json.array!(@bookmarks) do |bookmark|
     json.added_in bookmark.created_at
