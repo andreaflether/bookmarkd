@@ -50,12 +50,6 @@ body::-webkit-scrollbar {
   color: rgba(189, 183, 175, 0.8); 
 }
 
-.tips {
-  bottom: 0; 
-  height: 13vh; 
-  width: 250px;
-}
-
 #tweetsCount {
   font-size: 0.9rem;
   font-weight: normal;
@@ -194,9 +188,20 @@ span.bootstrap-maxlength {
 }
 
 .folder-sidebar {
-  bottom: 20px; 
-  left: 20px;
+  left: 1.3rem;
   cursor: pointer;
+}
+
+.toggle-fixed {
+  bottom: 0; 
+  height: 10vh; 
+  width: 250px;
+}
+
+@media(max-height: 510px) {
+  .tip {
+    display: none !important;
+  }
 }
 
 .actions {
@@ -207,7 +212,7 @@ span.bootstrap-maxlength {
   left: -250px;
   // transition: all .6s ease;
   width: 250px; 
-  height: 87vh; 
+  height: 90vh; 
   overflow: hidden;
 
   &:hover {

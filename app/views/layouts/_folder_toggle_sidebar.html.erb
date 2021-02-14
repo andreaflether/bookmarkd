@@ -12,7 +12,7 @@
   <p class="font-weight-bold mb-2 px-3">Quick access</p> 
   <%= form_with url: search_folders_path, 
     local: true, 
-    html: { autocomplete: :off, class: 'px-3' },
+    html: { autocomplete: :off, class: 'px-3 mb-4' },
     method: :get do |form| %>
     <%= form.text_field :q, placeholder: 'Type a folder name...', data: { behavior: 'autocomplete' },
       class: 'form-control', id: 'sidebar-folder-search' %>
@@ -29,9 +29,17 @@
       </div>
     <% end %>
   </div>   
-  <div class="position-fixed d-flex align-items-center border-right border-top tips">
-    <p class="text-muted small ml-5 px-3 my-auto">
-      <b>Tip:</b> Press the <b>F</b> key on your keyboard to toggle the Folders sidebar.
-    </p>
+  <div class="position-fixed d-flex align-items-center border-right border-top toggle-fixed">
+    <% if user_signed_in? %>
+      <div class="position-fixed folder-sidebar">
+        <a id="toggle-sidebar" 
+          class="link-brand" 
+          data-tippy-content="Toggle folder sidebar" 
+          data-tippy-placement="left"
+        >
+          <i class="fas fa-folder-open fa-2x"></i>
+        </a>
+      </div>
+    <% end %>
   </div>
 </div>

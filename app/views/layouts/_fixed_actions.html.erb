@@ -20,18 +20,6 @@
   <% end %>
 </div>
 
-<% if user_signed_in? %>
-  <div class="position-fixed folder-sidebar">
-    <a id="toggle-sidebar" 
-      class="link-brand" 
-      data-tippy-content="Toggle folder sidebar" 
-      data-tippy-placement="left"
-    >
-      <i class="fas fa-folder-open fa-2x"></i>
-    </a>
-  </div>
-<% end %>
-
 <%= link_to '#', 
   class: 'btn btn-primary position-fixed back-to-top invisible',
   data: { 'tippy-content': 'Go back to top', 'tippy-placement': 'right'} do %>
