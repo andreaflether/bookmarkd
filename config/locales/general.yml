@@ -30,3 +30,14 @@ en:
         toggle_pin: "%{state} this folder"
         open_in_new_tab: Open folder in a new tab
         previous_page: Return to previous page
+  controllers:
+    folders:
+      created: Folder was successfully created.
+      deleted: Folder was successfully deleted.
+      updated: Folder was successfully updated.
+      forbidden_access: This folder was not shared with you.
+      pin: "<b>%{folder}</b> was added to your pinned folders!"
+      unpin: "%{folder} was removed from your pinned folders."
+      tweet:
+        added: Tweet successfully added to <b>%{folder}</b>!
+        deleted: Tweet successfully removed from <b>%{folder}</b>.
