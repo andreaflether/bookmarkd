@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FoldersController < ApplicationController
   before_action :force_json, only: [:search]
   before_action :set_folder, only: %i[show edit update destroy toggle_folder_pin]
@@ -44,7 +46,7 @@ class FoldersController < ApplicationController
 
     respond_to do |format|
       if @folder.save
-        format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
+        format.html { redirect_to @folder, notice: I18n.t('controllers.folders.created') }
       else
         format.html { render :new }
       end
@@ -55,8 +57,7 @@ class FoldersController < ApplicationController
   def update
     respond_to do |format|
       if @folder.update(folder_params)
-        format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
-        format.json { render :append_tweet, status: :ok, location: @folder }
+        format.html { redirect_to @folder, notice: I18n.t('controllers.folders.updated') }
         format.js do
           render :append_tweet,
                  locals: { bookmark: @folder.bookmarks.last, bookmarks: @folder.bookmarks_count }
@@ -72,7 +73,7 @@ class FoldersController < ApplicationController
   def destroy
     @folder.destroy
     respond_to do |format|
-      format.html { redirect_to folders_url, notice: 'Folder was successfully deleted.' }
+      format.html { redirect_to folders_url, notice: I18n.t('controllers.folders.deleted') }
       format.js { render :destroy, locals: { folder: @folder } }
     end
   end
@@ -90,10 +91,6 @@ class FoldersController < ApplicationController
     end
   end
 
-  def verify_user
-    redirect_to folders_path, alert: 'This folder was not shared with you.' unless folder_belongs_to_user?(@folder)
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -105,6 +102,12 @@ class FoldersController < ApplicationController
     @bookmarks = @folder.bookmarks
                         .includes([:tweet])
                         .before(id: params[:cursor]).limit(5)
+  end
+
+  def verify_user
+    unless folder_belongs_to_user?(@folder)
+      redirect_to folders_path, alert: I18n.t('controllers.folders.forbidden_access')
+    end
   end
 
   def force_json
