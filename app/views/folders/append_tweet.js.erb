@@ -1,4 +1,4 @@
-toastr.success("Tweet added to <b><%= j @folder.name %></b>!");
+toastr.success("<%= t('controllers.folders.tweet.added', folder: @folder.name).html_safe %>");
 
 $('#tweetUrl').val('');
 

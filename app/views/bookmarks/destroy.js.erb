@@ -7,6 +7,6 @@ tweet.fadeOut('slow', function() {
   }
 });
 
-toastr.info("Tweet successfully removed from <b><%= folder.name %></b>.")
+toastr.info(<%= t('controllers.folders.tweet.deleted', folder: folder.name).html_safe %>)
 
 $('#tweetsCount').html("<%= pluralize_bookmarks_count(folder) %>")

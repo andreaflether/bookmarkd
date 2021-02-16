@@ -11,11 +11,11 @@ $grid = $('#folders').imagesLoaded(function() {
 $("#pinned-folders").load(location.href+" #pinned-folders>*","");
 
 <% if folder.pinned? %>
-  toastr.success("<b><%= folder.name %></b> was added to your pinned folders!")
+  toastr.success("<%= t('controllers.folders.pin', folder: folder.name).html_safe %>")
   $grid.isotope('remove', folder_from_grid).isotope('layout');
   $grid.isotope('insert', folder)
 <% else %>
-  toastr.info("<b><%= folder.name %></b> was removed from your pinned folders.")
+  toastr.info("<%= t('controllers.folders.unpin', folder: folder.name).html_safe %>")
 
   folder_from_toggle.fadeOut('slow').remove();
   
