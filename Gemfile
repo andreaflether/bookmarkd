@@ -29,8 +29,8 @@ gem 'omniauth-twitter'
 gem 'pg'
 gem 'ransack'
 gem 'rest-client'
-gem 'rubocop-rspec', require: false
 gem 'rubocop-rails', require: false
+gem 'rubocop-rspec', require: false
 gem 'simple_form'
 gem 'twitter'
 
