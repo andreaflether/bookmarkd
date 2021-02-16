@@ -6,6 +6,7 @@ en:
           attributes:
             name: 
               blank: Folder name is required.
+              already_exists: You already have a <a href=%{url} target=_blank>folder</a> with this name.
             pinned:
               limit_reached: You can't pin more than %{max_pins} folders.
             bookmark:
