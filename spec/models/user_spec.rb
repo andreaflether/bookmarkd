@@ -90,4 +90,42 @@ RSpec.describe User, type: :model do
       expect(user.pinned_folders).to include(folder)
     end
   end
+
+  describe '#from_omniauth' do
+    let!(:auth_hash) { OmniAuth::AuthHash.new(raw_info_hash) }
+    let(:user) do
+      build(:user,
+            provider: raw_info_hash[:provider],
+            image: raw_info_hash[:info][:image],
+            uid: raw_info_hash[:uid])
+    end
+
+    it 'retrieves an existing user' do
+      user.save
+
+      omniauth_user = described_class.from_omniauth(auth_hash)
+
+      expect(user).to eq(omniauth_user)
+    end
+
+    it "creates a new user if one doesn't already exist" do
+      omniauth_user = described_class.from_omniauth(auth_hash)
+      expect(described_class.count).to eq(1)
+    end
+  end
+end
+
+private
+
+def raw_info_hash
+  {
+    provider: 'twitter',
+    uid: '1234',
+    info: {
+      email: 'user@user.com',
+      name: 'Test User',
+      image: 'http://beautifuldirtyrich.com/normal/pfp.png',
+      nickname: 'user_test'
+    }
+  }
 end

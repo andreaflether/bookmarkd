@@ -29,8 +29,8 @@ class User < ApplicationRecord
 
   validate :username_has_at_least_one_letter, unless: -> { username.blank? }
 
-  validates_acceptance_of :terms,
-                          message: I18n.t('activerecord.errors.models.user.attributes.terms.accepted')
+  validates :terms,
+            acceptance: { message: I18n.t('activerecord.errors.models.user.attributes.terms.accepted') }
 
   # Validations: Preferences
   validates :order_folders_by, inclusion: {
@@ -57,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def self.profile_picture(pfp_url)
-    pfp_url.sub! 'normal', '200x200' unless pfp_url.match(/default/)
+    pfp_url.sub 'normal', '200x200' unless pfp_url.match(/default/)
     pfp_url
   end
 
