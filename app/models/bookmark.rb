@@ -14,9 +14,9 @@ class Bookmark < ApplicationRecord
     tweet.destroy! unless tweet.folders.any?
   end
 
-  validates_uniqueness_of :tweet_id,
-                          scope: :folder_id,
-                          message: I18n.t('activerecord.errors.models.folder.attributes.bookmark.already_listed')
+  validates :tweet_id,
+            uniqueness: { scope: :folder_id,
+                          message: I18n.t('activerecord.errors.models.folder.attributes.bookmark.already_listed') }
 
   def find_or_create_tweet
     # Find or create the author by tweet status ID
