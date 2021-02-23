@@ -1,0 +1,6 @@
+lang: ruby
+
+
+script: bundle exec rake
+
+rvm: 2.5.5
