@@ -1,14 +1,14 @@
 env:
-  global:
-    - CC_TEST_REPORTER_ID=<%= Rails.application.credentials.test_reporter_id %>
+  secure: Fzbt+IwhbM/h0Pxkcq1a8YkGa1vyV1LtuIADnfT9IhaJf/GqGiZgrdXvBMJWobCdD7YwHCHFlmYRv/mm65J7sKCOTucAUf8AjTf1/kVmaXZYvrqqH/gf0zd1aF7ykQWW9sNvqGaYOSnes+QA90l3tKOVT98v54QRQavK0Z506ESrdIFRyHkiYPzFHG4fd9UgVyTau5BbshZ7cFhnxGuqn5b3LmryAHEe2JS/dU5rgS3dsuPqyMOuVaiEW0NmdPiwNoD+KwfPS0t5SQskGAwYxPsDKFjUQmnFHvg48A+6/VuOoJxF+cKlP0yLc+OjHj4FVE4P4to7YqxnlvRVAt91dZ08RzkRFyt6P1xubcr6iq1nA5eSEi7f8La4isHRFf3l2rKgrj+tK4p/9tgtxkfXmtKh9FKzblr1VakknWfUlanUOC4JXWT7bTR+DxH8NSjB3A1aDTRT61GXiS0zdYb+REmJeYwayUb1O73X7EfFA2suthlTBUNW7RLbA406e+SegsLIFruhtnVi3mIkOO+bWrNB+23WSIpIAKye8sKiKU6rqGWvghxJKmnIRWTbgKl05PwOqFPB0Hsk0g0Vvi6xrDIZCHk1TmLZvRRktf8lBCYarEmd1SMI3reh3L2V6A93NLcQaejeqWQCIyw/D4Xse8H4day70gk1IzZDXn68i40=
 language: ruby
 rvm:
-  - 2.5.5
+- 2.5.5
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - bundle exec rspec
+- bundle exec rspec
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"

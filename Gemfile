@@ -31,6 +31,7 @@ gem 'rest-client'
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'simple_form'
+gem 'travis'
 gem 'twitter'
 
 group :development, :test do
