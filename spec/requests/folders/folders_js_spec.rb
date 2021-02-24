@@ -48,15 +48,18 @@ RSpec.describe 'Folder - JS', type: :request do
       it { expect(response.body).to include(I18n.t('controllers.folders.unpin', folder: pinned_folder.name)) }
     end
 
-    context 'when user already has 10 pinned folders and tries do pin another one' do 
+    context 'when user already has 10 pinned folders and tries do pin another one' do
       let!(:folders) { create_list(:folder, 10, pinned: true, user: user) }
       let(:invalid_folder) { create(:folder, user: user) }
 
       before { put toggle_pin_folders_path(invalid_folder), params: { session: login_as(user), format: :js } }
 
-      it { expect(response.body).to include(
-        I18n.t('activerecord.errors.models.folder.attributes.pinned.limit_reached', max_pins: folder.class.const_get('MAX_PINNED_FOLDERS'))
-      ) }
+      it {
+        expect(response.body).to include(
+          I18n.t('activerecord.errors.models.folder.attributes.pinned.limit_reached',
+                 max_pins: folder.class.const_get('MAX_PINNED_FOLDERS'))
+        )
+      }
 
       it { expect(response).to render_template(:error) }
     end

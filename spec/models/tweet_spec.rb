@@ -6,6 +6,7 @@ RSpec.describe Tweet, type: :model do
   let(:tweet) { build(:tweet) }
   let(:private_tweet) { build(:tweet, link: 'https://twitter.com/andreaflether/status/362655172079534080') }
   let(:invalid_tweet) { build(:tweet, link: 'https://twitter.com/Twitter/status/0123456789012345678') }
+  let(:not_a_tweet) { build(:tweet, link: 'http://localhost:12345') }
 
   context 'associations' do
     it { is_expected.to have_many(:bookmarks).dependent(:destroy) }
@@ -29,6 +30,13 @@ RSpec.describe Tweet, type: :model do
     it 'is expected to not allow tweets with invalid or non existent links' do
       expect(invalid_tweet).not_to be_valid
       expect(invalid_tweet.errors.messages[:link]).to eq [I18n.t(
+        'activerecord.errors.models.tweet.attributes.link.invalid'
+      )]
+    end
+
+    it 'is expected not to allow external/not twitter related links' do
+      expect(not_a_tweet).not_to be_valid
+      expect(not_a_tweet.errors.messages[:link]).to eq [I18n.t(
         'activerecord.errors.models.tweet.attributes.link.invalid'
       )]
     end
