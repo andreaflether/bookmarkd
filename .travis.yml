@@ -3,6 +3,17 @@ env:
 language: ruby
 rvm:
 - 2.5.5
+cache:
+  yarn: true
+  directories:
+    - node_modules
+install:
+  - nvm install node
+  - node -v
+  - npm i -g yarn
+  - yarn install
+after_success:
+  - bundle exec rake assets:precompile
 before_script:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
   > ./cc-test-reporter
