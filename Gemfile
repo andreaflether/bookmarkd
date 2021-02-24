@@ -56,6 +56,7 @@ group :development do
 end
 
 group :test do
+  gem 'codecov', require: false
   gem 'database_cleaner', '~> 1.7'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'json_matchers'
