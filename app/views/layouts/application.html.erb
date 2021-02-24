@@ -19,7 +19,6 @@
     <% end %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= custom_flash_messages %>
   </head>
   <body class="h-100 <%= 'bg-lightgrey' if devise_controller? && !not_edit_user_registration_path %>">
     <% if user_signed_in? %>
@@ -39,5 +38,6 @@
         © <%= Date.today.year %> <span class="font-weight-bold">Bookmarkd</span>. All rights reserved.
       </footer>
     </div>
+    <%= custom_flash_messages %>
   </body>
 </html>

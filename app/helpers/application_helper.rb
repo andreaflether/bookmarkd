@@ -2,23 +2,25 @@
 
 module ApplicationHelper
   def custom_flash_messages
-    flash_messages = []
-
-    # Overall flash messages
+    html_script = '<script>'
     flash.each do |type, message|
-      type = 'success' if type == 'notice'
-      type = 'error'   if type == 'alert'
-      type = 'info'    if type == 'info'
-      text = "
-      <script>
-        $(document).ready(function(){
-          toastr.#{type}('#{message}');
-        });
-      </script>
-      "
-      flash_messages << text.html_safe
+      html_script += "toastr[\"#{toastr_class_for(type)}\"](\"#{message}\");" if message
     end
-    flash_messages.join("\n").html_safe
+    html_script += '</script>'
+    flash_present = flash.to_h.any?
+    flash.clear
+    flash_present ? html_script.html_safe : ''
+  end
+
+  def toastr_class_for(flash_type)
+    type = {
+      success: 'success',
+      error: 'error',
+      alert: 'warning',
+      notice: 'info'
+    }
+
+    type[flash_type.to_sym]
   end
 
   def title

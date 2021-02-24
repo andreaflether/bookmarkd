@@ -1,16 +1,8 @@
 # frozen_string_literal: true
 
 module FoldersHelper
-  def is_pinned(folder)
-    folder.pinned?
-  end
-
-  def folder_description(description)
-    description.truncate(70) unless description_blank?(description)
-  end
-
-  def description_blank?(description)
-    description.blank?
+  def truncated_description(description)
+    description.truncate(70) if description.present?
   end
 
   def datetime_formatted(datetime)
@@ -22,6 +14,6 @@ module FoldersHelper
   end
 
   def state_name(folder)
-    is_pinned(folder) ? 'Unpin' : 'Pin'
+    folder.pinned? ? 'Unpin' : 'Pin'
   end
 end
