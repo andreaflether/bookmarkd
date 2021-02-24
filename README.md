@@ -1,6 +1,6 @@
 <img src="./app/assets/images/bookmark-regular.svg" width="10%" align="right">
 
-# Bookmarkd ![Maintainability](https://api.codeclimate.com/v1/badges/d3b4fd47ba56eafc4d50/maintainability)[![codecov](https://codecov.io/gh/andreaflether/bookmarkd/branch/main/graph/badge.svg)](https://codecov.io/gh/andreaflether/bookmarkd) [![GitHub license](https://img.shields.io/github/license/andreaflether/bookmarkd)](https://github.com/andreaflether/bookmarkd/blob/main/LICENSE)
+# Bookmarkd ![Maintainability](https://api.codeclimate.com/v1/badges/d3b4fd47ba56eafc4d50/maintainability) [![codecov](https://codecov.io/gh/andreaflether/bookmarkd/branch/main/graph/badge.svg)](https://codecov.io/gh/andreaflether/bookmarkd) [![GitHub license](https://img.shields.io/github/license/andreaflether/bookmarkd)](https://github.com/andreaflether/bookmarkd/blob/main/LICENSE)
 
 > Since Twitter only provides a single page to keep **all** your bookmarked tweets and usually, it takes forever to find a specific tweet in the middle of it all, extreme measures had to be taken. So, i present to you...
 
