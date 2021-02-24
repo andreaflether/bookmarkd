@@ -8,10 +8,6 @@ class ApplicationController < ActionController::Base
     @pinned = current_user.pinned_folders.order(name: :asc)
   end
 
-  def after_sign_in_path_for(_resource)
-    folders_path
-  end
-
   def moon
     cookies.delete(:sun)
     redirect_to request.referer
