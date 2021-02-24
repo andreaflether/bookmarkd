@@ -64,6 +64,7 @@ group :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'simplecov_json_formatter'
   gem 'webdrivers'
   gem 'webmock'
 end
