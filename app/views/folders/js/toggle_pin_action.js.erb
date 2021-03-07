@@ -1,5 +1,5 @@
 var folder = $("<%= j render folder %>")
-var pinned = $("<%= j render 'folders/pinned', pinned: folder %>")
+var pinned = $("<%= j render 'folders/shared/pinned', pinned: folder %>")
 var folder_in_html = $(".folder[data-folder-id='<%= folder.id %>']")
 var folder_from_grid = $('#folders').find(folder_in_html)
 var folder_from_toggle = $('#pinned-folders').find(folder_in_html)

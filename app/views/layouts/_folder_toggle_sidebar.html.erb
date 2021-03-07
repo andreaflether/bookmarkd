@@ -2,10 +2,10 @@
   <p class="font-weight-bold mb-1 actions px-3">Actions</p>
   <div class="list-group">
     <%= link_to folders_path, class: 'list-group-item list-group-item-action' do %>
-      <i class="fas fa-folder-open text-brand mr-2"></i></i> All folders
+      <i class="fas fa-folder-open text-brand mr-2"></i> All folders
     <% end %>
     <%= link_to new_folder_path, class: 'list-group-item list-group-item-action' do %>
-      <i class="fas fa-folder-plus text-brand mr-2"></i></i> <%= t('content.actions.folders.new') %>
+      <i class="fas fa-folder-plus text-brand mr-2"></i> <%= t('content.actions.folders.new') %>
     <% end %>
   </div>
   <hr />
@@ -21,7 +21,7 @@
   <p class="font-weight-bold mb-1 px-3">Pinned</p>
   <div class="list-group" id="pinned-folders">
     <% if @pinned.size >= 1 %>
-        <%= render partial: 'folders/pinned', collection: @pinned %>
+        <%= render partial: 'folders/shared/pinned', collection: @pinned %>
     <% else %>
       <div class="no-pinned-folders text-muted px-3 small">
         <p class="mb-1 font-weight-bold mt-2 ">You haven’t pinned any Folders yet.</p>

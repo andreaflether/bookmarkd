@@ -27,7 +27,7 @@
 <div class="w-100"></div>
 
 <% if @folders.blank? %>
-  <%= render 'no_folders' %>
+  <%= render 'folders/shared/no_folders' %>
 <% else %>
   <div class="col-md-6 col-sm-12 text-center" id="sort-filters">
     <div class="btn-group sort-by-button-group" role="group">
@@ -37,19 +37,18 @@
     </div>
   </div>
   <div class="col-md-12 col-lg-9">
-    <div class="row mt-4" id="folders" data-sort-by="<%= current_user.order_folders_by %>">
+    <div class="row mt-4" id="folders" data-folders='true' data-sort-by="<%= current_user.order_folders_by %>">
       <%= render @folders %>
     </div>
   </div>
+  <div class="w-100"></div>
+
+  <div class="col-md-6 mt-3 text-center d-none" id="no-results">
+    <h5 class="font-weight-normal">No results found for 
+      "<b><span class="font-weight-bold" id="searchTerm"><%= @search %></span></b>".
+    </h5>
+    <p class="text-muted mt-3">
+      The term you entered did not bring up any results. Try again with another term. 
+    </p>
+  </div> 
 <% end %>
-
-<div class="w-100"></div>
-
-<div class="col-md-6 mt-3 text-center d-none" id="no-results">
-  <h5 class="font-weight-normal">No results found for 
-    "<b><span class="font-weight-bold" id="searchTerm"><%= @search %></span></b>".
-  </h5>
-  <p class="text-muted mt-3">
-    The term you entered did not bring up any results. Try again with another term. 
-  </p>
-</div> 

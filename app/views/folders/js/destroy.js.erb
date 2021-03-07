@@ -13,11 +13,12 @@ if(folder_from_grid.attr('data-pinned')) {
 $grid.isotope('remove', folder_from_grid)
 folder_from_grid.remove();
 
-toastr.info(<%= t('controllers.folders.deleted') %>)
+toastr.info("<%= t('controllers.folders.deleted') %>")
 
 $("#pinned-folders").load(location.href+" #pinned-folders>*","");
 
 if(!$('.folder').length) {
-  $('.no-results').after("<%= j render 'no_folders' %>")
+  $('#folders').attr('data-folders', false)
+  $('#no-results').before("<%= j render 'folders/shared/no_folders' %>");
   $('#sort-filters').fadeOut().remove();
 }

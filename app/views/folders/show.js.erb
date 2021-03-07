@@ -1,6 +1,6 @@
 $('#tweets-container').append('<%= j render @bookmarks %>');
 
-$('#pagination').replaceWith('<%= j render 'folders/pagination' %>')
+$('#pagination').replaceWith('<%= j render 'folders/shared/pagination' %>')
 
 <% unless @bookmarks.has_next? %>
   $(window).off('scroll');
