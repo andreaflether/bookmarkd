@@ -18,7 +18,5 @@ RSpec.describe Bookmark, type: :request do
       expect(response.body).to include(I18n.t('controllers.folders.tweet.deleted',
                                               folder: folder[:name]))
     }
-
-    it { expect(response).to render_template(:destroy) }
   end
 end

@@ -33,4 +33,8 @@ RSpec.describe FoldersHelper, type: :helper do
     it { expect(helper.state_name(unpinned_folder)).to eq('Pin') }
     it { expect(helper.state_name(pinned_folder)).to eq('Unpin') }
   end
+
+  describe '#privacy_options' do
+    it { expect(helper.privacy_options).to contain_exactly(%w[open Public], %w[secret Private]) }
+  end
 end
