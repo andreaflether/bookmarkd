@@ -1,10 +1,11 @@
 /*
- *= require bootstrap/dist/css/bootstrap
- *= require toastr/build/toastr.min
- *= require tippy.js/themes/translucent
- *= require easy-autocomplete/dist/easy-autocomplete.min
- *= require easy-autocomplete/dist/easy-autocomplete.themes.min
- *= require main
- *= require custom_bootstrap
- *= require_self
- */
+  *= require bootstrap/dist/css/bootstrap
+  *= require toastr/build/toastr.min
+  *= require tippy.js/themes/translucent
+  *= require easy-autocomplete/dist/easy-autocomplete.min
+  *= require easy-autocomplete/dist/easy-autocomplete.themes.min
+  *= require main
+  *= require custom_bootstrap
+  *= require errors
+  *= require_self
+*/

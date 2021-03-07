@@ -6,7 +6,8 @@ p 'Creating default user...'
 user = User.create(
   name: 'User',
   email: 'user@user.com',
-  password: 'user@123'
+  password: 'user@123',
+  username: 'user'
 )
 
 p 'Creating folders from txt file...'

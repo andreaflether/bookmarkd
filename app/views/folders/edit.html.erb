@@ -29,18 +29,52 @@
 
 <div class="w-100"></div>
 
-<div class="col-md-12 col-lg-6 mt-2 text-center">
+<div class="col-md-12 col-lg-6 mt-2">
   <hr>
-  <%= link_to t('content.actions.folders.delete'), 
-    folder_path(@folder), 
-    method: :delete, 
-    class: 'btn btn-outline-danger',
-    data: { 
-      'tippy-content': t('content.tippy.folders.delete', folder: @folder.name),
-      'tippy-placement': 'right',
-      confirm: t('delete_folder_confirmation', 
-        bookmarks_count: pluralize_bookmarks_count(@folder)
-      )
-    }
-  %>
+<h4 class="mb-3 mt-4 text-center">Danger zone</h4>
+  <ul class="list-group bg-transparent border border-danger">
+    <li class="list-group-item transparent d-flex justify-content-between align-items-center">
+      <div class="flex-auto">
+        <p class="font-weight-bold mb-1">Delete this folder</p>
+        <small>Once you delete a folder, there is no going back.</small>
+      </div>
+      <%= link_to t('content.actions.folders.delete'), 
+        folder_path(@folder), 
+        method: :delete, 
+        class: 'btn btn-sm btn-outline-danger',
+        data: { 
+          title: t('folders.delete'),
+          'tippy-content': t('content.tippy.folders.delete', folder: @folder.name),
+          'tippy-placement': 'right',
+          confirm: t('delete_folder_confirmation_html',
+            bookmarks_count: pluralize_bookmarks_count(@folder)
+          ),
+          verify: @keyword_confirmation, 
+          verify_text: t('verify_message', keyword: @keyword_confirmation)
+        }
+      %>
+    </li>
+
+    <li class="list-group-item transparent d-flex justify-content-between align-items-center">
+      <div class="flex-auto">
+        <p class="font-weight-bold mb-1">Delete all bookmarks</p>
+        <small>Delete all bookmarks in this folder.</small>
+      </div>
+      <%= link_to t('content.actions.folders.delete_bookmarks'), 
+        destroy_bookmarks_folder_path(@folder), 
+        method: :delete, 
+        class: "btn btn-sm btn-outline-danger #{'disabled' if @folder.bookmarks_count == 0}",
+        data: { 
+          title: t('folders.delete_bookmarks'),
+          'tippy-content': t('content.tippy.folders.delete_bookmarks'),
+          'tippy-placement': 'right',
+          confirm: t('delete_bookmarks_confirmation_html',
+            bookmarks_count: pluralize_bookmarks_count(@folder)),
+          verify: @keyword_confirmation, 
+          verify_text: t('verify_message', keyword: @keyword_confirmation),
+          destructive: true
+        }
+      %>
+    </li>
+  </ul>
 </div>

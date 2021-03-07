@@ -56,12 +56,16 @@ $(document).ready(function() {
   var no_results = $('#no-results');
   var sort_filters = $('#sort-filters');
   var search_term = $('#searchTerm');
-
+  var data_folders = $('#folders').attr('data-folders')
+  
   $grid.on('arrangeComplete',
   function(event, filteredItems) {
       if(filteredItems.length) {
         no_results.addClass('d-none'); 
         sort_filters.removeClass('d-none'); 
+      }
+      else if(!filteredItems.length && $('#folders').attr('data-folders') === 'false') { 
+        return;
       } else {
         no_results.removeClass('d-none');
         sort_filters.addClass('d-none'); 

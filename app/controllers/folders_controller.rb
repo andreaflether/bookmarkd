@@ -2,10 +2,11 @@
 
 class FoldersController < ApplicationController
   before_action :force_json, only: [:search]
-  before_action :set_folder, only: %i[show edit update destroy toggle_folder_pin]
-  before_action :verify_user, only: %i[show edit update destroy toggle_folder_pin]
+  before_action :set_folder, only: %i[show edit update destroy toggle_pin destroy_bookmarks]
+  before_action :verify_user_permission, only: %i[edit update destroy toggle_pin destroy_bookmarks]
+  before_action :generate_verification_keyword, only: %i[index edit update show]
   before_action :set_bookmarks, only: %i[show update destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[show forbidden]
 
   # GET /folders/search
   def search
@@ -24,11 +25,8 @@ class FoldersController < ApplicationController
 
   # GET /folders/1
   def show
-    respond_to do |format|
-      format.html
-      format.js
-      # format.json
-    end
+    @has_permission_to_edit = folder_belongs_to_user?
+    verify_user_permission
   end
 
   # GET /folders/new
@@ -59,12 +57,12 @@ class FoldersController < ApplicationController
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: I18n.t('controllers.folders.updated') }
         format.js do
-          render :append_tweet,
+          render 'folders/js/append_tweet',
                  locals: { bookmark: @folder.bookmarks.last, bookmarks: @folder.bookmarks_count }
         end
       else
         format.html { render :edit }
-        format.js { render :error, layout: false, locals: { error: @folder.errors.full_messages } }
+        format.js { render 'folders/js/error', layout: false, locals: { error: @folder.errors.full_messages } }
       end
     end
   end
@@ -74,22 +72,31 @@ class FoldersController < ApplicationController
     @folder.destroy
     respond_to do |format|
       format.html { redirect_to folders_url, notice: I18n.t('controllers.folders.deleted') }
-      format.js { render :destroy, locals: { folder: @folder } }
+      format.js { render 'folders/js/destroy', locals: { folder: @folder } }
     end
   end
 
-  # PUT /folders/pin_folder/1
-  def toggle_folder_pin
+  # PUT /folders/1/toggle_pin
+  def toggle_pin
     @folder.toggle(:pinned)
 
     respond_to do |format|
       if @folder.save
-        format.js { render :toggle_pin_action, locals: { folder: @folder } }
+        format.js { render 'folders/js/toggle_pin_action', locals: { folder: @folder } }
       else
-        format.js { render :error, layout: false, locals: { error: @folder.errors.full_messages } }
+        format.js { render 'folders/js/error', layout: false, locals: { error: @folder.errors.full_messages } }
       end
     end
   end
+
+  # DELETE /folders/1/destroy_bookmarks
+  def destroy_bookmarks
+    @folder.bookmarks.destroy_all
+
+    redirect_to edit_folder_path(@folder), notice: I18n.t('controllers.folders.deleted_bookmarks', folder: @folder.name)
+  end
+
+  def forbidden; end
 
   private
 
@@ -101,13 +108,11 @@ class FoldersController < ApplicationController
   def set_bookmarks
     @bookmarks = @folder.bookmarks
                         .includes([:tweet])
-                        .before(id: params[:cursor]).limit(5)
+                        .before(id: params[:cursor]).limit(10)
   end
 
-  def verify_user
-    unless folder_belongs_to_user?(@folder)
-      redirect_to folders_path, alert: I18n.t('controllers.folders.forbidden_access')
-    end
+  def verify_user_permission
+    redirect_to forbidden_folders_path unless can_access_folder?
   end
 
   def force_json
@@ -116,7 +121,7 @@ class FoldersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def folder_params
-    params.require(:folder).permit(:name, :description, :pinned,
+    params.require(:folder).permit(:name, :description, :pinned, :privacy,
                                    bookmarks_attributes: [tweet_attributes: %i[id link]])
   end
 end

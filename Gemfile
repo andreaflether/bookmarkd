@@ -23,11 +23,13 @@ gem 'data-confirm-modal'
 gem 'devise'
 gem 'faker'
 gem 'friendly_id'
+gem 'inline_svg'
 gem 'kaminari'
 gem 'omniauth-twitter'
 gem 'pg'
 gem 'ransack'
 gem 'rest-client'
+gem 'rolify'
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'simple_form'
@@ -42,6 +44,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'better_errors'
   gem 'bullet'
   gem 'guard', '~> 2.15'
   gem 'guard-livereload', require: false
@@ -60,8 +63,6 @@ group :test do
   gem 'database_cleaner', '~> 1.7'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'json_matchers'
-  gem 'rails-controller-testing'
-  gem 'rspec-json_expectations'
   gem 'rspec-rails', '~> 3.6'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false

@@ -16,4 +16,11 @@ module FoldersHelper
   def state_name(folder)
     folder.pinned? ? 'Unpin' : 'Pin'
   end
+
+  def privacy_options
+    [
+      %w[open Public],
+      %w[secret Private]
+    ]
+  end
 end

@@ -11,6 +11,12 @@
       input_html: { class: 'has-max-length' } 
     %>
 
+    <%= f.input :privacy, 
+      include_blank: false,
+      collection: Folder.privacies.symbolize_keys.keys,
+      wrapper_html: { class: 'mb-1' } %>
+    <small id="privacy-description" class="text-muted"></small>
+
     <div class="form-actions">
       <%= f.button :submit, class: 'btn btn-brand w-100 mt-4' %>
     </div>

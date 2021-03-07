@@ -13,6 +13,10 @@ body {
   }
 }
 
+.dropdown-item.disabled {
+  color: rgb(160, 160, 160) !important;
+}
+
 .list-group-item.active {
   background-color: rgba(32, 34, 35, 0.08);
 }
@@ -52,6 +56,10 @@ body {
 #error_explanation {
   background-color: rgba(254,242,242, 1);
   color: rgb(185, 28, 28) !important;
+}
+
+#no-tweets, .info {
+  color: #343A40;
 }
 
 /* Text related */
@@ -94,4 +102,8 @@ body::-webkit-scrollbar-thumb:hover,
 
 .folder-menu, .toggle-fixed {
   background-color: #fff;
+}
+
+.easy-autocomplete-container ul {
+  border-top: 1px solid #ccc;
 }

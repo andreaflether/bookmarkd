@@ -1,5 +1,10 @@
 en:
   simple_form:
+    options:
+      folder:
+        privacy:
+          open: Public
+          secret: Private
     "yes": 'Yes'
     "no": 'No'
     required:

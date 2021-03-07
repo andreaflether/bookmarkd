@@ -5,7 +5,7 @@ $(document).ready(function() {
   var options = { 
     getValue: 'name',
     url: function(phrase) {
-      return `/folders/search.json?utf8=✓&q%5Bname_cont%5D=${phrase}`
+      return `/folders/search?utf8=✓&q[name_cont]=${phrase}`
     },
     categories: [{
       listLocation: 'folders'

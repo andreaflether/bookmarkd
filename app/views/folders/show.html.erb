@@ -2,79 +2,107 @@
 
 <h2 class="col-12 text-brand text-center"><%= @folder.name %></h2>
 
-<div class="col-lg-7 col-md-12 text-center">
+<div class="col-lg-7 col-md-12 text-center mb-3">
   <% if @folder.description.present? %>
     <p class="text-secondary mt-1 mb-2 small"><%= @folder.description %></p>
   <% end %>
-  <div class="d-flex justify-content-center align-items-center">
-    <p class="mb-0">by 
+  <div class="d-flex justify-content-center info align-items-center">
+    <% if @folder.secret? %>
+      <span class="privacy small" data-tippy-content="Private" data-tippy-placement="bottom">
+        <i class="fas fa-lock"></i>
+      </span>
+    <% else %>
+      <span class="privacy small" data-tippy-content="Public" data-tippy-placement="bottom">
+        <i class="fas fa-globe-americas"></i>
+      </span>
+    <% end %>
+    <p class="mb-0">&nbsp; ·&nbsp; by
       <span class="font-weight-bold">
-        <%= current_user.provider.blank? ? current_user.name : current_user.username %>
+        <%= @folder.user.provider.blank? ? @folder.user.name : @folder.user.username %>
       </span>
     </p> 
     
-    <div class="dropdown">
-      <button class="btn btn-transparent btn-lg btn-action text-muted p-1 ml-2" 
-        type="button" 
-        id="folder-actions" 
-        data-tippy-content="More"
-        data-tippy-placement="right"
-        data-toggle="dropdown" 
-        aria-haspopup="true" 
-        aria-expanded="false"
-      >
-        <i class="fas fa-ellipsis-h 2x"></i>
-      </button>
+    <% if @has_permission_to_edit %>
+      <div class="dropdown">
+        <button class="btn btn-transparent btn-lg btn-action text-muted p-1 ml-2" 
+          type="button" 
+          id="folder-actions" 
+          data-tippy-content="More"
+          data-tippy-placement="right"
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false"
+        >
+          <i class="fas fa-ellipsis-h 2x"></i>
+        </button>
 
-      <div class="dropdown-menu border-0" aria-labelledby="folder-actions">
-        <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-muted' do %> 
-          <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
-        <% end %>
-        <%= link_to folder_path(@folder), 
-          method: :delete, 
-          class: 'dropdown-item text-muted',
-          title: "Delete folder: #{@folder.name}",
-          data: { 
-            confirm: t('delete_folder_confirmation', 
-              bookmarks_count: pluralize_bookmarks_count(@folder)
-            )
-          } do %>
-          <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
-        <% end %>
-      </div>
-    </div> 
+        <div class="dropdown-menu border-0" aria-labelledby="folder-actions">
+          <%= button_tag(
+            type: 'button', 
+            class: 'copyLink folder-action dropdown-item text-muted',
+            data: { 
+              'tippy-content': 'Copy folder link to clipboard',
+              'tippy-placement': 'right',
+              copy: 'folder'
+            }) do %> 
+            <i class="fas fa-link"></i> &nbsp; Copy folder link
+          <% end %>
+          <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-muted' do %> 
+            <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
+          <% end %>
+          <%= link_to folder_path(@folder), 
+            method: :delete, 
+            class: 'dropdown-item text-muted',
+            data: { 
+              'tippy-content': t('content.tippy.folders.delete', folder: @folder.name),
+              'tippy-placement': 'right',
+              title: "Delete folder: #{@folder.name}",
+              confirm: t('delete_folder_confirmation_html', 
+                bookmarks_count: pluralize_bookmarks_count(@folder)
+              ),
+              verify: @keyword_confirmation, 
+              verify_text: t('verify_message', keyword: @keyword_confirmation),
+              destructive: true
+            } do %>
+            <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
+          <% end %>
+        </div>
+      </div> 
+    <% end %>
   </div>
 </div>
 
-<div class="col-lg-7 col-md-12 mt-3">
-  <%= simple_form_for @folder, remote: true do |f| %>
-    <%= f.simple_fields_for :bookmarks, @folder.bookmarks.build do |t| %>
-      <%= t.simple_fields_for :tweet, Tweet.new do |tt| %>
-        <% tt.input :link, 
-          label: false,
-          wrapper: :input_group do %>
-          <span class="icon-inside text-muted" id="search-icon">
-            <i class="fas fa-link"></i>
-          </span>
-          <%= tt.input :link, 
-            label: false, 
-            wrapper: false, 
-            input_html: { 
-              id: 'tweetUrl',
-              class: 'hasToggledIcon',
-              placeholder: 'Enter Tweet URL here',
-              autocomplete: 'off'
-            } %>
-          <div class="input-group-append">   
-            <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
-          </div>
+<% if @has_permission_to_edit %>
+  <div class="col-lg-7 col-md-12">
+    <%= simple_form_for @folder, remote: true do |f| %>
+      <%= f.simple_fields_for :bookmarks, @folder.bookmarks.build do |t| %>
+        <%= t.simple_fields_for :tweet, Tweet.new do |tt| %>
+          <% tt.input :link, 
+            label: false,
+            wrapper: :input_group do %>
+            <span class="icon-inside text-muted" id="search-icon">
+              <i class="fas fa-link"></i>
+            </span>
+            <%= tt.input :link, 
+              label: false, 
+              wrapper: false, 
+              input_html: { 
+                id: 'tweetUrl',
+                class: 'hasToggledIcon',
+                placeholder: 'Enter Tweet URL here',
+                autocomplete: 'off'
+              } %>
+            <div class="input-group-append">   
+              <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
-<div class="col-12 text-center">
+<div class="col-12 text-center mt-2">
   <span class="badge badge-sm badge-pill badge-brand">
     <p class="mb-0 px-2 py-1" id="tweetsCount">
       <%= pluralize_bookmarks_count(@folder) %>
@@ -90,4 +118,4 @@
   <% end %>
 </div>
 
-<%= render 'pagination' %>
+<%= render 'folders/shared/pagination' %>

@@ -11,6 +11,8 @@ en:
               limit_reached: You can't pin more than %{max_pins} folders.
             bookmark:
               already_listed: Tweet is already listed in this folder!  
+            privacy:
+              blank: Please inform the Folder privacy.
         tweet:
           attributes:
             link:
