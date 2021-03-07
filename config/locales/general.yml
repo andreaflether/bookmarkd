@@ -9,12 +9,14 @@ en:
     actions:
       folders: 
         delete: Delete folder
+        delete_bookmarks: Delete bookmarks
         edit: Edit folder info
         new: New folder
       users: 
         registrations:
           edit: Edit user info
           new: Sign up
+          delete: Delete your account
         sessions:
           destroy: Sign out
           new: Log in
@@ -24,16 +26,36 @@ en:
         passwords:
           new: Forgot your password?
           edit: Change your password
+    errors:
+      titles:
+        not_found: Oops! Page not found.
+        internal_server_error: Oops, something went wrong!
+        unprocessable_entity: Change rejected.
+      details:
+        not_found: We are sorry, but the page you requested was not found.
+        internal_server_error: There is a problem in the resource you're looking for and it cannot be displayed.
+        unprocessable_entity: "You may have tried to change something you don't have access to. \
+        If you continue to experience issues, please send us an email at \
+        <a href='mailto:bookmarkd.web@gmail.com'>bookmarkd.web@gmail.com</a> \
+        Let us know what you were trying to do and we'll be sure to get it straightened out."
     tippy:
       folders:
         delete: "Delete folder: %{folder}"
+        delete_bookmarks: Delete all bookmarks from folder
         toggle_pin: "%{state} this folder"
         open_in_new_tab: Open folder in a new tab
         previous_page: Return to previous page
+      users:
+        delete: Delete account
+      tweets:
+        copy_tweet_url: Copy tweet URL to clipboard
+      bookmarks:
+        delete: Remove bookmark from folder
   controllers:
     folders:
       created: Folder was successfully created.
       deleted: Folder was successfully deleted.
+      deleted_bookmarks: All bookmarks from <b>%{folder}</b> were successfully deleted.
       updated: Folder was successfully updated.
       forbidden_access: This folder was not shared with you.
       pin: "<b>%{folder}</b> was added to your pinned folders!"

@@ -6,29 +6,34 @@ class Folder < ApplicationRecord
   has_many :tweets, -> { distinct }, through: :bookmarks
   accepts_nested_attributes_for :bookmarks
 
+  MAX_PINNED_FOLDERS = 15
+  FOLDER_PRIVACIES = %w[open secret].freeze
+
   extend FriendlyId
   friendly_id :slug_candidates, use: %i[slugged finders]
 
+  enum privacy: FOLDER_PRIVACIES
+
   validates :name,
             presence: { message: I18n.t('activerecord.errors.models.folder.attributes.name.blank') },
-            length: { maximum: 25 }
+            length: { maximum: 25 },
+            uniqueness: {
+              scope: :user_id,
+              case_sensitive: false,
+              message: lambda do |object, _data|
+                I18n.t('activerecord.errors.models.folder.attributes.name.already_exists',
+                       url: object.user.folders.find_by({ name: _data[:value] }).get_folder_path)
+              end
+            }
 
   validates :description, length: { maximum: 200 }
   validate :number_of_pinned_folders,
-           if: proc { |p| p.pinned_changed?(from: false, to: true) }
-
-  validate :folder_already_exists, unless: proc { |p| p.name.blank? || !p.name_changed? }
-
-  MAX_PINNED_FOLDERS = 10
-
-  def should_generate_new_friendly_id?
-    name_changed? || super
-  end
+           if: -> { pinned_changed?(from: false, to: true) }
+  validates :privacy, presence: { message: I18n.t('activerecord.errors.models.folder.attributes.privacy.blank') }
 
   def slug_candidates
     [
-      # [ user.username, :name ],
-      [user.username, Digest::MD5.hexdigest(name + created_at.to_s)]
+      [Digest::MD5.hexdigest(user.username + Time.now.to_i.to_s)]
     ]
   end
 
@@ -44,24 +49,7 @@ class Folder < ApplicationRecord
     end
   end
 
-  def folder_already_exists
-    return unless search_folder_by_name.any?
-
-    errors.add(:name, I18n.t('activerecord'\
-                             '.errors'\
-                             '.models'\
-                             '.folder'\
-                             '.attributes'\
-                             '.name'\
-                             '.already_exists',
-                             url: path_to(search_folder_by_name.first)).html_safe)
-  end
-
-  def path_to(folder)
-    Rails.application.routes.url_helpers.folder_path(folder)
-  end
-
-  def search_folder_by_name
-    user.folders.where('lower(name) = ?', name.downcase)
+  def get_folder_path
+    Rails.application.routes.url_helpers.folder_path(self)
   end
 end

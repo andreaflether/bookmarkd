@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="application-theme" content="<%= application_mode %>">
+    <%= favicon_link_tag 'bookmark.ico' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <% code %>
+    <% if cookies[:sun] %>
+      <%= stylesheet_link_tag 'light/application_light', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% else %>
+      <%= stylesheet_link_tag 'dark/application_dark', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% end %>
+
+  </head>
+  <body class="h-100">
+    <div class="container d-flex flex-column h-100 ">
+      <div class="row justify-content-center align-items-center flex-fill px-3" id="page-content">  
+        <div class="error-page text-center col-md-8">
+          <div class="error-page-status">
+            <h3><%= t("content.errors.titles.#{action_name}") %></h3>
+            <h1 class="<%= application_mode %>"><span><%= code[0] %></span><span><%= code[1] %></span><span><%= code[2] %></span></h1>
+          </div>
+          <h2><%= t("content.errors.details.#{action_name}").html_safe %></h2>
+          <%= link_to 'Go back to the home page', root_path, class: 'btn btn-brand mt-3' %>
+        </div>
+      </div>
+      <footer class="text-center mt-auto footer">
+        © <%= Date.today.year %> <span class="font-weight-bold">Bookmarkd</span>. All rights reserved.
+      </footer>
+    </div>
+  </body>
+</html>

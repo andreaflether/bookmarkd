@@ -3,6 +3,13 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :pinned_folders, if: :user_signed_in?
+  helper_method :generate_verification_keyword, :user_has_access_to_folder?, :folder_belongs_to_user?,
+                :can_access_folder?
+  before_action :generate_verification_keyword, if: :is_registration_path?
+
+  def is_registration_path?
+    devise_controller? && %w[edit update].include?(action_name)
+  end
 
   def pinned_folders
     @pinned = current_user.pinned_folders.order(name: :asc)
@@ -18,10 +25,21 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer
   end
 
-  def folder_belongs_to_user?(folder)
-    current_user.id == folder.user.id
+  def generate_verification_keyword
+    @keyword_confirmation = Faker::Internet.slug
   end
-  helper_method :folder_belongs_to_user?
+
+  def user_has_access_to_folder?
+    !@folder.secret?
+  end
+
+  def folder_belongs_to_user?
+    user_signed_in? && current_user.id == @folder.user_id
+  end
+
+  def can_access_folder?
+    folder_belongs_to_user? || user_has_access_to_folder?
+  end
 
   protected
 

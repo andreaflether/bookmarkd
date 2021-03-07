@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+$dark: #121212;
+
+.error-page .error-page-status h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17rem;
+  font-weight: 900;
+  color: #1DA1F2;
+  text-transform: uppercase;
+  letter-spacing: -40px;
+  margin-left: -20px;
+  margin-bottom: 0;
+  line-height: 17rem;
+}
+
+.error-page .error-page-status h1.dark > span {
+  text-shadow: -8px 0px 0px $dark;
+}
+
+.error-page .error-page-status h1.light > span {
+  text-shadow: -8px 0px 0px #fff;
+}
+
+.error-page .error-page-status h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding-left: 6px;
+  margin-bottom: 0;
+}
+
+.error-page h2 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 0px;
+}

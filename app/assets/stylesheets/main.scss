@@ -55,6 +55,10 @@ body::-webkit-scrollbar {
   font-weight: normal;
 }
 
+#no-tweets {
+  margin-top: 2rem;
+}
+
 /* Buttons/Bgs */
 .bg-brand, .badge-brand {
   @extend .brand;
@@ -78,8 +82,18 @@ button.close {
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
 }
 
+#destructive-warning {
+  padding: 1rem;
+  margin-bottom: 0rem;
+  color: #dc3545;
+  background-color: rgba(#dc3545, 0.1);
+  border-top: 1px solid #dc3545;
+  border-bottom: 1px solid #dc3545;
+}
+
 .sort-by-button-group .btn.is-checked {
   @extend .brand;
+  border: 1px solid $brand;
   &:hover,
   &:active,
   &:focus {
@@ -129,6 +143,11 @@ footer {
   border-bottom-left-radius: 0.25rem !important;
 }
 
+.icon {
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
 #search-icon { 
   left: 10px; 
 }
@@ -176,17 +195,6 @@ span.bootstrap-maxlength {
   }
 }
 
-.list-group-item-action {
-  border: none;
-  padding: 0.5rem 1.25rem;
-  background-color: transparent;
-  border-radius: 0 !important;
-}
-
-.list-group-item-action.active {
-  color: rgba($dark, 0.8);
-}
-
 .folder-sidebar {
   left: 1.3rem;
   cursor: pointer;
@@ -198,19 +206,12 @@ span.bootstrap-maxlength {
   width: 250px;
 }
 
-@media(max-height: 510px) {
-  .tip {
-    display: none !important;
-  }
-}
-
 .actions {
   margin-top: 15px;
 }
 
 .folder-menu {
   left: -250px;
-  // transition: all .6s ease;
   width: 250px; 
   height: 90vh; 
   overflow: hidden;
@@ -226,7 +227,6 @@ span.bootstrap-maxlength {
 
 .folder-menu.expanded {
   left: 0;
-  // transition: all .6s ease;
 }
 
 /* Pagination */
@@ -249,6 +249,12 @@ span.bootstrap-maxlength {
 #sidebar-folder-search, 
 .easy-autocomplete input {
   background-color: transparent;
+}
+
+.easy-autocomplete-container ul {
+  li {
+    padding: 0.5rem 0.8rem;
+  }
 }
 
 .border-top-brand {

@@ -1,4 +1,5 @@
 $brand: #1DA1F2;
+$dark: #121212;
 
 /* Buttons */
 button,
@@ -17,10 +18,6 @@ button,
 .navbar-nav .nav-item .nav-link {
   font-weight: bold;
   border-bottom: 2px solid transparent;
-}
-
-.position-fixed {
-  z-index: 9999;
 }
 
 /* Checkbox */ 
@@ -72,14 +69,17 @@ button,
   margin-left: 0.4rem;
 }
 
+.list-group-item-action {
+  border: none;
+  padding: 0.5rem 1.25rem;
+  background-color: transparent;
+  border-radius: 0 !important;
+}
+
+.list-group-item-action.active {
+  color: rgba($dark, 0.8);
+}
+
 .list-group-item.active {
   border-left: 3px solid $brand;
-}
-
-.modal-backdrop {
-  z-index: -1;
-}
-
-.modal {
-  z-index: 99999 !important;
 }

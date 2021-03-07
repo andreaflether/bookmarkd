@@ -1,0 +1,24 @@
+en:
+  delete_folder_confirmation_html: " 
+    <p class='destructive mb-3'>
+      This action cannot be undone and will permanently delete this folder and all its associated 
+      records (<span class='text-brand font-weight-bold'>%{bookmarks_count}</span>). 
+    </p>
+  "
+  delete_bookmarks_confirmation_html: "
+    <p class='destructive mb-3'>
+      If you continue, <span class='text-brand'>%{bookmarks_count}</span> will be removed from this folder.
+    </p>
+  "
+  delete_account_confirmation_html: "
+    <p class='destructive mb-3'>
+      By proceeding with this action, all your folders on this site, including its bookmarked tweets in each one, 
+      <b> will be permanently deleted.</b>
+      Be aware that it won't be possible to recover them by any means after you deactivate your account. <br />
+      <small class='text-muted'>
+        *If you have a Twitter account connected, it won't be affected at all.
+      </small>
+    </p>
+  "
+  are_you_sure: Are you sure?
+  verify_message: Please type <span class="font-weight-bold text-brand">%{keyword}</span> to confirm.

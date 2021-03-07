@@ -7,11 +7,21 @@ en:
     edit: Edit folder info
     new: New folder
     create: New folder
+    delete: Delete folder
+    delete_bookmarks: Delete all bookmarks
+    forbidden: Access denied
+  bookmarks:
+    delete: Remove bookmark from folder
+  errors:
+    not_found: '404'
+    internal_server_error: '500'
+    unprocessable_entity: '422'
   devise:
     registrations:
       edit: Edit user info
       create: Sign up
       new: Sign up
+      delete: Delete account
     sessions:
       new: Sign in
     passwords:

@@ -19,6 +19,32 @@ $(document).ready(function() {
     hideMethod: 'fadeOut'
   }
 
+  // add 'warning' on potentially destructive actions confirmation modal
+  $(document).on('show.bs.modal', function (event) {
+    let modal = $(event.target);
+    let modal_body = modal.find('.modal-body')
+    let last_paragraph = modal_body.find('p:last');
+    let destructive_warning = modal.find('.modal-content #destructive-warning');
+
+    if(modal_body.find('p.destructive').length) {
+      let content = last_paragraph.text();
+      last_paragraph.html(content);
+
+      if(destructive_warning.length) {
+        return;
+      } else {
+        let warning_content = ` \
+          <p id="destructive-warning"> \
+            <i class='fas fa-exclamation-triangle'></i> \
+            <b>Warning:</b> this is a potentially destructive action, therefore permanent. \ 
+            Once you do it, there is no going back. \ 
+          </p> \
+        `;
+        $(warning_content).insertAfter(modal.find('.modal-header'))   
+      }
+    }
+  });
+
   $('.has-max-length').maxlength({
     alwaysShow: true, 
     warningClass: 'small text-muted mt-1', 
@@ -30,14 +56,21 @@ $(document).ready(function() {
   });
 
   // Copy tweet link to clipboard
-  $('#page-content').on('click', '.copyTweetLink', function (){
-    let copyLink = $(this).closest('div[data-tweeturl]').attr('data-tweeturl')
+  $('#page-content').on('click', '.copyLink', function (){
+    if ($(this).attr('data-copy') == 'folder') {
+      var copyLink = window.location.href;  
+      var msg = 'Folder link copied to clipboard!';
+    } else {
+      var copyLink = $(this).closest('div[data-tweeturl]').attr('data-tweeturl');  
+      var msg = 'Tweet URL copied to clipboard!';
+    } 
     document.addEventListener('copy', function(e) {
       e.clipboardData.setData('text/plain', copyLink);
       e.preventDefault();
     }, true);
     document.execCommand('copy');
-    toastr.info('Tweet URL copied to clipboard!')  
+
+    toastr.info(msg)  
   })
 
   function switchForBrand(el) {
