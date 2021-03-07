@@ -1,10 +1,21 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  match '/404', to: 'errors#not_found', via: :all
+  match '/422', to: 'errors#unprocessable_entity', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
+
   resources :folders do
-    put 'pin_folder/:id', on: :collection, to: 'folders#toggle_folder_pin', as: :toggle_pin
     resources :bookmarks, only: [:destroy]
-    get 'search', on: :collection
+    member do
+      put :toggle_pin
+      delete :destroy_bookmarks
+    end
+
+    collection do
+      get :search
+      get :forbidden
+    end
   end
 
   get '/privacy-policy', to: 'pages#privacy_policy'
