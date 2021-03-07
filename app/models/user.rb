@@ -1,26 +1,20 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Devise
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[twitter]
 
-  # Virtual attributes
   attr_accessor :terms
 
-  # Constants
   FOLDER_FILTERS = %w[updated_at number_of_bookmarks name].freeze
 
-  # Relationships
   has_many :folders, dependent: :destroy
 
-  # Preferences
   typed_store :preferences do |s|
     s.string :order_folders_by, default: 'updated_at', null: false
   end
 
-  # Validations
   validates :name, presence: true, length: { maximum: 50, allow_blank: true }
   validates :username, presence: true,
                        uniqueness: { case_sensitive: false, allow_blank: true },
@@ -32,7 +26,6 @@ class User < ApplicationRecord
   validates :terms,
             acceptance: { message: I18n.t('activerecord.errors.models.user.attributes.terms.accepted') }
 
-  # Validations: Preferences
   validates :order_folders_by, inclusion: {
     in: FOLDER_FILTERS,
     message: I18n.t('activerecord.errors.models.user.attributes.order_folders_by.inclusion')
@@ -51,13 +44,12 @@ class User < ApplicationRecord
     user.name = auth.info.name
     user.username = auth.info.nickname
     user.image = profile_picture(auth.info.image)
-
     user.save
     user
   end
 
   def self.profile_picture(pfp_url)
-    pfp_url.sub 'normal', '200x200' unless pfp_url.match(/default/)
+    pfp_url = pfp_url.sub 'normal', '200x200' unless pfp_url.match(/default/)
     pfp_url
   end
 
