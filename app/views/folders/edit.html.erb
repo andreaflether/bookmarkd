@@ -43,7 +43,7 @@
         method: :delete, 
         class: 'btn btn-sm btn-outline-danger',
         data: { 
-          title: t('folders.delete'),
+          title: t('content.modal_titles.folders.delete'),
           'tippy-content': t('content.tippy.folders.delete', folder: @folder.name),
           'tippy-placement': 'right',
           confirm: t('delete_folder_confirmation_html',
@@ -65,7 +65,7 @@
         method: :delete, 
         class: "btn btn-sm btn-outline-danger #{'disabled' if @folder.bookmarks_count == 0}",
         data: { 
-          title: t('folders.delete_bookmarks'),
+          title: t('content.modal_titles.folders.delete_bookmarks'),
           'tippy-content': t('content.tippy.folders.delete_bookmarks'),
           'tippy-placement': 'right',
           confirm: t('delete_bookmarks_confirmation_html',

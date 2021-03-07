@@ -2,16 +2,28 @@ en:
   errors:
     format: "%{message}"
   content:
+    modal_titles:
+      folders:
+        delete: Delete folder
+        delete_bookmarks: Delete all bookmarks
+      bookmarks:
+        delete: Remove bookmark from folder
+      devise:
+        registrations:
+          delete: Delete account
     sort_by:
       number_of_bookmarks: Number of Bookmarks
       name: Name
       updated_at: Last Update
     actions:
+      misc: 
+        home: Go to the home page
       folders: 
         delete: Delete folder
         delete_bookmarks: Delete bookmarks
         edit: Edit folder info
         new: New folder
+        copy_folder_url: Copy folder link
       users: 
         registrations:
           edit: Edit user info
@@ -39,12 +51,17 @@ en:
         <a href='mailto:bookmarkd.web@gmail.com'>bookmarkd.web@gmail.com</a> \
         Let us know what you were trying to do and we'll be sure to get it straightened out."
     tippy:
+      misc:
+        light_mode: Switch application to light mode
+        dark_mode: Switch application to dark mode
+        go_to_top: Go back to top
       folders:
-        delete: "Delete folder: %{folder}"
+        delete: "Delete folder: <b>%{folder}</b>"
         delete_bookmarks: Delete all bookmarks from folder
-        toggle_pin: "%{state} this folder"
+        toggle_pin: "<b>%{state}</b> this folder"
         open_in_new_tab: Open folder in a new tab
         previous_page: Return to previous page
+        copy_folder_url: Copy folder link to clipboard
       users:
         delete: Delete account
       tweets:

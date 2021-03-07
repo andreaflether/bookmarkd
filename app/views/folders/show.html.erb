@@ -41,14 +41,14 @@
             type: 'button', 
             class: 'copyLink folder-action dropdown-item text-muted',
             data: { 
-              'tippy-content': 'Copy folder link to clipboard',
+              'tippy-content': t('content.tippy.folders.copy_folder_url'), 
               'tippy-placement': 'right',
               copy: 'folder'
             }) do %> 
-            <i class="fas fa-link"></i> &nbsp; Copy folder link
+            <i class="fas fa-link"></i> &nbsp; <%= t('content.actions.folders.copy_folder_url') %>
           <% end %>
           <%= link_to edit_folder_path(@folder), class: 'dropdown-item text-muted' do %> 
-            <i class="fas fa-pencil-alt"></i> &nbsp; Edit folder info
+            <i class="fas fa-pencil-alt"></i> &nbsp; <%= t('content.actions.folders.edit') %>
           <% end %>
           <%= link_to folder_path(@folder), 
             method: :delete, 
@@ -64,7 +64,7 @@
               verify_text: t('verify_message', keyword: @keyword_confirmation),
               destructive: true
             } do %>
-            <i class="fas fa-trash-alt"></i> &nbsp; Delete folder
+            <i class="fas fa-trash-alt"></i> &nbsp; <%= t('content.actions.folders.delete') %>
           <% end %>
         </div>
       </div> 

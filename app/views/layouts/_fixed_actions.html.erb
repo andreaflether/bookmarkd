@@ -2,8 +2,8 @@
   <% if cookies[:sun] %>
     <%= link_to moon_path, method: :get, 
       data: { 
-        mode: 'light',
-        'tippy-content': 'Switch application to dark mode',
+        mode: 'dark',
+        'tippy-content': t('content.tippy.misc.dark_mode'),
         'tippy-placement': 'right'
       } do %>
       <i class="fas fa-moon fa-lg"></i>
@@ -11,8 +11,8 @@
   <% else %>
     <%= link_to sun_path, method: :get, 
       data: { 
-        mode: 'dark',
-        'tippy-content': 'Switch application to light mode',
+        mode: 'light',
+        'tippy-content': t('content.tippy.misc.light_mode'),
         'tippy-placement': 'right'
       } do %>
       <i class="fas fa-sun fa-lg"></i>
@@ -22,6 +22,9 @@
 
 <%= link_to '#', 
   class: 'btn btn-primary position-fixed back-to-top invisible',
-  data: { 'tippy-content': 'Go back to top', 'tippy-placement': 'right'} do %>
+  data: { 
+    'tippy-content': t('content.tippy.misc.go_to_top'), 
+    'tippy-placement': 'right'
+  } do %>
   <i class="fas fa-arrow-up"></i>
 <% end %>
