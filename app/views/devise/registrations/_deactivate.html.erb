@@ -15,8 +15,8 @@
           'tippy-content': t('content.tippy.users.delete'),
           'tippy-placement': 'right',
           confirm: t('delete_account_confirmation_html'),
-          verify: @keyword_confirmation, 
-          verify_text: t('verify_message', keyword: @keyword_confirmation)
+          verify: keyword_confirmation(current_user), 
+          verify_text: t('verify_message_html', keyword: keyword_confirmation(current_user))
         },
         class: 'btn btn-sm btn-danger' 
       %>

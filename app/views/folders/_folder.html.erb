@@ -64,12 +64,12 @@
               class: 'dropdown-item text-muted',
               remote: true,
               data: { 
+                title: t('content.actions.folders.delete_with_name', folder: folder.name),
                 confirm: t('delete_folder_confirmation_html',
                   bookmarks_count: pluralize_bookmarks_count(folder)
                 ),
-                verify: @keyword_confirmation, 
-                verify_text: t('verify_message', keyword: @keyword_confirmation),
-                title: t('content.tippy.folders.delete', folder: folder.name),
+                verify: keyword_confirmation(folder), 
+                verify_text: t('verify_message_html', keyword: keyword_confirmation(folder)),
                 'tippy-content': t('content.tippy.folders.delete', folder: folder.name),
                 'tippy-placement': 'right'
               } do %>

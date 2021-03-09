@@ -49,8 +49,8 @@
           confirm: t('delete_folder_confirmation_html',
             bookmarks_count: pluralize_bookmarks_count(@folder)
           ),
-          verify: @keyword_confirmation, 
-          verify_text: t('verify_message', keyword: @keyword_confirmation)
+          verify: keyword_confirmation(@folder), 
+          verify_text: t('verify_message_html', keyword: keyword_confirmation(@folder))
         }
       %>
     </li>
@@ -70,8 +70,8 @@
           'tippy-placement': 'right',
           confirm: t('delete_bookmarks_confirmation_html',
             bookmarks_count: pluralize_bookmarks_count(@folder)),
-          verify: @keyword_confirmation, 
-          verify_text: t('verify_message', keyword: @keyword_confirmation),
+          verify: keyword_confirmation(@folder), 
+          verify_text: t('verify_message_html', keyword: keyword_confirmation(@folder)),
           destructive: true
         }
       %>

@@ -37,4 +37,13 @@ RSpec.describe FoldersHelper, type: :helper do
   describe '#privacy_options' do
     it { expect(helper.privacy_options).to contain_exactly(%w[open Public], %w[secret Private]) }
   end
+
+  describe '#keyword_confirmation' do
+    let(:current_user) { create(:user) }
+    let(:expected_keyword) { "#{current_user.username}/#{current_user.created_at.strftime('%m%d%y')}" }
+
+    before { allow(helper).to receive(:current_user).and_return current_user }
+
+    it { expect(helper.keyword_confirmation(current_user)).to eq(expected_keyword) }
+  end
 end

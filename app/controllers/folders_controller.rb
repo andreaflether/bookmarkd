@@ -3,8 +3,7 @@
 class FoldersController < ApplicationController
   before_action :force_json, only: [:search]
   before_action :set_folder, only: %i[show edit update destroy toggle_pin destroy_bookmarks]
-  before_action :verify_user_permission, only: %i[edit update destroy toggle_pin destroy_bookmarks]
-  before_action :generate_verification_keyword, only: %i[index edit update show]
+  before_action :user_can_access_folder, only: %i[show edit update destroy toggle_pin destroy_bookmarks]
   before_action :set_bookmarks, only: %i[show update destroy]
   before_action :authenticate_user!, except: %i[show forbidden]
 
@@ -24,10 +23,7 @@ class FoldersController < ApplicationController
   end
 
   # GET /folders/1
-  def show
-    @has_permission_to_edit = folder_belongs_to_user?
-    verify_user_permission
-  end
+  def show; end
 
   # GET /folders/new
   def new
@@ -111,8 +107,12 @@ class FoldersController < ApplicationController
                         .before(id: params[:cursor]).limit(10)
   end
 
-  def verify_user_permission
-    redirect_to forbidden_folders_path unless can_access_folder?
+  def user_can_access_folder
+    if can_access_folder?
+      @has_full_access_to_folder = folder_belongs_to_user?
+    else
+      redirect_to forbidden_folders_path
+    end
   end
 
   def force_json

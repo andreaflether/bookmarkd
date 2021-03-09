@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-<%= @has_permission_to_edit ? 'between' : 'center' %> tweet" data-tweetURL="<%= bookmark.tweet.link %>">
+<div class="d-flex justify-content-<%= @has_full_access_to_folder ? 'between' : 'center' %> tweet" data-tweetURL="<%= bookmark.tweet.link %>">
   <%= raw bookmark.tweet.html_content %>
 
-  <% if @has_permission_to_edit %>
+  <% if @has_full_access_to_folder %>
     <div class="d-flex flex-column">
       <div class="mt-2">
         <small class="text-muted d-flex align-items-center">

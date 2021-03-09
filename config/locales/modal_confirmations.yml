@@ -2,13 +2,15 @@ en:
   delete_folder_confirmation_html: " 
     <p class='destructive mb-3'>
       This action cannot be undone and will permanently delete this folder and all its associated 
-      records (<span class='text-brand font-weight-bold'>%{bookmarks_count}</span>). 
+      records (<span class='text-danger font-weight-bold'>%{bookmarks_count}</span>). 
     </p>
+    <hr />
   "
   delete_bookmarks_confirmation_html: "
     <p class='destructive mb-3'>
-      If you continue, <span class='text-brand'>%{bookmarks_count}</span> will be removed from this folder.
+      If you continue, <span class='text-danger'>%{bookmarks_count}</span> will be removed from this folder.
     </p>
+    <hr />
   "
   delete_account_confirmation_html: "
     <p class='destructive mb-3'>
@@ -18,7 +20,8 @@ en:
       <small class='text-muted'>
         *If you have a Twitter account connected, it won't be affected at all.
       </small>
+      <hr />
     </p>
   "
   are_you_sure: Are you sure?
-  verify_message: Please type <span class="font-weight-bold text-brand">%{keyword}</span> to confirm.
+  verify_message_html: Please type <b>%{keyword}</b> to confirm.
