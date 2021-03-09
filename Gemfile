@@ -29,7 +29,6 @@ gem 'omniauth-twitter'
 gem 'pg'
 gem 'ransack'
 gem 'rest-client'
-gem 'rolify'
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'simple_form'
@@ -41,6 +40,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
   gem 'sqlite3'
+  gem 'tty-spinner'
 end
 
 group :development do
