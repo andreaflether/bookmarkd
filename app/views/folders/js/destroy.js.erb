@@ -19,6 +19,7 @@ $("#pinned-folders").load(location.href+" #pinned-folders>*","");
 
 if(!$('.folder').length) {
   $('#folders').attr('data-folders', false)
-  $('#no-results').before("<%= j render 'folders/shared/no_folders' %>");
+  $('#folders-container').before("<%= j render 'folders/shared/no_folders' %>");
+  $('#folders-container').remove();
   $('#sort-filters').fadeOut().remove();
 }

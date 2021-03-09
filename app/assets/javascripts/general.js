@@ -22,17 +22,19 @@ $(document).ready(function() {
   // add 'warning' on potentially destructive actions confirmation modal
   $(document).on('show.bs.modal', function (event) {
     let modal = $(event.target);
-    let modal_body = modal.find('.modal-body')
-    let last_paragraph = modal_body.find('p:last');
+    let modal_body = modal.find('.modal-body');
+
     let destructive_warning = modal.find('.modal-content #destructive-warning');
-
+   
     if(modal_body.find('p.destructive').length) {
-      let content = last_paragraph.text();
-      last_paragraph.html(content);
-
       if(destructive_warning.length) {
-        return;
+        return;     
       } else {
+        let last_paragraph = modal_body.find('p:last');
+        let content = last_paragraph.text();
+
+        last_paragraph.html(content);
+        
         let warning_content = ` \
           <p id="destructive-warning"> \
             <i class='fas fa-exclamation-triangle'></i> \

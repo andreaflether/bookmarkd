@@ -19,7 +19,8 @@ en:
       misc: 
         home: Go to the home page
       folders: 
-        delete: Delete folder
+        delete: "Delete folder"
+        delete_with_name: "Delete folder: %{folder}"
         delete_bookmarks: Delete bookmarks
         edit: Edit folder info
         new: New folder
@@ -56,7 +57,7 @@ en:
         dark_mode: Switch application to dark mode
         go_to_top: Go back to top
       folders:
-        delete: "Delete folder: <b>%{folder}</b>"
+        delete: "Delete folder: %{folder}"
         delete_bookmarks: Delete all bookmarks from folder
         toggle_pin: "<b>%{state}</b> this folder"
         open_in_new_tab: Open folder in a new tab

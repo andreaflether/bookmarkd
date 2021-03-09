@@ -1,9 +1,8 @@
-<div class="col-lg-7 col-md-12 col-sm-12 my-3 text-muted text-center">
-  <h2>¯\_(ツ)_/¯</h2>
-  <p class=" mt-3">
-    You don’t have any folders yet. <br />
-    <b>Create one to get started.</b>
-  </p>
+<div class="col-lg-7 col-md-12 col-sm-12 my-3 text-center" id="no-folders">
+  <%= inline_svg_tag("folder_add_#{application_mode}.svg", class: 'icon') %>
+  
+  <h5>You don’t have any folders yet.</h5>
+  <span class="text-muted">Create one to get started.</span> <br />
 
-  <%= link_to 'Create a Folder', new_folder_path, class: 'btn btn-brand mt-1' %>
+  <%= link_to 'Create a Folder', new_folder_path, class: 'btn btn-brand mt-3' %>
 </div>

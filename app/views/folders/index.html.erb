@@ -4,51 +4,59 @@
 
 <div class="w-100"></div>
 
-<div class="col-lg-6 col-md-9 col-sm-12">
-  <div class="input-group mb-3">
-    <span class="icon-inside text-muted" id="search-icon">
-      <i class="fas fa-search"></i>
-    </span>
-    
-    <input type="text" 
-      placeholder="Search in folders" 
-      class="form-control rounded hasToggledIcon"
-      id="search-folder" 
-      maxlength=50
-      type="search"
-    >
-    <span class="icon-inside text-muted d-none" id="remove-search">
-      <i class="fas fa-times-circle"></i>
-    </span>
-    
-  </div>
-</div>
-
-<div class="w-100"></div>
-
 <% if @folders.blank? %>
   <%= render 'folders/shared/no_folders' %>
 <% else %>
-  <div class="col-md-6 col-sm-12 text-center" id="sort-filters">
-    <div class="btn-group sort-by-button-group" role="group">
-      <%= sort_by_template('Last update', 'updated_at') %>
-      <%= sort_by_template('Name', 'name') %>
-      <%= sort_by_template('No. of bookmarks', 'number_of_bookmarks') %>
-    </div>
-  </div>
-  <div class="col-md-12 col-lg-9">
-    <div class="row mt-4" id="folders" data-folders='true' data-sort-by="<%= current_user.order_folders_by %>">
-      <%= render @folders %>
-    </div>
-  </div>
-  <div class="w-100"></div>
+  <div class="col-lg-9" id="folders-container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-9 col-sm-12" id="search-folder-container">
+        <div class="input-group mb-3">
+          <span class="icon-inside text-muted" id="search-icon">
+            <i class="fas fa-search"></i>
+          </span>
+          
+          <%= text_field_tag 'search', nil, 
+            class: 'form-control rounded hasToggledIcon', 
+            id: 'search-folder',
+            placeholder: 'Search in folders',
+            maxlength: 50 
+          
+          %>
+          <span class="icon-inside text-muted d-none" id="remove-search"
+          data-tippy-content="Clear search" data-tippy-placement="right">
+            <i class="fas fa-times-circle"></i>
+          </span>  
+        </div>
+      </div>
 
-  <div class="col-md-6 mt-3 text-center d-none" id="no-results">
-    <h5 class="font-weight-normal">No results found for 
-      "<b><span class="font-weight-bold" id="searchTerm"><%= @search %></span></b>".
-    </h5>
-    <p class="text-muted mt-3">
-      The term you entered did not bring up any results. Try again with another term. 
-    </p>
-  </div> 
+      <div class="w-100"></div>
+
+      <div class="col-md-7 col-sm-12 text-center" id="sort-filters">
+        <div class="btn-group sort-by-button-group" role="group">
+          <%= sort_by_template('Last update', 'updated_at') %>
+          <%= sort_by_template('Name', 'name') %>
+          <%= sort_by_template('No. of bookmarks', 'number_of_bookmarks') %>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-12">
+        <div class="row mt-4" id="folders" data-folders='true' data-sort-by="<%= current_user.order_folders_by %>">
+          <%= render @folders %>
+        </div>
+      </div>
+
+      <div class="w-100"></div>
+
+      <div class="col-md-10 mt-3 text-center d-none" id="no-results">
+        <h5 class="font-weight-normal">No results found for 
+          "<b><span class="font-weight-bold" id="searchTerm"><%= @search %></span></b>".
+        </h5>
+        <p class="text-muted mt-3">
+          The term you entered did not bring up any results. Try again with another term. 
+        </p>
+      </div> 
+      
+    </div>
+  </div>
+  
 <% end %>

@@ -36,9 +36,9 @@ $(document).ready(function() {
 function toggleIcon() {
   let icon = $('#toggle-sidebar').find('i');
   if($('.folder-menu').hasClass('expanded')) {
-    icon.switchClass('fa-folder', 'fa-folder-open');
+    icon.switchClass('fa-folder', 'fa-folder-open', 200, 'easeInOutQuad');
   } else {
-    icon.switchClass('fa-folder-open', 'fa-folder');
+    icon.switchClass('fa-folder-open', 'fa-folder', 200, 'easeInOutQuad');
   }
 }
 

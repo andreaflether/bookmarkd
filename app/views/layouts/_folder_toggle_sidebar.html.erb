@@ -24,7 +24,7 @@
         <%= render partial: 'folders/shared/pinned', collection: @pinned %>
     <% else %>
       <div class="no-pinned-folders text-muted px-3 small">
-        <p class="mb-1 font-weight-bold mt-2 ">You haven’t pinned any Folders yet.</p>
+        <p class="mb-1 font-weight-bold mt-2 ">You haven’t pinned any folders yet.</p>
         <p>When you do, it’ll show up here.</p>
       </div>
     <% end %>
@@ -33,11 +33,11 @@
     <% if user_signed_in? %>
       <div class="position-fixed folder-sidebar">
         <a id="toggle-sidebar" 
-          class="link-brand" 
+          class="link-brand"  
           data-tippy-content="Toggle folder sidebar" 
           data-tippy-placement="left"
         >
-          <i class="fas fa-folder-open fa-2x"></i>
+        <i class="fas folder-icon fa-folder-open fa-2x"></i>
         </a>
       </div>
     <% end %>

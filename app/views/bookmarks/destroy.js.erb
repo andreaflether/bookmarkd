@@ -7,6 +7,6 @@ tweet.fadeOut('slow', function() {
   }
 });
 
-toastr.info(<%= t('controllers.folders.tweet.deleted', folder: folder.name).html_safe %>)
+toastr.info("<%= t('controllers.folders.tweet.deleted', folder: folder.name).html_safe %>")
 
 $('#tweetsCount').html("<%= pluralize_bookmarks_count(folder) %>")

@@ -260,3 +260,7 @@ span.bootstrap-maxlength {
 .border-top-brand {
   border-top: 3px solid $brand !important;
 }
+
+.folder-icon {
+  transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
