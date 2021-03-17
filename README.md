@@ -1,6 +1,6 @@
 <img src="./app/assets/images/bookmark-regular.svg" width="10%" align="right">
 
-# Bookmarkd [![Maintainability](https://api.codeclimate.com/v1/badges/d3b4fd47ba56eafc4d50/maintainability)](https://codeclimate.com/github/andreaflether/bookmarkd/maintainability) [![codecov](https://codecov.io/gh/andreaflether/bookmarkd/branch/main/graph/badge.svg)](https://codecov.io/gh/andreaflether/bookmarkd) [![GitHub license](https://img.shields.io/github/license/andreaflether/bookmarkd)](https://github.com/andreaflether/bookmarkd/blob/main/LICENSE)
+# Bookmarkd [![Build Status](https://www.travis-ci.com/andreaflether/bookmarkd.svg?branch=main)](https://www.travis-ci.com/andreaflether/bookmarkd) [![Maintainability](https://api.codeclimate.com/v1/badges/d3b4fd47ba56eafc4d50/maintainability)](https://codeclimate.com/github/andreaflether/bookmarkd/maintainability) [![codecov](https://codecov.io/gh/andreaflether/bookmarkd/branch/main/graph/badge.svg)](https://codecov.io/gh/andreaflether/bookmarkd) [![GitHub license](https://img.shields.io/github/license/andreaflether/bookmarkd)](https://github.com/andreaflether/bookmarkd/blob/main/LICENSE)
 
 > Since Twitter only provides a single page to keep **all** your bookmarked tweets and usually, it takes forever to find a specific tweet in the middle of it all, extreme measures had to be taken. So, i present to you...
 
@@ -9,6 +9,10 @@
 ## Main features
 ### 📂 Save tweets of your choice in folders (a.k.a. Bookmark Folders)
 Create folders by adding a name and a description. After that, just start adding tweets to it! The bookmarks will always be displayed in the order they were last added.
+### ⚙️ Custom privacy
+By default, only you have access to your folders/bookmarked tweets. However, you can choose to leave the folder public.
+### 🔗 Folder sharing
+If you chose to leave a folder public, you can copy its link and share it with the world! Other people seeing the folder will only have read privileges though, meaning only you can edit, add or delete bookmarks.
 ### 🌓 Dark and Light mode
 The default is the Dark mode, but you can change the application mode at any time. 
 ### 🔢 Sort folders by Name, Last Update or Number of Bookmarks
@@ -19,8 +23,6 @@ Bookmarkd will tell you if the tweet you're trying to add already exists in the 
 You can also pin a folder. They will always appear first in the index page.
 ### 👩‍💻  Sign up via Bookmarkd or Twitter
 It is possible to create an account on the site or log in via Twitter.
-### 🔒 Private bookmarks
-Only you have access to your folders/bookmarked tweets.
 
 ## Technology
 * Ruby 2.5.5
@@ -55,3 +57,17 @@ Only you have access to your folders/bookmarked tweets.
 - [Toastr](https://github.com/CodeSeven/toastr) (with modified design) for alerts and/or notices.
 
  Check <kbd>[package.json](./package.json)</kbd> file
+
+## License
+The project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Copyright © 2020, Andréa Alencar.
+
+## Contributing
+
+1. Fork it ([http://github.com/andreaflether/bookmarkd/fork](http://github.com/andreaflether/bookmarkd/fork))
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+Please write tests for anything you change, add or fix.
