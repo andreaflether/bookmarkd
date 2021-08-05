@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe Folder, type: :request do
+RSpec.describe 'Folders', type: :request do
   let!(:user) { create(:user) }
   let(:folder) { create(:folder, user: user) }
 
   describe 'GET /folders' do
-    before { get folders_path, params: { session: login_as(user) } }
+    before { get :index, params: { session: login_as(user) } }
 
     it { expect(response).to have_http_status(:ok) }
   end
