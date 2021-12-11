@@ -98,7 +98,7 @@ class FoldersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_folder
-    @folder = Folder.find(params[:id])
+    @folder = Folder.find_by(slug: params[:id])
   end
 
   def set_bookmarks

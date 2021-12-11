@@ -6,11 +6,13 @@ class Folder < ApplicationRecord
   has_many :tweets, -> { distinct }, through: :bookmarks
   accepts_nested_attributes_for :bookmarks
 
+  acts_as_url :name,
+              url_attribute: :slug,
+              sync_url: true,
+              limit: 80
+
   MAX_PINNED_FOLDERS = 15
   FOLDER_PRIVACIES = %w[open secret].freeze
-
-  extend FriendlyId
-  friendly_id :slug_candidates, use: %i[slugged finders]
 
   enum privacy: FOLDER_PRIVACIES
 
@@ -31,12 +33,6 @@ class Folder < ApplicationRecord
            if: -> { pinned_changed?(from: false, to: true) }
   validates :privacy, presence: { message: I18n.t('activerecord.errors.models.folder.attributes.privacy.blank') }
 
-  def slug_candidates
-    [
-      [Digest::MD5.hexdigest(user.username + Time.now.to_i.to_s)]
-    ]
-  end
-
   def number_of_pinned_folders
     if user.pinned_folders.count == MAX_PINNED_FOLDERS
       errors.add(:folders, I18n.t('activerecord'\
@@ -47,6 +43,10 @@ class Folder < ApplicationRecord
         '.pinned'\
         '.limit_reached', max_pins: MAX_PINNED_FOLDERS))
     end
+  end
+
+  def to_param
+    slug
   end
 
   def get_folder_path

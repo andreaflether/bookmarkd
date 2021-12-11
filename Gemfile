@@ -22,7 +22,6 @@ gem 'cursor-paginate'
 gem 'data-confirm-modal'
 gem 'devise'
 gem 'faker'
-gem 'friendly_id'
 gem 'inline_svg'
 gem 'kaminari'
 gem 'omniauth-twitter'
@@ -32,6 +31,7 @@ gem 'rest-client'
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'simple_form'
+gem 'stringex'
 gem 'travis'
 gem 'twitter'
 
