@@ -1,25 +1,6 @@
 <!DOCTYPE html>
 <html class="h-100">
-  <head>
-    <title><%= title %></title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="twitter:widgets:theme" content="<%= application_mode %>">
-    <meta name="application-theme" content="<%= application_mode %>">
-    <%= favicon_link_tag 'bookmark.ico' %>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    
-    <% if cookies[:sun] %>
-      <%= stylesheet_link_tag 'light/application_light', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <% else %>
-      <%= stylesheet_link_tag 'dark/application_dark', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <% end %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= render 'layouts/head' %>
   <body class="h-100 <%= 'bg-lightgrey' if devise_controller? && !not_edit_user_registration_path %>">
     <% if user_signed_in? %>
       <%= render 'layouts/folder_toggle_sidebar' %>

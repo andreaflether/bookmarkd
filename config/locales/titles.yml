@@ -1,30 +1,33 @@
 en:
-  site_name: Bookmarkd
-  folders:
-    index: Folders
-    show: "%{folder}"
-    update: Edit folder info
-    edit: Edit folder info
-    new: New folder
-    create: New folder
-    forbidden: Access denied
-  errors:
-    not_found: '404'
-    internal_server_error: '500'
-    unprocessable_entity: '422'
-  devise:
-    registrations:
-      edit: Edit user info
-      create: Sign up
-      new: Sign up
-    sessions:
-      new: Sign in
-    passwords:
-      new: Password reset
-      create: Password reset
-      edit: Password change
-      update: Password change
-  pages:
-    home: 
-    privacy_policy: Privacy Policy
-    terms_of_service: Terms of Service
+  app:
+    name: Bookmarkd
+    description: Bookmarkd allows you to save tweets in folders!
+    titles:
+      folders:
+        index: Folders
+        show: "%{folder}"
+        update: Edit folder info
+        edit: Edit folder info
+        new: New folder
+        create: New folder
+        forbidden: Access denied
+      errors:
+        not_found: '404'
+        internal_server_error: '500'
+        unprocessable_entity: '422'
+      devise:
+        registrations:
+          edit: Edit user info
+          create: Sign up
+          new: Sign up
+        sessions:
+          new: Sign in
+        passwords:
+          new: Password reset
+          create: Password reset
+          edit: Password change
+          update: Password change
+      pages:
+        home: 
+        privacy_policy: Privacy Policy
+        terms_of_service: Terms of Service
