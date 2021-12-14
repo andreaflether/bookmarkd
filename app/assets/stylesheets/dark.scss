@@ -1,0 +1,273 @@
+@import 'variables';
+
+/* Override default values */
+[data-theme=dark] {
+  background-color: $dark !important; 
+  color: rgba($light, 0.8); 
+
+  hr, .modal-footer { 
+    border-top: 1px solid rgba(#FFF, 0.1);
+  }
+
+  select {
+    color: rgba($light, 0.8) !important;
+    option {
+      background-color: lighten($color: $dark, $amount: 5%) !important;
+    }
+  }
+
+  .text-logo {
+    color: $light;
+  }
+
+  /* Overriding bootstrap default values */
+  .btn-outline-secondary { 
+    border-color: rgba(#FFF, 0.15) !important; 
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba(#FFF, 0.07);
+      color: #FFF;
+    }
+  }
+
+  .card { 
+    background-color: transparent;
+  }
+
+  .custom-control-label {
+    &:before {
+      background-color: transparent;
+      border-color: rgba(#FFF, 0.15); 
+    }
+  }
+
+  .dropdown-menu { 
+    background-color: #191919; 
+  }
+
+  .dropdown-item {
+    color: rgba($light, 0.8) !important;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: rgba($light, 0.06);
+    }
+  }
+
+  .dropdown-item.disabled {
+    color: rgba($light, 0.3) !important;
+  }
+
+  .form-control {
+    color: rgba($light, 0.8); 
+    background-color: transparent;
+    border-color: rgba($light, 0.2);
+    &:focus, 
+    &:active {
+      color: rgb(181, 175, 166);
+      background-color: transparent !important;
+      outline-color: initial;
+      border-color: $primary;
+    }
+  }
+
+  .form-control:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: #FFF;
+    box-shadow: 0 0 0px 1000px #121212 inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: rgb(181, 175, 166);
+  }
+
+  .modal-content {
+    background-color: $dark;
+    color: rgba(#FFF, .6);
+    border-color: rgba($light, 0.1);
+    button { 
+      color: rgba(#FFF, .4);
+      &:hover {
+        color: rgba(#FFF, 0.6);
+      } 
+    }
+    .commit { color: #F8F9FA; }
+    h5 { color: $light; }
+    p { 
+      margin-bottom: 0.5rem; 
+    }
+
+    .modal-header {
+      border-bottom: 1px solid rgba(#FFF, 0.1);
+    }
+  }
+
+  .navbar-nav .nav-item .nav-link  { 
+    color: rgba(#FFF, .60); 
+    &:hover {
+      color: rgba(#FFF, .80);
+    }
+  }
+
+  /* Text related */
+  .text-light { 
+    color: rgba($light, 0.7) !important; 
+  }
+
+  .text-black-50 { 
+    color: rgba(232, 230, 227, 0.5) !important; 
+  }
+
+  .policy-content, .terms-content {
+    p, ol { 
+      color: rgb(140, 145, 152); 
+    }
+  }
+
+  /* Buttons/Bgs */
+  .bg-custom {
+    background-color: rgba($light, 0.03);
+  }
+
+  .btn-default {
+    border-color: rgba(#FFF, .75);
+    color:rgba(#FFF, .75) !important;
+    background-color: transparent;
+    &:hover, 
+    &:active {
+      color: $dark !important;
+      text-shadow: none; /* Prevent inheritance from `body` */
+      background-color:  $light;
+      border-color:  $light;
+    }
+  }
+
+  /* Custom styles */
+  #error_explanation {
+    background-color: rgba($danger, 0.5);
+    color: #CFCFCF;
+  }
+
+  /* Actions and/or Icons */
+  .pin-folder-icon, .folder-dropdown-options {
+    color: #696969;
+    &:hover { 
+      color: darken($color: #bbb, $amount: 10%) 
+    }
+  }
+
+  /* Pagination */
+  .pagination {
+    text-shadow: none;
+    .page-item .page-link {
+      background-color: transparent;
+      color: rgba($light, 0.4);
+      border: 1px solid rgba($light, 0.4);
+      &:hover {
+        background-color: rgba($light, 0.1);
+        color: #FFF;
+      }
+    }
+    .page-item.active .page-link {
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .border-right {
+    border-color: rgba($light, 0.1) !important;
+  }
+
+  .muted {
+    background-color: rgba($light, 0.06);
+    color: rgba($light, 0.7) !important;
+  }
+
+  .list-group-item.transparent {
+    background: transparent;
+  }
+
+  .list-group-item-action {
+    &:hover {
+      background-color: rgba($light, 0.08);
+    }
+    color: rgba($light, 0.5);
+  }
+
+  .list-group-item-action.active,
+  .list-group-item-action {
+    &:focus,
+    &:hover,
+    &:active {
+      @extend .muted;
+    }
+  }
+
+  .list-group-item.active {
+    background-color: rgba($light, 0.08);
+    color: $light;
+  }
+
+  .list-group-flush > .list-group-item.transparent,
+  .list-group > .list-group-item.transparent {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .list-group-flush > .list-group-item:last-child {
+    border-bottom-width: 0;
+  }
+
+  body::-webkit-scrollbar-track,
+  .folder-menu::-webkit-scrollbar-track {
+    background: rgba($light, 0.1); 
+  }
+
+  body::-webkit-scrollbar-thumb,
+  .folder-menu::-webkit-scrollbar-thumb {
+    background: rgba($light, 0.2);
+  }
+
+  body::-webkit-scrollbar-thumb:hover,
+  .folder-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba($light, 0.3); 
+  }
+
+  .folder-menu, .toggle-fixed {
+    background-color: $dark;
+  }
+
+  .sort-by-button-group .btn {
+    border-color: rgba(#FFF, 0.2);
+    color: rgba(#FFF, 0.4);
+    &:hover {
+      background-color: rgba(#FFF, 0.1);
+      color: #FFF;
+    }
+  }
+
+  .easy-autocomplete input {
+    border-color: rgba($light, 0.2);
+    color: rgba($light, 0.8); 
+  }
+
+  .easy-autocomplete-container ul {
+    background-color: lighten($color: $dark, $amount: 5%);
+    border-top: 1px solid rgba($light, 0.2);
+  }
+
+  .easy-autocomplete-container ul li {
+    border-color: rgba($light, 0.2);
+    color: rgba($light, 0.8);
+    background-color: $dark;
+  }
+
+  .easy-autocomplete-container ul li.selected {
+    background: none repeat scroll 0 0 lighten($color: $dark, $amount: 5%) !important;
+  }
+
+  .shadow-lg {
+    box-shadow: rgb(48, 52, 54) 0px 1px 3px 0px, rgb(48, 52, 54) 0px 0px 0px 1px !important;
+  }
+}

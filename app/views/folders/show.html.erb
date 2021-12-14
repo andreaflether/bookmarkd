@@ -1,6 +1,11 @@
-<%= content_for(:title, t('.', folder: @folder.name)) %>
+<% set_meta_tags twitter: { 
+  description: @folder.try(:description) ? @folder.description : t('app.description') }, 
+  title: @folder.name 
+%>
 
-<h2 class="col-12 text-brand text-center"><%= @folder.name %></h2>
+<h2 class="col-12 text-primary text-center">
+  <%= @folder.name %>
+</h2>
 
 <div class="col-lg-7 col-md-12 text-center mb-3">
   <% if @folder.description.present? %>
@@ -93,7 +98,7 @@
                 autocomplete: 'off'
               } %>
             <div class="input-group-append">   
-              <%= f.button :submit, 'Add', class: 'btn btn-brand' %>
+              <%= f.button :submit, 'Add', class: 'btn btn-primary' %>
             </div>
           <% end %>
         <% end %>
@@ -103,7 +108,7 @@
 <% end %>
 
 <div class="col-12 text-center mt-2">
-  <span class="badge badge-sm badge-pill badge-brand">
+  <span class="badge badge-sm badge-pill badge-primary">
     <p class="mb-0 px-2 py-1" id="tweetsCount">
       <%= pluralize_bookmarks_count(@folder) %>
     </p>

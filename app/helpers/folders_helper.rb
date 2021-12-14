@@ -26,7 +26,7 @@ module FoldersHelper
 
   def keyword_confirmation(resource)
     username = current_user.username
-    created_at = resource.created_at.strftime('%m%d%y')
-    "#{username}/#{created_at}"
+    slug = resource.try(:slug)
+    slug ? "#{username}/#{slug}" : "#{username}/i-am-absolutely-sure"
   end
 end

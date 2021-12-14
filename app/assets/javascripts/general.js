@@ -76,11 +76,11 @@ $(document).ready(function() {
   })
 
   function switchForBrand(el) {
-    el.prev().switchClass('text-muted', 'text-brand', 50, 'easeInOutQuad' );
+    el.prev().switchClass('text-muted', 'text-primary', 50, 'easeInOutQuad' );
   }
   
   function switchForMuted(el) {
-    el.prev().switchClass('text-brand', 'text-muted', 50, 'easeInOutQuad' );
+    el.prev().switchClass('text-primary', 'text-muted', 50, 'easeInOutQuad' );
   }
   
   $('.hasToggledIcon').on('focusin', function() { switchForBrand($(this)); })

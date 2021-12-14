@@ -4,7 +4,7 @@
     <div class="card-body">
       <h5 class="folder-title card-title d-flex align-items-center justify-content-between mb-1 text-break">
         <%= link_to folder.name, folder, 
-          class: 'link-brand font-weight-bold',
+          class: 'link-primary font-weight-bold',
           data: { 
             'tippy-content': 'Go to folder page', 
             'tippy-placement': 'right'
@@ -12,7 +12,7 @@
         <%= link_to toggle_pin_folder_path(folder), 
           method: :put,  
           remote: true,
-          class: folder.pinned? ? 'link-brand' : 'pin-folder-icon',
+          class: folder.pinned? ? 'link-primary' : 'pin-folder-icon',
           data: { 
             'tippy-content': t('content.tippy.folders.toggle_pin', state: state_name(folder))
           } do %>
@@ -41,7 +41,7 @@
             <span class="privacy"><i class="fas fa-globe-americas"></i> &nbsp;Public</span>
           <% end %>
           &nbsp;•&nbsp; 
-          <span class="text-brand number-of-bookmarks"><%= pluralize_bookmarks_count(folder) %></span>   
+          <span class="text-primary number-of-bookmarks"><%= pluralize_bookmarks_count(folder) %></span>   
         </div>
         <div class="dropdown">
           <a class="folder-dropdown-options" 

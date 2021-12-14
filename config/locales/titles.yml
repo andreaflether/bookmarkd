@@ -15,18 +15,17 @@ en:
         not_found: '404'
         internal_server_error: '500'
         unprocessable_entity: '422'
-      devise:
-        registrations:
-          edit: Edit user info
-          create: Sign up
-          new: Sign up
-        sessions:
-          new: Sign in
-        passwords:
-          new: Password reset
-          create: Password reset
-          edit: Password change
-          update: Password change
+      registrations:
+        edit: Edit user info
+        create: Sign up
+        new: Sign up
+      sessions:
+        new: Sign in
+      passwords:
+        new: Password reset
+        create: Password reset
+        edit: Password change
+        update: Password change
       pages:
         home: 
         privacy_policy: Privacy Policy

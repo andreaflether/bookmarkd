@@ -102,7 +102,7 @@ $(document).ready(function() {
 
   // change sort-by based on btn group data attr (sort-by)
   $('.sort-by-button-group').on('click', 'a', function() {
-    $(this).parent().siblings().removeClass('btn-brand');
+    $(this).parent().siblings().removeClass('btn-primary');
     var sortByValue = $(this).attr('data-sort-by');
     $('#folders').attr('data-sort-by', sortByValue)
     $grid.isotope({ 

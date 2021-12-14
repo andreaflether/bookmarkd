@@ -1,53 +1,45 @@
-$brand: #1DA1F2;
-$dark: #121212;
 
-/* Buttons */
-button,
-.btn {
-  &:active,
-  &:visited,
-  &:focus {
-    box-shadow: none !important;
-  }
-}
+@import 'variables';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
-.input-group-append .btn-outline-secondary { 
-  border-left: none; 
-}
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+$input-focus-box-shadow: $default-box-shadow;
+$input-btn-focus-box-shadow: $default-box-shadow;
+
+$form-label-font-weight: 600;
+$form-check-input-focus-box-shadow: $default-box-shadow;
+$form-select-focus-box-shadow: $default-box-shadow;
+$font-family-base: 'Rubik';
+
+$theme-colors: (
+  'primary':    $primary,
+  'secondary':  $secondary,
+  'success':    $success,
+  'info':       $blue,
+  'warning':    $warning,
+  'danger':     $danger,
+  'light':      $light,
+  'dark':       $dark,
+  'default':    $default
+  );
+
+@import 'bootstrap/scss/bootstrap';
 
 .navbar-nav .nav-item .nav-link {
   font-weight: bold;
   border-bottom: 2px solid transparent;
 }
 
-/* Checkbox */ 
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before,
-.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
-  background-color: $brand !important;
-}
-
-.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 1px $brand;
-}
-
-/* Inputs */
-.form-control {
-  box-shadow: none !important;
-  &:focus {
-    box-shadow: 0 0 1px $brand;
-    border-color: $brand;
-  }
-}
-
-.form-control.is-invalid {
-  &:focus, &:active {
-    box-shadow: none;
-  }
-}
-
 /* Overriding default bootstrap values */
 .dropdown-item { 
-  padding: 0.7rem 1.5rem; 
+  padding: 0.7rem 1.5rem;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: rgba(32, 34, 35, 0.08);
+  }
 }
 
 .dropdown-menu {
@@ -56,7 +48,7 @@ button,
 }
 
 .shadow-lg { 
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.17) !important; 
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5 !important;
 }
 
 .user-dropdown.dropdown-toggle::after {
@@ -71,7 +63,7 @@ button,
 
 .list-group-item-action {
   border: none;
-  padding: 0.5rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   background-color: transparent;
   border-radius: 0 !important;
 }
@@ -81,5 +73,5 @@ button,
 }
 
 .list-group-item.active {
-  border-left: 3px solid $brand;
+  border-left: 3px solid $primary;
 }

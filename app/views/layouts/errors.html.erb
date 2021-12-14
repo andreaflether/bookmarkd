@@ -19,7 +19,7 @@
 
   </head>
   <body class="h-100">
-    <div class="container d-flex flex-column h-100 ">
+    <div class="container d-flex flex-column h-100">
       <div class="row justify-content-center align-items-center flex-fill px-3" id="page-content">  
         <div class="error-page text-center col-md-8">
           <div class="error-page-status">
@@ -27,7 +27,7 @@
             <h1 class="<%= application_mode %>"><span><%= code[0] %></span><span><%= code[1] %></span><span><%= code[2] %></span></h1>
           </div>
           <h2><%= t("content.errors.details.#{action_name}").html_safe %></h2>
-          <%= link_to t('content.actions.misc.home'), root_path, class: 'btn btn-brand mt-3' %>
+          <%= link_to t('content.actions.misc.home'), root_path, class: 'btn btn-primary mt-3' %>
         </div>
       </div>
       <footer class="text-center mt-auto footer">

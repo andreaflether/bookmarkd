@@ -1,0 +1,8 @@
+$primary: #1DA1F2;
+$dark:    #121212;
+$default: #F8F9FA;
+$light:     invert($color: $dark);
+$danger:    #DC3545;
+
+$input-focus-border-color: $primary;
+$default-box-shadow: 0 0 0 2px rgba($primary, .3);
