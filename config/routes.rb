@@ -26,8 +26,5 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  get '/moon', to: 'application#moon', as: 'moon'
-  get '/sun', to: 'application#sun', as: 'sun'
-
   put '/order_folders_by', to: 'preferences#order_folders_by'
 end

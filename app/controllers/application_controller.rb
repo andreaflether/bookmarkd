@@ -9,16 +9,6 @@ class ApplicationController < ActionController::Base
     @pinned = current_user.pinned_folders.order(name: :asc)
   end
 
-  def moon
-    cookies.delete(:sun)
-    redirect_to request.referer
-  end
-
-  def sun
-    cookies[:sun] = { value: 'light mode on' }
-    redirect_to request.referer
-  end
-
   def user_has_access_to_folder?
     @folder.open?
   end
