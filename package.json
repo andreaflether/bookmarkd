@@ -6,6 +6,8 @@
     "bootstrap": "^4.5.3",
     "bootstrap-maxlength": "^1.10.0",
     "bootstrap-show-password": "^1.2.1",
+    "bootstrap4-toggle": "^3.6.1",
+    "darkmode-js": "^1.5.7",
     "easy-autocomplete": "^1.3.5",
     "imagesloaded": "^4.1.4",
     "isotope-layout": "^3.0.6",
