@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FoldersController < ApplicationController
-  before_action :force_json, only: [:search]
+  before_action :force_json, only: %i[search]
   before_action :set_folder, only: %i[show edit update destroy toggle_pin destroy_bookmarks]
   before_action :user_can_access_folder, only: %i[show edit update destroy toggle_pin destroy_bookmarks]
   before_action :set_bookmarks, only: %i[show update destroy]

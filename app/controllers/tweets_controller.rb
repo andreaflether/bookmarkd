@@ -5,13 +5,11 @@ class TweetsController < ApplicationController
   before_action :set_bookmarks, only: [:destroy]
 
   # GET /tweets
-  # GET /tweets.json
   def index
     @tweets = Tweet.all
   end
 
   # GET /tweets/1
-  # GET /tweets/1.json
   def show; end
 
   # GET /tweets/new
@@ -23,7 +21,6 @@ class TweetsController < ApplicationController
   def edit; end
 
   # POST /tweets
-  # POST /tweets.json
   def create
     @tweet = Tweet.find_or_create_by(tweet_params)
 
