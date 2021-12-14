@@ -23,16 +23,6 @@ module ApplicationHelper
     type[flash_type.to_sym]
   end
 
-  def title
-    page_title = if content_for?(:title)
-                   # allows the title to be set in the view by using t(".title")
-                   content_for(:title)
-                 else
-                   t("#{controller_path.tr('/', '.')}.#{action_name}")
-                 end
-    page_title.include?('translation_missing') ? t(:site_name) : "#{page_title} / #{t(:site_name)}"
-  end
-
   def light_mode?
     cookies[:sun]
   end
