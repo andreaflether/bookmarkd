@@ -1,10 +1,17 @@
 $(document).ready(function() {
   // --------------- Customization Points ---------------
+
   // Declare these methods before loading this script to override them.
+  loadTheme = typeof loadTheme === 'function' ? loadTheme : () => localStorage.getItem('bookmarkd-theme')
+  saveTheme = typeof saveTheme === 'function' ? saveTheme : theme => localStorage.setItem('bookmarkd-theme', theme)
   
-  loadTheme = typeof loadTheme === 'function' ? loadTheme : () => localStorage.getItem('theme')
-  saveTheme = typeof saveTheme === 'function' ? saveTheme : theme => localStorage.setItem('theme', theme)
-  
+  $('.application-mode').html(`<input type="checkbox" ${getTheme() === 'dark' ? 'checked' : ''} id="darkSwitch">`)
+
+  $('#darkSwitch').bootstrapToggle({
+    on: "<i class='fas fa-moon'></i>", 
+    off: "<i class='fa fa-sun'></i>"
+  })
+
   const themeChangeHandlers = []
   
   // =============== Initialization ===============
@@ -34,12 +41,11 @@ $(document).ready(function() {
     }
   }
 
-  const darkSwitch = document.getElementById('darkSwitch')
+  const darkSwitch = $('#darkSwitch')
   
-  darkSwitch.checked = getTheme() === 'dark'
-  darkSwitch.onchange = () => {
-    setTheme(darkSwitch.checked ? 'dark' : 'light')
-  }
+  darkSwitch.on('change', function() {
+    setTheme(darkSwitch.prop('checked') ? 'dark' : 'light')
+  })
   
-  themeChangeHandlers.push(theme => darkSwitch.checked = theme === 'dark')
+  themeChangeHandlers.push(theme => darkSwitch.prop('checked', theme === 'dark'))
 })
