@@ -70,6 +70,7 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     byebug (11.1.3)
+    cancancan (3.3.0)
     capybara (3.33.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -163,6 +164,7 @@ GEM
       multi_json (~> 1.8)
     hashdiff (1.0.1)
     hashie (4.1.0)
+    high_voltage (3.1.2)
     highline (2.0.3)
     htmlentities (4.3.4)
     http (4.4.1)
@@ -472,6 +474,7 @@ DEPENDENCIES
   bootstrap4-kaminari-views
   bullet
   byebug
+  cancancan
   capybara
   codecov
   coffee-rails (~> 4.2)
@@ -483,6 +486,7 @@ DEPENDENCIES
   faker
   guard (~> 2.15)
   guard-livereload
+  high_voltage (~> 3.1)
   inline_svg
   jbuilder (~> 2.5)
   json_matchers
