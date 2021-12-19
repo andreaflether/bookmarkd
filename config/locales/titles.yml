@@ -5,28 +5,28 @@ en:
     titles:
       folders:
         index: Folders
-        show: "%{folder}"
-        update: Edit folder info
-        edit: Edit folder info
-        new: New folder
-        create: New folder
+        update: &update Edit folder info
+        edit: *update
+        create: &create New folder
+        new: *create
         forbidden: Access denied
       errors:
-        not_found: '404'
-        internal_server_error: '500'
-        unprocessable_entity: '422'
+        not_found: Not found
+        internal_server_error: Internal server error
+        unprocessable_entity: Unprocessable entity
       registrations:
-        edit: Edit user info
-        create: Sign up
-        new: Sign up
+        update: &update Edit user info
+        edit: *update
+        create: &create Sign up
+        new: *create
       sessions:
         new: Sign in
       passwords:
-        new: Password reset
-        create: Password reset
-        edit: Password change
-        update: Password change
+        create: &create Password reset
+        new: *create
+        update: &update Password change
+        edit: *update
       pages:
-        home: 
+        home: ''
         privacy_policy: Privacy Policy
         terms_of_service: Terms of Service
