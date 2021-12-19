@@ -4,7 +4,7 @@
   </h2>
   <div class="text-center font-weight-normal">
     <h5 class="mt-3 mb-2">This folder is empty.</h5>
-    <% if folder_belongs_to_user? %>
+    <% if can? :manage, @folder %>
       <span class="text-muted">Add tweets to see them here!</span>
     <% end %>
   </div>

@@ -109,14 +109,6 @@ class FoldersController < ApplicationController
                         .before(id: params[:cursor]).limit(10)
   end
 
-  def user_can_access_folder
-    if can_access_folder?
-      @has_full_access_to_folder = folder_belongs_to_user?
-    else
-      redirect_to forbidden_folders_path
-    end
-  end
-
   def force_json
     request.format = :json
   end
