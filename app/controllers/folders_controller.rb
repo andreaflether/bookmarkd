@@ -3,9 +3,9 @@
 class FoldersController < ApplicationController
   before_action :force_json, only: %i[search]
   before_action :set_folder, only: %i[show edit update destroy toggle_pin destroy_bookmarks]
-  before_action :user_can_access_folder, only: %i[show edit update destroy toggle_pin destroy_bookmarks]
   before_action :set_bookmarks, only: %i[show update destroy]
   before_action :authenticate_user!, except: %i[show forbidden]
+  load_and_authorize_resource except: %i[forbidden]
 
   # GET /folders/search
   def search
@@ -98,7 +98,9 @@ class FoldersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_folder
-    @folder = Folder.find_by(slug: params[:id])
+    @folder = Folder.find_by!(slug: params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to not_found_path
   end
 
   def set_bookmarks
