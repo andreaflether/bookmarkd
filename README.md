@@ -33,7 +33,7 @@ It is possible to create an account on the site or log in via Twitter.
 - [Cursor Paginate](https://github.com/otoyo/cursor-paginate) for cursor pagination on bookmarks display in a folder.
 - [Data Confirm Modal](https://github.com/ifad/data-confirm-modal) for custom and good looking data-confirmations via Bootstrap modals, avoiding the default behavior (Javascript's *"Alert()"*).
 - [Devise](https://github.com/heartcombo/devise) for user authentication with the default modules.
-- [Friendly ID](https://github.com/norman/friendly_id) for custom URLs on Folder resources, using the name given by the user + a 4 digit random number, instead of using only the ID.
+- [Stringex](https://github.com/rsl/stringex) for custom URLs on Folder resources, using the parameterized name given by the user.
 - [Kaminari](https://github.com/kaminari/kaminari) + [Bootstrap 4 Kaminari Views](https://github.com/KamilDzierbicki/bootstrap4-kaminari-views) for pagination.
 - [Omniauth Twitter](https://github.com/arunagw/omniauth-twitter) combined with Devise's Omniauthable module to allow a user to sign in via Twitter.
 - [PG](https://deveiate.org/code/pg/) (Ruby interface to the [PostgreSQL RDBMS](http://www.postgresql.org/)).
