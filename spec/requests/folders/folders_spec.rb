@@ -18,6 +18,15 @@ RSpec.describe 'Folders', type: :request do
 
       it { expect(response).to have_http_status(:ok) }
     end
+
+    context 'when folder does not exist' do
+      before { get folder_path('not-found-folder'), params: { session: login_as(user) } }
+
+      it do
+        follow_redirect!
+        expect(response).to have_http_status(:not_found)
+      end
+    end
   end
 
   describe 'GET /folders/new' do
