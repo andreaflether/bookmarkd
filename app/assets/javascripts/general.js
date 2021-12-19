@@ -6,7 +6,7 @@ $(document).ready(function() {
     debug: false,
     newestOnTop: false,
     progressBar: false,
-    positionClass: 'toast-top-center',
+    positionClass: 'toast-top-right',
     preventDuplicates: false,
     onclick: null,
     showDuration: '300',
