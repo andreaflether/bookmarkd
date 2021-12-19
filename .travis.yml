@@ -8,6 +8,7 @@ cache:
   directories:
     - node_modules
 install:
+  - bundle update mimemagic
   - bundle install
   - nvm install node
   - node -v
