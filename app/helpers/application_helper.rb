@@ -24,11 +24,11 @@ module ApplicationHelper
   end
 
   def light_mode?
-    cookies[:sun]
+    application_mode == 'light'
   end
 
   def application_mode
-    light_mode? ? 'light' : 'dark'
+    cookies[:_bookmarkd_theme] ||= 'light'
   end
 
   def sort_by_template(display_text, sort_by)
@@ -41,5 +41,10 @@ module ApplicationHelper
             method: :put,
             remote: true,
             class: 'btn'
+  end
+
+  def page_title
+    action = controller_name == 'pages' ? params[:id] : action_name
+    t("app.titles.#{controller_name}.#{action}")
   end
 end

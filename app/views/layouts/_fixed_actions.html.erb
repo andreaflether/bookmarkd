@@ -1,4 +1,24 @@
-<div class="position-fixed application-mode"></div>
+<div class="position-fixed application-mode">
+  <% if light_mode? %>
+    <%= link_to moon_path, method: :get, 
+      data: { 
+        mode: 'dark',
+        'tippy-content': t('content.tippy.misc.dark_mode'),
+        'tippy-placement': 'right'
+      } do %>
+      <i class="fas fa-moon fa-lg"></i>
+    <% end %>   
+  <% else %>
+    <%= link_to sun_path, method: :get, 
+      data: { 
+        mode: 'light',
+        'tippy-content': t('content.tippy.misc.light_mode'),
+        'tippy-placement': 'right'
+      } do %>
+      <i class="fas fa-sun fa-lg"></i>
+    <% end %>
+  <% end %>
+</div>
 
 <%= link_to '#', 
   class: 'btn btn-primary position-fixed back-to-top invisible',

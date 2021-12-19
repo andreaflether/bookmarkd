@@ -13,6 +13,4 @@
 //= require easy-autocomplete/dist/jquery.easy-autocomplete.min
 //= require toastr/build/toastr.min
 //= require data-confirm-modal
-//= require bootstrap4-toggle/js/bootstrap4-toggle.min
-//= require darkmode-js/lib/darkmode-js.min
 //= require_tree .

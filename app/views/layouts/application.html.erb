@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html class="h-100">
   <%= render 'layouts/head' %>
+
   <body class="h-100 <%= 'bg-lightgrey' if devise_controller? && !not_edit_user_registration_path %>">
     <% if user_signed_in? %>
       <%= render 'layouts/folder_toggle_sidebar' %>
     <% end %>
+
     <div class="container d-flex flex-column h-100">
       <div class="row justify-content-center">
         <div class="col-md-12 col-lg-9 mt-3">
@@ -14,7 +16,9 @@
       <div class="row justify-content-center <%= 'align-items-center flex-fill' if controller_name == 'pages' || action_name == 'forbidden' %> px-3" id="page-content">  
         <%= yield %>
       </div>
+
       <%= render 'layouts/fixed_actions' %>
+      
       <footer class="text-center mt-auto footer">
         © <%= Date.today.year %> <span class="font-weight-bold">Bookmarkd</span>. All rights reserved.
       </footer>

@@ -5,9 +5,9 @@
 @import 'bootstrap/scss/mixins';
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
 $input-focus-box-shadow: $default-box-shadow;
 $input-btn-focus-box-shadow: $default-box-shadow;
-
 $form-label-font-weight: 600;
 $form-check-input-focus-box-shadow: $default-box-shadow;
 $form-select-focus-box-shadow: $default-box-shadow;
@@ -23,9 +23,13 @@ $theme-colors: (
   'light':      $light,
   'dark':       $dark,
   'default':    $default
-  );
+);
 
 @import 'bootstrap/scss/bootstrap';
+
+.input-group-append .btn-outline-secondary { 
+  border-left: none; 
+}
 
 .navbar-nav .nav-item .nav-link {
   font-weight: bold;
@@ -34,12 +38,7 @@ $theme-colors: (
 
 /* Overriding default bootstrap values */
 .dropdown-item { 
-  padding: 0.7rem 1.5rem;
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: rgba(32, 34, 35, 0.08);
-  }
+  padding: 0.7rem 1.5rem; 
 }
 
 .dropdown-menu {
@@ -48,7 +47,7 @@ $theme-colors: (
 }
 
 .shadow-lg { 
-  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5 !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.17) !important; 
 }
 
 .user-dropdown.dropdown-toggle::after {
@@ -63,7 +62,7 @@ $theme-colors: (
 
 .list-group-item-action {
   border: none;
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   background-color: transparent;
   border-radius: 0 !important;
 }

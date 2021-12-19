@@ -1,0 +1,102 @@
+@import 'variables';
+
+.dropdown-item {
+  &:hover,
+  &:active {
+    background-color: rgba(32, 34, 35, 0.05);
+  }
+}
+
+.dropdown-item.disabled {
+  color: rgb(160, 160, 160) !important;
+}
+
+.list-group-item.active {
+  background-color: rgba(32, 34, 35, 0.08);
+}
+
+/* Buttons/Bgs */
+.btn-outline-secondary {
+  color: #657786; 
+  background-color: transparent;
+  border-color: #CED4DA;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: rgba(#333, 0.15);
+    border-color: #CED4DA;
+    color: #333;
+  }
+}
+
+.sort-by-button-group .btn {
+  @extend .btn-outline-secondary;
+}
+
+.input-group-append .btn-outline-secondary {
+  border-left: none;
+}
+
+.bg-lightgrey {
+  background-color: #F9FAFB;
+}
+
+.bg-custom {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+  background-color: #fff;
+}
+
+#error_explanation {
+  background-color: rgba(254,242,242, 1);
+  color: rgb(185, 28, 28) !important;
+}
+
+#no-tweets, #no-folders, .info {
+  color: #343A40;
+}
+
+/* Text related */
+.text-logo { 
+  color: #333; 
+}
+
+.folder-desc {
+  color: #343A40 !important;
+}
+
+.policy-content, .terms-content {
+  p, ol { 
+    color: rgb(90, 95, 102); 
+  }
+}
+
+/* Actions */
+.pin-folder-icon, .folder-dropdown-options {
+  color: darken($color: #bbb, $amount: 10%); 
+  &:hover { 
+    color: #696969;
+  }
+}
+
+body::-webkit-scrollbar-track,
+.folder-menu::-webkit-scrollbar-track {
+  background: rgba($secondary, 0.1); 
+}
+
+body::-webkit-scrollbar-thumb,
+.folder-menu::-webkit-scrollbar-thumb {
+  background: rgba($secondary, 0.15);
+}
+
+body::-webkit-scrollbar-thumb:hover,
+.folder-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba($secondary, 0.25); 
+}
+
+.folder-menu, .toggle-fixed {
+  background-color: #fff;
+}
+
+.easy-autocomplete-container ul {
+  border-top: 1px solid #ccc;
+}

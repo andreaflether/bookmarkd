@@ -36,8 +36,8 @@
     <div class="text-center my-4">
       <%= f.input :terms, as: :boolean, wrapper: :custom_boolean, 
         label: "I accept the 
-          #{link_to 'Terms of Service', terms_of_service_path, class: 'link-brand', target: '_blank' } 
-          and #{link_to 'Privacy Policy', privacy_policy_path, class: 'link-brand', target: '_blank' }".html_safe 
+          #{link_to 'Terms of Service', page_path('terms_of_service'), class: 'link-brand', target: '_blank' } 
+          and #{link_to 'Privacy Policy', page_path('privacy_policy'), class: 'link-brand', target: '_blank' }".html_safe 
       %>
     </div>
 

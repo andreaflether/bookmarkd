@@ -1,6 +1,6 @@
 <head>
   <%= display_meta_tags site: t('app.name'),
-    title: action_name == 'home' ? nil : t("app.titles.#{controller_name}.#{action_name}"),
+    title: page_title,
     reverse: true,
     separator: '/',
     description: t('app.description'),
@@ -14,6 +14,9 @@
       title: :title,
       site_name: :site,
       description: :description,
+      widgets: {
+        theme: application_mode
+      },
       image: {
         _: asset_url('og_image.png'),
         width:  500,
@@ -24,7 +27,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:widgets:theme" content="<%= application_mode %>">
   <meta name="application-theme" content="<%= application_mode %>">
   
   <%= favicon_link_tag 'bookmark.ico' %>
@@ -33,6 +35,11 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <% if light_mode? %>
+    <%= stylesheet_link_tag 'light/application_light', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'dark/application_dark', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>

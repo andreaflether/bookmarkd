@@ -1,5 +1,11 @@
 @import 'variables';
 
+/* Reusable classes */
+.brand {
+  background-color: $primary;
+  color: $light-white;
+}
+
 /* Override default values */
 a, abbr[title] { 
   text-decoration: none !important; 
@@ -9,30 +15,31 @@ body::-webkit-scrollbar {
   width: 0.8em;
 }
 
+.bg-custom { 
+  padding: 2rem 3rem;
+  box-shadow: 0 .125rem .25rem rgba(#000, .075) !important;
+}
+
+/* Text related */
+.fa-xs { 
+  font-size: .65em; 
+}
+
 .folder-title { 
-  font-size: 1.25rem !important; 
+  font-size: 1.35rem !important; 
 }
 
-span.bootstrap-maxlength {
-  z-index: 3 !important;
-}
-
-.text-logo { 
-  color: #333; 
+.no-results { 
+  display: none; 
 }
 
 #tweetsCount {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: normal;
 }
 
 #no-tweets {
   margin-top: 2rem;
-}
-
-.bg-custom { 
-  padding: 2rem 3rem;
-  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
 }
 
 #destructive-warning {
@@ -45,50 +52,33 @@ span.bootstrap-maxlength {
 }
 
 .sort-by-button-group .btn.is-checked {
-  background-color: $primary;
-  color: white !important;
+  @extend .brand;
   border: 1px solid $primary;
-
   &:hover,
   &:active,
   &:focus {
-    background-color: $primary !important;
-    color: $light;
+    @extend .brand;
   }
-}
-
-.btn-outline-secondary {
-  color: #657786; 
-  background-color: transparent;
-  border-color: #ced4da;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: rgba(#333, 0.15);
-    border-color: #ced4da;
-    color: #333;
-  }
-}
-
-.sort-by-button-group .btn {
-  @extend .btn-outline-secondary;
 }
 
 /* Custom styles */
 footer {
-  color: #6c757d;
+  color: #6C757D;
   height: 60px;      /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
 }
 
- /* Actions and/or Icons */
- .application-mode, .back-to-top {
-   bottom: 20px;
- }
+/* Actions and/or Icons */
+.application-mode, .back-to-top {
+  bottom: 20px;
+}
 
 .application-mode {
   right: 20px;
+}
+
+.back-to-top {
+  right: 50%;
 }
 
 .icon-inside {
@@ -128,33 +118,38 @@ footer {
   transition: all .2s ease-in-out;
 }
 
-.toggle-fixed {
-  bottom: 0; 
-  height: 10vh; 
-  width: 250px;
-
-  .folder-sidebar {
-    left: 1.3rem;
-    cursor: pointer;
-
-    .folder-icon {
-      transition: all 600ms cubic-bezier(0.215, 0.60, 0.355, 1);
-    }
-  }
+/* Custom components */ 
+span.bootstrap-maxlength {
+  z-index: 3 !important;
 }
 
-.list-group-item.active {
-  background-color: rgba(32, 34, 35, 0.08);
-}
-
-.actions {
-  margin-top: 15px;
-}
-
+/* Custom styles for Toastr */
 [id^=toast-container] > div {
   box-shadow: none !important;
   top: 10px;
   right: 10px;
+}
+
+/* Media queries */
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0.9rem;
+  }
+}
+
+.folder-sidebar {
+  left: 1.3rem;
+  cursor: pointer;
+}
+
+.toggle-fixed {
+  bottom: 0; 
+  height: 10vh; 
+  width: 250px;
+}
+
+.actions {
+  margin-top: 15px;
 }
 
 .folder-menu {
@@ -179,6 +174,7 @@ footer {
 #sidebar-folder-search, 
 .easy-autocomplete input {
   background-color: transparent;
+  box-shadow: none;
 }
 
 .easy-autocomplete-container ul {
@@ -189,4 +185,8 @@ footer {
 
 .border-top-brand {
   border-top: 3px solid $primary !important;
+}
+
+.folder-icon {
+  transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }

@@ -6,8 +6,6 @@
   *= require errors
   *= require custom_bootstrap
   *= require main
-  *= require bootstrap4-toggle/css/bootstrap4-toggle.min
   *= require toastr/build/toastr.min
-  *= require dark
   *= require_self
 */
