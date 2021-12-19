@@ -23,40 +23,17 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#title' do
-    context 'when translation is missing' do
-      before { helper.content_for(:title, 'translation_missing') }
-
-      it { expect(helper.title).to eq('Bookmarkd') }
-    end
-
-    context 'when content_for is present' do
-      before { helper.content_for(:title, 'Test') }
-
-      it { expect(helper.title).to eq('Test / Bookmarkd') }
-    end
-
-    context 'when translation exists in i18n' do
-      before do
-        allow(helper).to receive(:controller_path).and_return 'folders'
-        allow(helper).to receive(:action_name).and_return 'new'
-      end
-
-      it { expect(helper.title).to eq('New folder / Bookmarkd') }
-    end
-  end
-
   describe '#application_mode and #light_mode?' do
-    context 'when cookies[:sun] are present' do
-      before { helper.request.cookies[:sun] = 'light mode on' }
+    context 'when theme is dark' do
+      before { helper.request.cookies[:_bookmarkd_theme] = 'dark' }
 
-      it { expect(helper.application_mode).to eq('light') }
-      it { expect(helper.light_mode?).to eq('light mode on') }
-    end
-
-    context 'when no cookies are present' do
       it { expect(helper.application_mode).to eq('dark') }
       it { expect(helper).not_to be_light_mode }
+    end
+
+    context 'when theme is light' do
+      it { expect(helper.application_mode).to eq('light') }
+      it { expect(helper).to be_light_mode }
     end
   end
 

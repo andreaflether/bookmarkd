@@ -7,7 +7,7 @@ RSpec.describe 'Folders', type: :request do
   let(:folder) { create(:folder, user: user) }
 
   describe 'GET /folders' do
-    before { get :index, params: { session: login_as(user) } }
+    before { get '/folders', params: { session: login_as(user) } }
 
     it { expect(response).to have_http_status(:ok) }
   end
@@ -38,7 +38,7 @@ RSpec.describe 'Folders', type: :request do
     end
 
     describe '#create - increment count by 1' do
-      it { expect { create_valid_folder }.to change(described_class, :count).by(1) }
+      it { expect { create_valid_folder }.to change(Folder, :count).by(1) }
     end
 
     describe '#create - when the params are valid' do
@@ -53,7 +53,7 @@ RSpec.describe 'Folders', type: :request do
     end
 
     describe '#create - when the params are invalid' do
-      it { expect { create_invalid_folder }.not_to change(described_class, :count) }
+      it { expect { create_invalid_folder }.not_to change(Folder, :count) }
     end
   end
 
@@ -104,7 +104,7 @@ RSpec.describe 'Folders', type: :request do
     end
 
     context 'destroys the requested folder' do
-      it { expect { delete_folder }.to change(described_class, :count).by(-1) }
+      it { expect { delete_folder }.to change(Folder, :count).by(-1) }
     end
   end
 

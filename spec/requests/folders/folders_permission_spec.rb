@@ -24,7 +24,7 @@ RSpec.describe Folder, type: :request do
       it 'redirects to the forbidden page' do
         get folder_path(private_folder), params: eval(session)
 
-        expect(response).to redirect_to(forbidden_folders_path)
+        expect(response).to redirect_to(forbidden_path)
       end
     end
 

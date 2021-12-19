@@ -39,11 +39,20 @@ RSpec.describe FoldersHelper, type: :helper do
   end
 
   describe '#keyword_confirmation' do
+    before(:each) { allow(helper).to receive(:current_user).and_return current_user }
     let(:current_user) { create(:user) }
-    let(:expected_keyword) { "#{current_user.username}/#{current_user.created_at.strftime('%m%d%y')}" }
 
-    before { allow(helper).to receive(:current_user).and_return current_user }
+    context 'when the resource is a user' do
+      let(:expected_keyword) { "#{current_user.username}/i-am-absolutely-sure" }
 
-    it { expect(helper.keyword_confirmation(current_user)).to eq(expected_keyword) }
+      it { expect(helper.keyword_confirmation(current_user)).to eq(expected_keyword) }
+    end
+
+    context 'when the resource is a folder' do
+      let(:folder) { create(:folder) }
+      let(:expected_keyword) { "#{current_user.username}/#{folder.slug}"}
+
+      it { expect(helper.keyword_confirmation(folder)).to eq(expected_keyword) }
+    end
   end
 end
