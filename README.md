@@ -14,15 +14,15 @@ By default, only you have access to your folders/bookmarked tweets. However, you
 ### 🔗 Folder sharing
 If you chose to leave a folder public, you can copy its link and share it with the world! Other people seeing the folder will only have read privileges though, meaning only you can edit, add or delete bookmarks.
 ### 🌓 Dark and Light mode
-The default is the Dark mode, but you can change the application mode at any time. 
+Default is the Light mode, but you can change the application mode at any time. 
 ### 🔢 Sort folders by Name, Last Update or Number of Bookmarks
 The folders in the index page, by default, are sorted by the date they were last updated at, but you can also sort them by Name or by the Number of Bookmarks.
 ### ✋ No repeated bookmarks
 Bookmarkd will tell you if the tweet you're trying to add already exists in the current folder.
 ### 📌 Pin folders
-You can also pin a folder. They will always appear first in the index page.
+You can also pin a folder. They will always appear first in the index page (and the sidebar!).
 ### 👩‍💻  Sign up via Bookmarkd or Twitter
-It is possible to create an account on the site or log in via Twitter.
+It is possible to create an Bookmarkd account or log in via Twitter.
 
 ## Technology
 * Ruby 2.5.5
@@ -36,7 +36,7 @@ It is possible to create an account on the site or log in via Twitter.
 - [Stringex](https://github.com/rsl/stringex) for custom URLs on Folder resources, using the parameterized name given by the user.
 - [Kaminari](https://github.com/kaminari/kaminari) + [Bootstrap 4 Kaminari Views](https://github.com/KamilDzierbicki/bootstrap4-kaminari-views) for pagination.
 - [Omniauth Twitter](https://github.com/arunagw/omniauth-twitter) combined with Devise's Omniauthable module to allow a user to sign in via Twitter.
-- [PG](https://deveiate.org/code/pg/) (Ruby interface to the [PostgreSQL RDBMS](http://www.postgresql.org/)).
+- [PG](https://deveiate.org/code/pg/) (Ruby interface to the [PostgreSQL RDBMS](http://www.postgresql.org/)) as the DB.
 - [Ransack](https://github.com/activerecord-hackery/ransack) to easily search folders in the 'Quick access' feature.
 - [Rest Client](https://github.com/rest-client/rest-client) for easier integration with the [oEmbed service](https://developer.twitter.com/en/docs/twitter-for-websites/timelines/guides/oembed-api), provided by Twitter API. 
 - [Simple Form](https://github.com/heartcombo/simple_form) to write muss less code when it comes to forms, by using their custom wrappers (especifically Bootstrap).
@@ -54,7 +54,7 @@ It is possible to create an account on the site or log in via Twitter.
 - [Font Awesome](https://fontawesome.com/) for icons.
 - [JQuery](https://jquery.com/) and [JQuery UI](https://jqueryui.com/) to simplify Javascript functions and an easier integration with Ajax. 
 - [Tippy](https://atomiks.github.io/tippyjs/) to display sum up guides in tooltip form, in order to help the user understand on how the application works.
-- [Toastr](https://github.com/CodeSeven/toastr) (with modified design) for alerts and/or notices.
+- [Toastr](https://github.com/CodeSeven/toastr) for alerts and/or notices.
 
  Check <kbd>[package.json](./package.json)</kbd> file
 
