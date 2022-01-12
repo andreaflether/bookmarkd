@@ -2,6 +2,10 @@ en:
   errors:
     format: "%{message}"
   content:
+    links:
+      tweet:
+        copy_media: Copy media URL
+        copy_tweet: Copy tweet URL
     modal_titles:
       folders:
         delete: Delete folder
@@ -67,6 +71,7 @@ en:
         delete: Delete account
       tweets:
         copy_tweet_url: Copy tweet URL to clipboard
+        copy_tweet_media: Copy tweet media to clipboard
       bookmarks:
         delete: Remove bookmark from folder
   controllers:

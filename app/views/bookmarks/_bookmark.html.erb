@@ -14,16 +14,44 @@
         </small>
       </div>
       <div class="d-flex align-items-center justify-content-center">
-        <%= button_tag(
-          type: 'button', 
-          class: 'btn btn-transparent d-flex copyLink',
-          data: { 
-            'tippy-content': t('content.tippy.tweets.copy_tweet_url'), 
-            'tippy-placement': 'bottom',
-            copy: 'tweet'
-          }) do %> 
-          <i class="fas fa-link mt-2 ml-2 text-muted"></i>
-        <% end %>
+        <div class="dropdown">
+          <button class="btn btn-transparent btn-lg btn-action text-muted p-1 mx-2" 
+            type="button" 
+            id="folder-actions" 
+            data-tippy-content="More"
+            data-tippy-placement="right"
+            data-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+          >
+            <i class="fas fa-ellipsis-h 2x mt-2"></i>
+          </button>
+
+          <div class="dropdown-menu border-0" aria-labelledby="tweet-actions">
+            <%= button_tag(
+              type: 'button', 
+              class: 'dropdown-item copyLink text-muted',
+              data: { 
+                'tippy-content': t('content.tippy.tweets.copy_tweet_url'), 
+                'tippy-placement': 'left',
+                copy: 'tweet'
+              }) do %> 
+              <i class="fas fa-link"></i> &nbsp; <%= t('content.links.tweet.copy_tweet') %>
+            <% end %>
+
+            <%= button_tag(
+              type: 'button',
+              class: "dropdown-item copyTweetMedia text-muted #{'disabled' unless bookmark.tweet.media}",
+              data: {
+                'tippy-content': t('content.tippy.tweets.copy_tweet_media'),
+                'tippy-placement': 'left',
+                'copy-tweet-media': bookmark.tweet.media
+              }) do %>
+              <i class="fas fa-images"></i> &nbsp; <%= t('content.links.tweet.copy_media') %>
+            <% end %>
+          </div>
+        </div>
+
         <%= link_to folder_bookmark_path(@folder, bookmark), 
           method: :delete, 
           remote: true,

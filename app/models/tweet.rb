@@ -21,4 +21,8 @@ class Tweet < ApplicationRecord
       self.html_content = html
     end
   end
+
+  def media
+    html_content.scan(/pic.twitter.com\/.{10}/)&.first
+  end
 end
