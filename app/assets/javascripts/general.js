@@ -75,6 +75,19 @@ $(document).ready(function() {
     toastr.info(msg)  
   })
 
+  $('#page-content').on('click', '.copyTweetMedia', function() {
+    var tweetMedia = $(this).attr('data-copy-tweet-media');
+    var msg = 'Tweet media copied to clipboard!';
+
+    document.addEventListener('copy', function(e) {
+      e.clipboardData.setData('text/plain', tweetMedia);
+      e.preventDefault();
+    }, true);
+    document.execCommand('copy');
+
+    toastr.info(msg)  
+  })
+
   function switchForBrand(el) {
     el.prev().switchClass('text-muted', 'text-primary', 50, 'easeInOutQuad' );
   }
