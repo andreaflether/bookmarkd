@@ -10,8 +10,9 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   # Omniauth config
-  config.omniauth :twitter, Rails.application.credentials.twitter_app_key,
-                  Rails.application.credentials.twitter_app_secret
+  config.omniauth :twitter,
+                  Rails.application.credentials.twitter[:key],
+                  Rails.application.credentials.twitter[:key_secret]
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
