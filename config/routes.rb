@@ -17,14 +17,19 @@ Rails.application.routes.draw do
     end
   end
 
-  authenticated :user do root to: 'folders#index' end
-  unauthenticated :user do root to: 'high_voltage/pages#show', id: 'home' end
+  authenticated :user do
+    root to: 'folders#index', as: :authenticated_user
+  end
+
+  unauthenticated :user do
+    root to: 'high_voltage/pages#show', id: 'home', as: :unauthenticated_user
+  end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   get '/moon', to: 'application#moon', as: 'moon'
   get '/sun', to: 'application#sun', as: 'sun'
   get '/forbidden', to: 'folders#forbidden', as: 'forbidden'
-  
+
   put '/order_folders_by', to: 'preferences#order_folders_by'
 end
