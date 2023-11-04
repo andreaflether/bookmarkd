@@ -22,9 +22,9 @@ class Folder < ApplicationRecord
             uniqueness: {
               scope: :user_id,
               case_sensitive: false,
-              message: lambda do |object, _data|
+              message: lambda do |object, data|
                 I18n.t('activerecord.errors.models.folder.attributes.name.already_exists',
-                       url: object.user.folders.find_by({ name: _data[:value] }).get_folder_path)
+                       url: object.user.folders.find_by({ name: data[:value] }).folder_path)
               end
             }
 
@@ -34,22 +34,26 @@ class Folder < ApplicationRecord
   validates :privacy, presence: { message: I18n.t('activerecord.errors.models.folder.attributes.privacy.blank') }
 
   def number_of_pinned_folders
-    if user.pinned_folders.count == MAX_PINNED_FOLDERS
-      errors.add(:folders, I18n.t('activerecord'\
-        '.errors'\
-        '.models'\
-        '.folder'\
-        '.attributes'\
-        '.pinned'\
-        '.limit_reached', max_pins: MAX_PINNED_FOLDERS))
-    end
+    return unless user.pinned_folders.count == MAX_PINNED_FOLDERS
+
+    errors.add(:folders, I18n.t('activerecord'\
+                         '.errors'\
+                         '.models'\
+                         '.folder'\
+                         '.attributes'\
+                         '.pinned'\
+                         '.limit_reached', max_pins: MAX_PINNED_FOLDERS))
   end
 
   def to_param
     slug
   end
 
-  def get_folder_path
+  def folder_path
     Rails.application.routes.url_helpers.folder_path(self)
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name]
   end
 end
